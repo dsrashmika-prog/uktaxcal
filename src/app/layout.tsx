@@ -6,6 +6,7 @@ import { AppSidebar } from "@/components/app-sidebar";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteFooter } from "@/components/SiteFooter";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -105,6 +106,7 @@ export default function RootLayout({
             </main>
           </SidebarProvider>
         </TooltipProvider>
+        <Analytics />
       </body>
     </html >
   );
