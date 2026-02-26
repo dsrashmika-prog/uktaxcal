@@ -1,4 +1,5 @@
-import { Calendar, Home, Inbox, Search, Settings, Calculator, Briefcase, PoundSterling, Landmark } from "lucide-react"
+import { Calculator, Landmark } from "lucide-react"
+import Link from "next/link"
 
 import {
     Sidebar,
@@ -18,7 +19,11 @@ const items = [
         title: "Your Take Home Pay Tax Calculator",
         url: "/",
         icon: Calculator,
-        isActive: true,
+    },
+    {
+        title: "About Us",
+        url: "/about",
+        icon: Landmark,
     },
 ]
 
@@ -26,10 +31,10 @@ export function AppSidebar() {
     return (
         <Sidebar>
             <SidebarHeader className="p-4 border-b">
-                <div className="flex items-center gap-2 font-bold text-xl text-emerald-600">
+                <Link href="/" className="flex items-center gap-2 font-bold text-xl text-emerald-600 hover:opacity-80 transition-opacity">
                     <Landmark className="h-6 w-6" />
-                    <span>TaxCalc UK</span>
-                </div>
+                    <span>taxcaluk</span>
+                </Link>
             </SidebarHeader>
             <SidebarContent>
                 <SidebarGroup>
@@ -38,7 +43,7 @@ export function AppSidebar() {
                         <SidebarMenu>
                             {items.map((item) => (
                                 <SidebarMenuItem key={item.title}>
-                                    <SidebarMenuButton asChild isActive={item.isActive} tooltip={item.title}>
+                                    <SidebarMenuButton asChild tooltip={item.title}>
                                         <a href={item.url}>
                                             <item.icon />
                                             <span>{item.title}</span>

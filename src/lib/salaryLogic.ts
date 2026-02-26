@@ -1,5 +1,7 @@
 export interface SalaryInput {
+
   grossSalary: number;
+  payFrequency?: 'Yearly' | 'Monthly' | '4-Weekly' | '2-Weekly' | 'Weekly' | 'Daily' | '';
   taxCode: string;
   studentLoanPlan1: boolean;
   studentLoanPlan2: boolean;
@@ -33,6 +35,7 @@ export interface SalaryBreakdown {
   pension: number;
   takeHome: number;
   totalCostToEmployer: number;
+  locationUsed: 'Rest of UK' | 'Scotland';
   takeHomeFrequencies: {
     yearly: number;
     monthly: number;
@@ -45,7 +48,9 @@ export interface SalaryBreakdown {
 
 export function calculateSalaryBreakdown(input: SalaryInput): SalaryBreakdown {
   const {
+
     grossSalary,
+    payFrequency = 'Yearly',
     taxCode = '1257L',
     studentLoanPlan1,
     studentLoanPlan2,
@@ -55,6 +60,11 @@ export function calculateSalaryBreakdown(input: SalaryInput): SalaryBreakdown {
     pensionContributionPercent,
     location,
   } = input;
+
+
+  const multiplier = payFrequency === 'Monthly' ? 12 : payFrequency === '4-Weekly' ? 13 : payFrequency === '2-Weekly' ? 26 : payFrequency === 'Weekly' ? 52 : payFrequency === 'Daily' ? 260 : 1;
+  const periodGross = grossSalary;
+  const annualGross = grossSalary * multiplier;
 
   // --- Tax Code Parsing ---
   let parsedLocation = location;
@@ -94,16 +104,17 @@ export function calculateSalaryBreakdown(input: SalaryInput): SalaryBreakdown {
   }
 
   // 1. Pension Calculation (Qualifying Earnings: £6,240 – £50,270)
-  const pensionLowerBound = 6240;
-  const pensionUpperBound = 50270;
-  let pensionableEarnings = 0;
-  if (grossSalary > pensionLowerBound) {
-    pensionableEarnings = Math.min(grossSalary, pensionUpperBound) - pensionLowerBound;
+  const pensionLowerBoundPeriod = 6240 / multiplier;
+  const pensionUpperBoundPeriod = 50270 / multiplier;
+  let periodPensionableEarnings = 0;
+  if (periodGross > pensionLowerBoundPeriod) {
+    periodPensionableEarnings = Math.min(periodGross, pensionUpperBoundPeriod) - pensionLowerBoundPeriod;
   }
-  const pension = pensionableEarnings * (pensionContributionPercent / 100);
+  const periodPension = periodPensionableEarnings * (pensionContributionPercent / 100);
+  const pension = periodPension * multiplier;
 
   // Auto-enrolment pension is usually deducted before tax calculation (Net Pay Arrangement)
-  let salaryForTax = grossSalary - pension;
+  let salaryForTax = annualGross - pension;
 
   // Apply K Code negative allowance logic
   if (isKCode) {
@@ -174,9 +185,9 @@ export function calculateSalaryBreakdown(input: SalaryInput): SalaryBreakdown {
       }
       totalIncomeTax = basicTax + higherTax + additionalTax;
     } else if (parsedLocation === 'Scotland') {
-      const starterWidth = 3967;
-      const basicWidth = 12989;
-      const intermediateWidth = 14136;
+      const starterWidth = 2827;
+      const basicWidth = 12094;
+      const intermediateWidth = 16171;
       const higherWidth = 31338;
 
       const starterLimit = personalAllowance + starterWidth;
@@ -209,50 +220,57 @@ export function calculateSalaryBreakdown(input: SalaryInput): SalaryBreakdown {
   }
 
   // Ensure tax doesn't exceed 50% of gross salary for K codes and Flat Rates
-  const maxTax = grossSalary * 0.50;
+  const maxTax = annualGross * 0.50;
   if (totalIncomeTax > maxTax) {
     totalIncomeTax = maxTax;
   }
 
-  // 5. Employee NI (On Gross)
-  let employeeNI = 0;
-  if (grossSalary > 12570) {
-    const mainRateEarnings = Math.min(grossSalary, 50270) - 12570;
-    employeeNI += mainRateEarnings * 0.08;
-  }
-  if (grossSalary > 50270) {
-    employeeNI += (grossSalary - 50270) * 0.02;
-  }
+  // 5. Employee NI (Class 1) - Calculated per period
+  let periodNI = 0;
+  const niPT = payFrequency === 'Monthly' ? 1048 : payFrequency === 'Weekly' ? 242 : payFrequency === '4-Weekly' ? 968 : payFrequency === '2-Weekly' ? 484 : 12570 / multiplier;
+  const niUEL = payFrequency === 'Monthly' ? 4189 : payFrequency === 'Weekly' ? 967 : payFrequency === '4-Weekly' ? 3867 : payFrequency === '2-Weekly' ? 1934 : 50270 / multiplier;
 
-  // 6. Employer NI (On Gross)
-  let employerNI = 0;
-  if (grossSalary > 5000) {
-    employerNI = (grossSalary - 5000) * 0.15;
+  if (periodGross > niPT) {
+    const mainRateEarnings = Math.min(periodGross, niUEL) - niPT;
+    periodNI += mainRateEarnings * 0.08;
   }
+  if (periodGross > niUEL) {
+    periodNI += (periodGross - niUEL) * 0.02;
+  }
+  const employeeNI = periodNI * multiplier;
 
-  // 7. Student Loans (On Gross)
-  let studentLoan = 0;
-  if (studentLoanPlan1 && grossSalary > 26900) {
-    studentLoan += (grossSalary - 26900) * 0.09;
+  // 6. Employer NI (On Gross) - Calculated per period
+  let periodEmployerNI = 0;
+  const employerThreshold = 5000 / multiplier;
+  if (periodGross > employerThreshold) {
+    periodEmployerNI = (periodGross - employerThreshold) * 0.15;
   }
-  if (studentLoanPlan2 && grossSalary > 29385) {
-    studentLoan += (grossSalary - 29385) * 0.09;
+  const employerNI = periodEmployerNI * multiplier;
+
+  // 7. Student Loans (On Gross) - Calculated per period
+  let periodStudentLoan = 0;
+  if (studentLoanPlan1 && periodGross > 26065 / multiplier) {
+    periodStudentLoan += (periodGross - 26065 / multiplier) * 0.09;
   }
-  if (studentLoanPlan4 && grossSalary > 33795) {
-    studentLoan += (grossSalary - 33795) * 0.09;
+  if (studentLoanPlan2 && periodGross > 28470 / multiplier) {
+    periodStudentLoan += (periodGross - 28470 / multiplier) * 0.09;
   }
-  if (studentLoanPlan5 && grossSalary > 25000) {
-    studentLoan += (grossSalary - 25000) * 0.09;
+  if (studentLoanPlan4 && periodGross > 32745 / multiplier) {
+    periodStudentLoan += (periodGross - 32745 / multiplier) * 0.09;
   }
-  if (postgraduateLoan && grossSalary > 21000) {
-    studentLoan += (grossSalary - 21000) * 0.06;
+  if (studentLoanPlan5 && periodGross > 25000 / multiplier) {
+    periodStudentLoan += (periodGross - 25000 / multiplier) * 0.09;
   }
+  if (postgraduateLoan && periodGross > 21000 / multiplier) {
+    periodStudentLoan += (periodGross - 21000 / multiplier) * 0.06;
+  }
+  const studentLoan = periodStudentLoan * multiplier;
 
   // 8. Take Home Pay
   const totalDeductions = totalIncomeTax + employeeNI + studentLoan + pension;
-  const takeHome = grossSalary - totalDeductions;
+  const takeHome = annualGross - totalDeductions;
 
-  const totalCostToEmployer = grossSalary + employerNI;
+  const totalCostToEmployer = annualGross + employerNI;
 
   const takeHomeFrequencies = {
     yearly: takeHome,
@@ -264,7 +282,7 @@ export function calculateSalaryBreakdown(input: SalaryInput): SalaryBreakdown {
   };
 
   return {
-    gross: grossSalary,
+    gross: annualGross,
     personalAllowance,
     taxableIncome,
     incomeTax: {
@@ -286,5 +304,6 @@ export function calculateSalaryBreakdown(input: SalaryInput): SalaryBreakdown {
     takeHome,
     totalCostToEmployer,
     takeHomeFrequencies,
+    locationUsed: parsedLocation,
   };
 }
