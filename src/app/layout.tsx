@@ -7,6 +7,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { SiteFooter } from "@/components/SiteFooter";
 import Link from "next/link";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -107,6 +108,7 @@ export default function RootLayout({
           </SidebarProvider>
         </TooltipProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html >
   );
