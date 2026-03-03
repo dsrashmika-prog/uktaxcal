@@ -11,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export default function Home() {
   // Input States
@@ -24,6 +25,7 @@ export default function Home() {
   const [studentLoanPlan, setStudentLoanPlan] = useState<SalaryInput['studentLoanPlan']>('None');
   const [hasPostgradLoan, setHasPostgradLoan] = useState(false);
 
+  const [pensionScheme, setPensionScheme] = useState<SalaryInput['pensionScheme']>('Auto-enrolment');
   const [pensionType, setPensionType] = useState<SalaryInput['pensionType']>('Percentage');
   const [pensionValue, setPensionValue] = useState("");
 
@@ -52,6 +54,7 @@ export default function Home() {
       taxCode,
       studentLoanPlan,
       hasPostgradLoan,
+      pensionScheme,
       pensionType,
       pensionValue: parseFloat(pensionValue) || 0,
       bonusAmount: parseFloat(bonusAmount) || 0,
@@ -215,10 +218,36 @@ export default function Home() {
                 {/* Pension */}
                 <AccordionItem value="pension" className="border-b-0">
                   <AccordionTrigger className="px-6 py-4 hover:bg-slate-50 hover:no-underline text-base font-semibold text-slate-800 bg-white border-y border-slate-100">
-                    Auto-enrolment Pension
+                    Pension
                   </AccordionTrigger>
-                  <AccordionContent className="px-6 py-4 bg-slate-50/50 space-y-4">
-                    <div className="flex gap-4">
+                  <AccordionContent className="px-6 py-4 bg-slate-50/50 space-y-6">
+
+                    <div className="space-y-4 pt-2 pb-2 pl-2">
+                      <RadioGroup
+                        value={pensionScheme}
+                        onValueChange={(val: any) => setPensionScheme(val)}
+                        className="flex flex-col space-y-3"
+                      >
+                        <div className="flex items-center space-x-3">
+                          <RadioGroupItem value="Auto-enrolment" id="r1" className="w-5 h-5" />
+                          <Label htmlFor="r1" className="text-base font-normal text-slate-600 cursor-pointer">Auto-enrolment</Label>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <RadioGroupItem value="Employer" id="r2" className="w-5 h-5" />
+                          <Label htmlFor="r2" className="text-base font-normal text-slate-600 cursor-pointer">Employer</Label>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <RadioGroupItem value="Salary sacrifice" id="r3" className="w-5 h-5" />
+                          <Label htmlFor="r3" className="text-base font-normal text-slate-600 cursor-pointer">Salary sacrifice</Label>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <RadioGroupItem value="Personal" id="r4" className="w-5 h-5" />
+                          <Label htmlFor="r4" className="text-base font-normal text-slate-600 cursor-pointer">Personal</Label>
+                        </div>
+                      </RadioGroup>
+                    </div>
+
+                    <div className="flex gap-4 border-t pt-5">
                       <div className="flex-1 space-y-2">
                         <Label>Contribution Amount</Label>
                         <Input type="number" placeholder="e.g. 5" value={pensionValue} onChange={(e) => setPensionValue(e.target.value)} className="border-slate-300" />
@@ -367,6 +396,14 @@ export default function Home() {
                             <td className="px-6 py-3 text-right">-{formatCurrency(breakdown.pension.yearly)}</td>
                             <td className="px-6 py-3 text-right">-{formatCurrency(breakdown.pension.monthly)}</td>
                             <td className="px-6 py-3 text-right">-{formatCurrency(breakdown.pension.weekly)}</td>
+                          </tr>
+                        )}
+                        {breakdown.employerPension.yearly > 0 && (
+                          <tr className="bg-white hover:bg-slate-50 transition-colors text-emerald-600">
+                            <td className="px-6 py-3 font-medium flex items-center gap-1">+ Employer Pension</td>
+                            <td className="px-6 py-3 text-right">{formatCurrency(breakdown.employerPension.yearly)}</td>
+                            <td className="px-6 py-3 text-right">{formatCurrency(breakdown.employerPension.monthly)}</td>
+                            <td className="px-6 py-3 text-right">{formatCurrency(breakdown.employerPension.weekly)}</td>
                           </tr>
                         )}
                         {breakdown.childcareVouchers.yearly > 0 && (

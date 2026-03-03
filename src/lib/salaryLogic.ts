@@ -6,6 +6,7 @@ export interface SalaryInput {
     taxCode: string;
     studentLoanPlan: 'None' | 'Plan 1' | 'Plan 2' | 'Plan 4' | 'Plan 5';
     hasPostgradLoan: boolean;
+    pensionScheme: 'Auto-enrolment' | 'Employer' | 'Salary sacrifice' | 'Personal';
     pensionType: 'Percentage' | 'Amount';
     pensionValue: number;
     bonusAmount: number;
@@ -35,6 +36,7 @@ export interface SalaryBreakdown {
     nationalInsurance: BreakdownItem;
     studentLoan: BreakdownItem;
     pension: BreakdownItem;
+    employerPension: BreakdownItem;
     bonus: BreakdownItem;
     overtime: BreakdownItem;
     childcareVouchers: BreakdownItem;
@@ -167,25 +169,41 @@ export const calculateSalary = (input: SalaryInput): SalaryBreakdown => {
     const annualBonus = input.bonusAmount; // Assuming bonus is a single yearly lump sum
     const totalAnnualGross = annualGross + annualOvertime + annualBonus;
 
-    // 3. Pension (Pre-tax logic for Auto-Enrolment / Salary Sacrifice)
+    // 3. Pension 
     let annualPension = 0;
+    let annualEmployerPension = 0;
+
+    // Auto-enrolment minimums often apply to qualifying earnings, but strictly following 
+    // the user's reference tool: standard calculation applies the % to the gross input.
+    let basePensionAmount = 0;
     if (input.pensionValue > 0) {
         if (input.pensionType === 'Percentage') {
-            // Typically auto-enrolment is on qualifying earnings (between 6240 and 50270)
-            // but for simplicity calculators often just do % of gross unless specified
-            annualPension = totalAnnualGross * (input.pensionValue / 100);
+            basePensionAmount = totalAnnualGross * (input.pensionValue / 100);
         } else {
-            annualPension = input.pensionValue * 12; // Assuming amount is monthly
+            basePensionAmount = input.pensionValue * 12; // monthly amount
         }
     }
 
-    // 4. Pre-Tax Deductions (GAYE & Childcare)
-    const annualGAYE = input.giveAsYouEarn * 12;
-    const annualChildcare = input.childcareVoucher * 12; // Assuming monthly voucher input
+    if (input.pensionScheme === 'Employer') {
+        annualEmployerPension = basePensionAmount;
+    } else {
+        annualPension = basePensionAmount;
+    }
 
-    // 5. Calculate Adjusted Net Income for Personal Allowance Reduction
-    const preTaxDeductions = annualPension + annualGAYE + annualChildcare;
-    let adjustedNetIncome = Math.max(0, totalAnnualGross - preTaxDeductions);
+    // 4. Pre-Tax / Pre-NI Deductions (Salary Sacrifice reduces BOTH gross and NI-able gross)
+    let preTaxDeductions = input.giveAsYouEarn * 12;
+    const annualChildcare = input.childcareVoucher * 12;
+    preTaxDeductions += annualChildcare;
+
+    let adjustedNetIncome = totalAnnualGross;
+    let niLiableGross = totalAnnualGross - annualChildcare;
+
+    if (input.pensionScheme === 'Salary sacrifice') {
+        preTaxDeductions += annualPension;
+        niLiableGross -= annualPension; // Salary sacrifice specifically reduces NI exposure
+    }
+
+    adjustedNetIncome = Math.max(0, totalAnnualGross - preTaxDeductions);
 
     // 6. Allowance Overrides
     const taxCodeInfo = parseTaxCode(input.taxCode, input.isScottish);
@@ -206,29 +224,50 @@ export const calculateSalary = (input: SalaryInput): SalaryBreakdown => {
     // Not the taxable income threshold.
 
     // 7. Calculate Tax
+    // Personal/Auto-enrolment (Relief at source): Extend Basic Rate Band by the grossed-up pension contribution
+    // Note: Auto-enrolment can technically operate under Net Pay arrangements (pre-tax), but standard
+    // default for simple selection assumes Relief at Source (post-tax deduction).
+    let grossedUpRelief = input.giftAid * 12 * 1.25;
+    if (input.pensionScheme === 'Personal' || input.pensionScheme === 'Auto-enrolment') {
+        grossedUpRelief += (annualPension * 1.25); // Extend basic rate band
+    }
+
+    // If scheme is 'Auto-enrolment' under Net Pay Arrangement, it would be deducted in step 4.
+    // For exact feature parity with reference, 'Salary Sacrifice' = pre-everything. 
+    // 'Auto-enrolment' and 'Personal' often act as Relief At Source in this layout context.
+
     const taxableIncome = Math.max(0, adjustedNetIncome - personalAllowance);
-    let annualTax = calculateIncomeTax(taxableIncome, input.isScottish, taxCodeInfo, input.giftAid * 12);
+    let annualTax = calculateIncomeTax(taxableIncome, input.isScottish, taxCodeInfo, grossedUpRelief);
 
     if (input.isMarried) {
-        // Max MCA is £11080 (gives £1108 tax reduction), Min is £4280 (gives £428)
-        // Simplified to max for this tier
+        // Max MCA is £11080 (gives £1108 tax reduction)
         annualTax = Math.max(0, annualTax - 1108);
     }
 
     // 8. Calculate NI (NI is typically calculated on Gross, before Pension unless Salary Sacrifice, assuming not SalSac for standard calculation)
     // Childcare vouchers DO reduce NI usually (Salary Sacrifice).
-    const niLiableGross = totalAnnualGross - annualChildcare;
     const annualNI = calculateNI(niLiableGross, input.excludeNI);
 
     // 9. Calculate Student Loan (Calculated on gross before tax, sometimes after pension depending on scheme, standard is on gross)
     const annualStudentLoan = calculateStudentLoan(totalAnnualGross, input.studentLoanPlan, input.hasPostgradLoan);
 
     // 10. Total Deductions & Take Home
-    const totalDeductions = annualTax + annualNI + annualStudentLoan + preTaxDeductions;
+    let totalDeductions = annualTax + annualNI + annualStudentLoan + (input.giveAsYouEarn * 12) + annualChildcare;
+
+    // If not Salary sacrifice (which already docked preTaxDeductions), deduct post-tax here
+    if (input.pensionScheme === 'Auto-enrolment' || input.pensionScheme === 'Personal') {
+        totalDeductions += annualPension;
+    }
+
+    // Salary Sacrifice was already deducted in preTaxDeductions.
+    if (input.pensionScheme === 'Salary sacrifice') {
+        totalDeductions += annualPension;
+    }
+
     const annualTakeHome = totalAnnualGross - totalDeductions;
 
     return {
-        grossIncome: createBreakdown(annualGross, input.daysPerWeek), // Show base gross separately
+        grossIncome: createBreakdown(annualGross, input.daysPerWeek),
         bonus: createBreakdown(annualBonus, input.daysPerWeek),
         overtime: createBreakdown(annualOvertime, input.daysPerWeek),
         taxableIncome: createBreakdown(taxableIncome, input.daysPerWeek),
@@ -236,8 +275,9 @@ export const calculateSalary = (input: SalaryInput): SalaryBreakdown => {
         nationalInsurance: createBreakdown(annualNI, input.daysPerWeek),
         studentLoan: createBreakdown(annualStudentLoan, input.daysPerWeek),
         pension: createBreakdown(annualPension, input.daysPerWeek),
+        employerPension: createBreakdown(annualEmployerPension, input.daysPerWeek),
         childcareVouchers: createBreakdown(annualChildcare, input.daysPerWeek),
-        giveAsYouEarn: createBreakdown(annualGAYE, input.daysPerWeek),
+        giveAsYouEarn: createBreakdown((input.giveAsYouEarn * 12), input.daysPerWeek),
         takeHome: createBreakdown(annualTakeHome, input.daysPerWeek),
     };
 };
