@@ -167,20 +167,29 @@ export default function Home() {
             <Card className="border border-slate-200 overflow-hidden">
               <Accordion type="single" collapsible className="w-full">
 
-                {/* Tax Code */}
-                <AccordionItem value="tax-code" className="border-b-0">
+                {/* Tax Code Dedicated */}
+                <AccordionItem value="tax-code-only" className="border-b-0">
                   <AccordionTrigger className="px-6 py-4 hover:bg-slate-50 hover:no-underline text-base font-semibold text-slate-800 bg-white border-b border-slate-100">
-                    Tax Code & Student Loan
+                    Enter Tax code here ( optional )
                   </AccordionTrigger>
                   <AccordionContent className="px-6 py-4 bg-slate-50/50 space-y-4">
                     <div className="space-y-2">
-                      <Label>Tax Code (Optional)</Label>
+                      <Label>Tax Code</Label>
                       <Input
                         placeholder="Leave blank for default (e.g. 1257L)"
                         value={taxCode} onChange={(e) => setTaxCode(e.target.value)}
                         className="border-slate-300"
                       />
                     </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                {/* Student Loan */}
+                <AccordionItem value="student-loan" className="border-b-0">
+                  <AccordionTrigger className="px-6 py-4 hover:bg-slate-50 hover:no-underline text-base font-semibold text-slate-800 bg-white border-b border-slate-100">
+                    Student Loan
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 py-4 bg-slate-50/50 space-y-4">
                     <div className="space-y-2">
                       <Label>Student Loan Plan</Label>
                       <Select value={studentLoanPlan} onValueChange={(val: any) => setStudentLoanPlan(val)}>
