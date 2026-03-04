@@ -81,10 +81,10 @@ export default function Home() {
     <main className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
-          <h1 className="text-5xl font-extrabold tracking-tighter flex justify-center items-baseline">
+          <h1 className="text-4xl font-extrabold tracking-tighter flex justify-center items-baseline">
             <span className="text-[#1e3a8a] tracking-tight">lit</span>
             <span className="text-[#c02636] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#c02636] to-[#e11d48]">finance</span>
-            <span className="text-[#1e3a8a] text-5xl ml-1">.</span>
+            <span className="text-[#1e3a8a] text-4xl ml-0.5">.</span>
           </h1>
           <p className="mt-2 text-lg text-slate-600">
             Find out your take-home pay accurately across both standard UK and Scottish tax bands.
@@ -346,119 +346,124 @@ export default function Home() {
           {/* RIGHT: RESULTS TABLE */}
           <div className="lg:col-span-7">
             {breakdown ? (
-              <Card className="shadow-lg border-t-4 border-t-emerald-500 overflow-hidden sticky top-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-                <CardHeader className="bg-slate-50 border-b border-slate-200">
-                  <CardTitle className="text-2xl text-slate-800 text-center">
-                    Your Take-Home Pay
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="p-0">
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-sm text-left">
-                      <thead className="bg-slate-100 text-slate-600 font-semibold border-b">
-                        <tr>
-                          <th className="px-6 py-4"></th>
-                          <th className="px-6 py-4 text-right">Yearly</th>
-                          <th className="px-6 py-4 text-right">Monthly</th>
-                          <th className="px-6 py-4 text-right">Weekly</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-100">
-                        <tr className="bg-white hover:bg-slate-50 transition-colors">
-                          <td className="px-6 py-4 font-medium text-slate-900">Gross Income</td>
-                          <td className="px-6 py-4 text-right text-slate-700">{formatCurrency(breakdown.grossIncome.yearly)}</td>
-                          <td className="px-6 py-4 text-right text-slate-700">{formatCurrency(breakdown.grossIncome.monthly)}</td>
-                          <td className="px-6 py-4 text-right text-slate-700">{formatCurrency(breakdown.grossIncome.weekly)}</td>
-                        </tr>
+              <div className="overflow-x-auto overflow-y-hidden border border-slate-200 rounded-sm bg-white shadow-sm mt-8">
+                <table className="w-full text-sm text-left table-fixed">
+                  <thead className="bg-white text-slate-500 font-normal border-b border-slate-200">
+                    <tr>
+                      <th className="px-6 py-4 font-normal w-[28%]"></th>
+                      <th className="px-4 py-4 font-normal text-right">Yearly</th>
+                      <th className="px-4 py-4 font-normal text-right border-l border-slate-100">Monthly</th>
+                      <th className="px-4 py-4 font-normal text-right border-l border-slate-100">Weekly</th>
+                      <th className="px-4 py-4 font-normal text-right border-l border-slate-100">Daily</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-200 text-slate-600">
+                    <tr className="bg-slate-100/60">
+                      <td className="px-6 py-4 font-bold text-slate-700 border-r border-slate-200">Gross Income</td>
+                      <td className="px-4 py-4 text-right font-bold text-slate-700">{formatCurrency(breakdown.grossIncome.yearly)}</td>
+                      <td className="px-4 py-4 text-right font-bold text-slate-700 border-l border-slate-200">{formatCurrency(breakdown.grossIncome.monthly)}</td>
+                      <td className="px-4 py-4 text-right font-bold text-slate-700 border-l border-slate-200">{formatCurrency(breakdown.grossIncome.weekly)}</td>
+                      <td className="px-4 py-4 text-right font-bold text-slate-700 border-l border-slate-200">{formatCurrency(breakdown.grossIncome.daily)}</td>
+                    </tr>
 
-                        {(breakdown.overtime.yearly > 0 || breakdown.bonus.yearly > 0 || breakdown.pension.yearly > 0) && (
-                          <tr className="bg-slate-50/50">
-                            <td colSpan={4} className="px-6 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">Additions / Pre-Tax</td>
-                          </tr>
-                        )}
-                        {breakdown.overtime.yearly > 0 && (
-                          <tr className="bg-white hover:bg-slate-50 transition-colors text-emerald-600">
-                            <td className="px-6 py-3 font-medium flex items-center gap-1">+ Overtime</td>
-                            <td className="px-6 py-3 text-right">{formatCurrency(breakdown.overtime.yearly)}</td>
-                            <td className="px-6 py-3 text-right">{formatCurrency(breakdown.overtime.monthly)}</td>
-                            <td className="px-6 py-3 text-right">{formatCurrency(breakdown.overtime.weekly)}</td>
-                          </tr>
-                        )}
-                        {breakdown.bonus.yearly > 0 && (
-                          <tr className="bg-white hover:bg-slate-50 transition-colors text-emerald-600">
-                            <td className="px-6 py-3 font-medium flex items-center gap-1">+ Bonus</td>
-                            <td className="px-6 py-3 text-right">{formatCurrency(breakdown.bonus.yearly)}</td>
-                            <td className="px-6 py-3 text-right">{formatCurrency(breakdown.bonus.monthly)}</td>
-                            <td className="px-6 py-3 text-right">{formatCurrency(breakdown.bonus.weekly)}</td>
-                          </tr>
-                        )}
-                        {breakdown.pension.yearly > 0 && (
-                          <tr className="bg-white hover:bg-slate-50 transition-colors text-amber-600">
-                            <td className="px-6 py-3 font-medium flex items-center gap-1">- Pension</td>
-                            <td className="px-6 py-3 text-right">-{formatCurrency(breakdown.pension.yearly)}</td>
-                            <td className="px-6 py-3 text-right">-{formatCurrency(breakdown.pension.monthly)}</td>
-                            <td className="px-6 py-3 text-right">-{formatCurrency(breakdown.pension.weekly)}</td>
-                          </tr>
-                        )}
-                        {breakdown.employerPension.yearly > 0 && (
-                          <tr className="bg-white hover:bg-slate-50 transition-colors text-emerald-600">
-                            <td className="px-6 py-3 font-medium flex items-center gap-1">+ Employer Pension</td>
-                            <td className="px-6 py-3 text-right">{formatCurrency(breakdown.employerPension.yearly)}</td>
-                            <td className="px-6 py-3 text-right">{formatCurrency(breakdown.employerPension.monthly)}</td>
-                            <td className="px-6 py-3 text-right">{formatCurrency(breakdown.employerPension.weekly)}</td>
-                          </tr>
-                        )}
-                        {breakdown.childcareVouchers.yearly > 0 && (
-                          <tr className="bg-white hover:bg-slate-50 transition-colors text-amber-600">
-                            <td className="px-6 py-3 font-medium flex items-center gap-1">- Childcare Vouchers</td>
-                            <td className="px-6 py-3 text-right">-{formatCurrency(breakdown.childcareVouchers.yearly)}</td>
-                            <td className="px-6 py-3 text-right">-{formatCurrency(breakdown.childcareVouchers.monthly)}</td>
-                            <td className="px-6 py-3 text-right">-{formatCurrency(breakdown.childcareVouchers.weekly)}</td>
-                          </tr>
-                        )}
+                    {breakdown.overtime.yearly > 0 && (
+                      <tr className="bg-white">
+                        <td className="px-6 py-4 font-semibold text-slate-700 border-r border-slate-200 flex items-center gap-1">+ Overtime</td>
+                        <td className="px-4 py-4 text-right text-slate-500">{formatCurrency(breakdown.overtime.yearly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.overtime.monthly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.overtime.weekly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.overtime.daily)}</td>
+                      </tr>
+                    )}
+                    {breakdown.bonus.yearly > 0 && (
+                      <tr className="bg-slate-100/60">
+                        <td className="px-6 py-4 font-semibold text-slate-700 border-r border-slate-200 flex items-center gap-1">+ Bonus</td>
+                        <td className="px-4 py-4 text-right text-slate-500">{formatCurrency(breakdown.bonus.yearly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.bonus.monthly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.bonus.weekly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.bonus.daily)}</td>
+                      </tr>
+                    )}
+                    {breakdown.pension.yearly > 0 && (
+                      <tr className="bg-white">
+                        <td className="px-6 py-4 font-semibold text-slate-700 border-r border-slate-200 flex items-center gap-1">- Pension</td>
+                        <td className="px-4 py-4 text-right text-slate-500">{formatCurrency(breakdown.pension.yearly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.pension.monthly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.pension.weekly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.pension.daily)}</td>
+                      </tr>
+                    )}
+                    {breakdown.employerPension.yearly > 0 && (
+                      <tr className="bg-slate-100/60">
+                        <td className="px-6 py-4 font-semibold text-slate-700 border-r border-slate-200 flex items-center gap-1">+ Employer Pension</td>
+                        <td className="px-4 py-4 text-right text-slate-500">{formatCurrency(breakdown.employerPension.yearly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.employerPension.monthly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.employerPension.weekly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.employerPension.daily)}</td>
+                      </tr>
+                    )}
+                    {breakdown.childcareVouchers.yearly > 0 && (
+                      <tr className="bg-white">
+                        <td className="px-6 py-4 font-semibold text-slate-700 border-r border-slate-200 flex items-center gap-1">- Childcare Vouchers</td>
+                        <td className="px-4 py-4 text-right text-slate-500">{formatCurrency(breakdown.childcareVouchers.yearly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.childcareVouchers.monthly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.childcareVouchers.weekly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.childcareVouchers.daily)}</td>
+                      </tr>
+                    )}
 
-                        <tr className="bg-slate-50 border-y border-slate-200">
-                          <td className="px-6 py-3 font-semibold text-slate-800">Taxable Income</td>
-                          <td className="px-6 py-3 text-right font-medium text-slate-800">{formatCurrency(breakdown.taxableIncome.yearly)}</td>
-                          <td className="px-6 py-3 text-right font-medium text-slate-800">{formatCurrency(breakdown.taxableIncome.monthly)}</td>
-                          <td className="px-6 py-3 text-right font-medium text-slate-800">{formatCurrency(breakdown.taxableIncome.weekly)}</td>
-                        </tr>
+                    <tr className="bg-white">
+                      <td className="px-6 py-4 font-semibold text-slate-600 border-r border-slate-200">Taxable Income</td>
+                      <td className="px-4 py-4 text-right text-slate-500">{formatCurrency(breakdown.taxableIncome.yearly)}</td>
+                      <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.taxableIncome.monthly)}</td>
+                      <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.taxableIncome.weekly)}</td>
+                      <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.taxableIncome.daily)}</td>
+                    </tr>
 
-                        <tr className="bg-slate-50/50">
-                          <td colSpan={4} className="px-6 py-2 text-xs font-semibold text-slate-500 uppercase tracking-wider">HMRC Deductions</td>
-                        </tr>
-                        <tr className="bg-white hover:bg-slate-50 transition-colors text-rose-600">
-                          <td className="px-6 py-4 font-medium">- Income Tax</td>
-                          <td className="px-6 py-4 text-right">-{formatCurrency(breakdown.incomeTax.yearly)}</td>
-                          <td className="px-6 py-4 text-right">-{formatCurrency(breakdown.incomeTax.monthly)}</td>
-                          <td className="px-6 py-4 text-right">-{formatCurrency(breakdown.incomeTax.weekly)}</td>
-                        </tr>
-                        <tr className="bg-white hover:bg-slate-50 transition-colors text-rose-600">
-                          <td className="px-6 py-4 font-medium">- National Insurance</td>
-                          <td className="px-6 py-4 text-right">-{formatCurrency(breakdown.nationalInsurance.yearly)}</td>
-                          <td className="px-6 py-4 text-right">-{formatCurrency(breakdown.nationalInsurance.monthly)}</td>
-                          <td className="px-6 py-4 text-right">-{formatCurrency(breakdown.nationalInsurance.weekly)}</td>
-                        </tr>
-                        {breakdown.studentLoan.yearly > 0 && (
-                          <tr className="bg-white hover:bg-slate-50 transition-colors text-rose-600">
-                            <td className="px-6 py-4 font-medium flex items-center gap-1">- Student Loan</td>
-                            <td className="px-6 py-4 text-right">-{formatCurrency(breakdown.studentLoan.yearly)}</td>
-                            <td className="px-6 py-4 text-right">-{formatCurrency(breakdown.studentLoan.monthly)}</td>
-                            <td className="px-6 py-4 text-right">-{formatCurrency(breakdown.studentLoan.weekly)}</td>
-                          </tr>
-                        )}
+                    <tr className="bg-slate-100/60">
+                      <td className="px-6 py-4 font-semibold text-slate-700 border-r border-slate-200">Tax</td>
+                      <td className="px-4 py-4 text-right text-slate-500">{formatCurrency(breakdown.incomeTax.yearly)}</td>
+                      <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.incomeTax.monthly)}</td>
+                      <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.incomeTax.weekly)}</td>
+                      <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.incomeTax.daily)}</td>
+                    </tr>
 
-                        <tr className="bg-[#1e3a8a] text-white">
-                          <td className="px-6 py-6 font-bold text-lg">Take Home Pay</td>
-                          <td className="px-6 py-6 text-right font-bold text-xl">{formatCurrency(breakdown.takeHome.yearly)}</td>
-                          <td className="px-6 py-6 text-right font-bold text-xl">{formatCurrency(breakdown.takeHome.monthly)}</td>
-                          <td className="px-6 py-6 text-right font-bold text-xl">{formatCurrency(breakdown.takeHome.weekly)}</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </CardContent>
-              </Card>
+                    <tr className="bg-white">
+                      <td className="px-6 py-4 font-semibold text-slate-600 border-r border-slate-200">National Insurance</td>
+                      <td className="px-4 py-4 text-right text-slate-500">{formatCurrency(breakdown.nationalInsurance.yearly)}</td>
+                      <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.nationalInsurance.monthly)}</td>
+                      <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.nationalInsurance.weekly)}</td>
+                      <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.nationalInsurance.daily)}</td>
+                    </tr>
+
+                    {breakdown.studentLoan.yearly > 0 && (
+                      <tr className="bg-slate-100/60">
+                        <td className="px-6 py-4 font-semibold text-slate-700 border-r border-slate-200 flex items-center gap-1">- Student Loan</td>
+                        <td className="px-4 py-4 text-right text-slate-500">{formatCurrency(breakdown.studentLoan.yearly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.studentLoan.monthly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.studentLoan.weekly)}</td>
+                        <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.studentLoan.daily)}</td>
+                      </tr>
+                    )}
+
+                    <tr className="bg-slate-100/60">
+                      <td className="px-6 py-4 font-bold text-slate-700 border-r border-slate-200">{taxYear.split('/')[0]} Take Home</td>
+                      <td className="px-4 py-4 text-right font-bold text-slate-800">{formatCurrency(breakdown.takeHome.yearly)}</td>
+                      <td className="px-4 py-4 text-right font-bold text-slate-800 border-l border-slate-200">{formatCurrency(breakdown.takeHome.monthly)}</td>
+                      <td className="px-4 py-4 text-right font-bold text-slate-800 border-l border-slate-200">{formatCurrency(breakdown.takeHome.weekly)}</td>
+                      <td className="px-4 py-4 text-right font-bold text-slate-800 border-l border-slate-200">{formatCurrency(breakdown.takeHome.daily)}</td>
+                    </tr>
+
+                    <tr className="bg-white">
+                      <td className="px-6 py-4 font-semibold text-slate-700 border-r border-slate-200 underline decoration-slate-400 underline-offset-4">{parseInt(taxYear.split('/')[0]) + 1} Take Home</td>
+                      <td className="px-4 py-4 text-right text-slate-500">{formatCurrency(breakdown.takeHome.yearly)}</td>
+                      <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.takeHome.monthly)}</td>
+                      <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.takeHome.weekly)}</td>
+                      <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.takeHome.daily)}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             ) : (
               <div className="h-full min-h-[400px] flex flex-col items-center justify-center p-12 bg-white border-2 border-dashed border-slate-200 rounded-xl text-center">
                 <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-6">

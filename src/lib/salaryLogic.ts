@@ -56,7 +56,7 @@ const parseTaxCode = (code: string, isScottish: boolean): { allowance: number; r
     if (upperCode === 'NT') return { allowance: 0, rate: 0 }; // No tax
 
     // Parse numeric part (e.g., 1257L -> 12570 allowance)
-    const match = upperCode.match(/(\\d+)/);
+    const match = upperCode.match(/(\d+)/);
     if (match) {
         return { allowance: parseInt(match[1], 10) * 10 };
     }
