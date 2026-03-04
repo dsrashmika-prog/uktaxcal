@@ -81,8 +81,10 @@ export default function Home() {
     <main className="min-h-screen bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-extrabold text-[#1e3a8a] tracking-tight">
-            The UK Salary Calculator
+          <h1 className="text-5xl font-extrabold tracking-tighter flex justify-center items-baseline">
+            <span className="text-[#1e3a8a] tracking-tight">lit</span>
+            <span className="text-[#c02636] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#c02636] to-[#e11d48]">finance</span>
+            <span className="text-[#1e3a8a] text-5xl ml-1">.</span>
           </h1>
           <p className="mt-2 text-lg text-slate-600">
             Find out your take-home pay accurately across both standard UK and Scottish tax bands.
