@@ -163,7 +163,7 @@ export default function Home() {
 
                 {/* Gross Income */}
                 <div className="space-y-3">
-                  <Label className="text-sm font-semibold text-slate-700">Gross (pre-tax) income</Label>
+                  <Label className="text-sm font-semibold text-slate-700">Gross income (pre tax)</Label>
                   <div className="flex rounded-md shadow-sm">
                     <span className="inline-flex items-center px-4 rounded-l-md border border-r-0 border-slate-300 bg-slate-100 text-slate-500 font-bold">
                       £
