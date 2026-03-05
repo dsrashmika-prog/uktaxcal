@@ -662,9 +662,9 @@ export default function Home() {
             <Link href="/about" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
               About LitFinance
             </Link>
-            <a href="#" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
+            <Link href="/privacy" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
               Privacy Policy
-            </a>
+            </Link>
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 text-center md:text-left text-xs text-slate-500">
