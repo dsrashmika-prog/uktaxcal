@@ -347,7 +347,7 @@ export default function Home() {
           <div className="lg:col-span-7">
             {breakdown ? (
               <div className="overflow-x-auto overflow-y-hidden border border-slate-200 rounded-sm bg-white shadow-sm mt-8">
-                <table className="w-full text-sm text-left table-fixed">
+                <table className="w-full min-w-[700px] text-sm text-left">
                   <thead className="bg-white text-slate-500 font-normal border-b border-slate-200">
                     <tr>
                       <th className="px-6 py-4 font-normal w-[28%]"></th>
