@@ -19,6 +19,8 @@ export interface SalaryInput {
     giveAsYouEarn: number; // Monthly GAYE
     giftAid: number; // Monthly Gift Aid
     daysPerWeek: number;
+    claimsChildBenefit: boolean;
+    numberOfChildren: number;
 }
 
 export interface BreakdownItem {
@@ -41,6 +43,11 @@ export interface SalaryBreakdown {
     overtime: BreakdownItem;
     childcareVouchers: BreakdownItem;
     giveAsYouEarn: BreakdownItem;
+    childBenefitCharge: BreakdownItem;
+    taxTraps: {
+        personalAllowanceLost: number;
+        hicbcChargeAmount: number;
+    };
     takeHome: BreakdownItem;
 }
 
@@ -210,8 +217,10 @@ export const calculateSalary = (input: SalaryInput): SalaryBreakdown => {
     let personalAllowance = taxCodeInfo.allowance;
 
     // Reduce PA by £1 for every £2 over £100,000
+    let personalAllowanceLost = 0;
     if (adjustedNetIncome > 100000 && taxCodeInfo.allowance > 0) {
         const reduction = Math.floor((adjustedNetIncome - 100000) / 2);
+        personalAllowanceLost = Math.min(personalAllowance, reduction);
         personalAllowance = Math.max(0, personalAllowance - reduction);
     }
 
@@ -251,8 +260,25 @@ export const calculateSalary = (input: SalaryInput): SalaryBreakdown => {
     // 9. Calculate Student Loan (Calculated on gross before tax, sometimes after pension depending on scheme, standard is on gross)
     const annualStudentLoan = calculateStudentLoan(totalAnnualGross, input.studentLoanPlan, input.hasPostgradLoan);
 
+    // Child Benefit Clawback (HICBC)
+    // For 2024/25: 1% charge per £200 over £60k. Full withdrawal at £80k.
+    let annualChildBenefitCharge = 0;
+    if (input.claimsChildBenefit && input.numberOfChildren > 0) {
+        // Child benefit rates 24/25: £25.60/wk for eldest, £16.95/wk for subsequent
+        const totalYearlyBenefit = (25.60 * 52) + ((input.numberOfChildren - 1) * 16.95 * 52);
+
+        if (adjustedNetIncome > 60000) {
+            const excessIncome = Math.min(20000, adjustedNetIncome - 60000); // capped at £20k excess (£80k total)
+            const chargePercentage = Math.floor(excessIncome / 200) * 0.01;
+            annualChildBenefitCharge = totalYearlyBenefit * chargePercentage;
+
+            // Hard cap to ensure charge doesn't exceed benefit received.
+            annualChildBenefitCharge = Math.min(annualChildBenefitCharge, totalYearlyBenefit);
+        }
+    }
+
     // 10. Total Deductions & Take Home
-    let totalDeductions = annualTax + annualNI + annualStudentLoan + (input.giveAsYouEarn * 12) + annualChildcare;
+    let totalDeductions = annualTax + annualNI + annualStudentLoan + annualChildBenefitCharge + (input.giveAsYouEarn * 12) + annualChildcare;
 
     // If not Salary sacrifice (which already docked preTaxDeductions), deduct post-tax here
     if (input.pensionScheme === 'Auto-enrolment' || input.pensionScheme === 'Personal') {
@@ -278,6 +304,11 @@ export const calculateSalary = (input: SalaryInput): SalaryBreakdown => {
         employerPension: createBreakdown(annualEmployerPension, input.daysPerWeek),
         childcareVouchers: createBreakdown(annualChildcare, input.daysPerWeek),
         giveAsYouEarn: createBreakdown((input.giveAsYouEarn * 12), input.daysPerWeek),
+        childBenefitCharge: createBreakdown(annualChildBenefitCharge, input.daysPerWeek),
+        taxTraps: {
+            personalAllowanceLost: personalAllowanceLost,
+            hicbcChargeAmount: annualChildBenefitCharge,
+        },
         takeHome: createBreakdown(annualTakeHome, input.daysPerWeek),
     };
 };
