@@ -249,7 +249,7 @@ export default function Home() {
                     <div className="space-y-2">
                       <Label>Tax Code</Label>
                       <Input
-                        placeholder="Leave blank for default (e.g. 1257L)"
+                        placeholder={`Leave blank for default (e.g. ${isScottish ? 'S1257L' : isWelsh ? 'C1257L' : '1257L'})`}
                         value={taxCode} onChange={(e) => setTaxCode(e.target.value)}
                         className="border-slate-300"
                       />
