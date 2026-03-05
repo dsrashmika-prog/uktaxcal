@@ -131,8 +131,8 @@ export default function Home() {
               <CardContent className="space-y-6 pt-6">
 
                 {/* Persona & Age Selection */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-100/50 p-4 rounded-lg border border-slate-200">
-                  <div className="space-y-3">
+                <div className="flex flex-col md:flex-row gap-6 bg-slate-100/50 p-4 rounded-lg border border-slate-200">
+                  <div className="space-y-3 flex-1">
                     <Label className="text-sm font-semibold text-slate-700">Work Status</Label>
                     <Select value={persona} onValueChange={setPersona}>
                       <SelectTrigger className="border-slate-300 bg-white font-medium">
@@ -145,10 +145,10 @@ export default function Home() {
                       </SelectContent>
                     </Select>
                   </div>
-                  <div className="space-y-3">
+                  <div className="space-y-3 w-full md:w-40 shrink-0">
                     <Label className="text-sm font-semibold text-slate-700 flex items-center justify-between">
                       Age
-                      {parseInt(age) >= 66 && <span className="text-xs text-amber-600 bg-amber-100 px-2 py-0.5 rounded-full">Exempt from NI</span>}
+                      {parseInt(age) >= 66 && <span className="text-[10px] text-amber-700 bg-amber-200/80 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">No NI</span>}
                     </Label>
                     <Input
                       type="number"
@@ -156,7 +156,7 @@ export default function Home() {
                       max="120"
                       value={age}
                       onChange={(e) => setAge(e.target.value)}
-                      className="border-slate-300 bg-white font-medium focus-visible:ring-[#1e3a8a]"
+                      className="border-slate-300 bg-white font-medium focus-visible:ring-[#1e3a8a] w-full"
                     />
                   </div>
                 </div>
