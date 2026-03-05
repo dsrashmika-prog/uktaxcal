@@ -19,6 +19,7 @@ export default function Home() {
   const [payFrequency, setPayFrequency] = useState<SalaryInput['payFrequency']>('Yearly');
   const [taxYear, setTaxYear] = useState<SalaryInput['taxYear']>('2025/26');
   const [isScottish, setIsScottish] = useState(false);
+  const [isWelsh, setIsWelsh] = useState(false);
 
   // Advanced States
   const [taxCode, setTaxCode] = useState("");
@@ -60,6 +61,7 @@ export default function Home() {
       payFrequency,
       taxYear,
       isScottish,
+      isWelsh,
       taxCode,
       studentLoanPlan,
       hasPostgradLoan,
@@ -85,6 +87,16 @@ export default function Home() {
 
     const result = calculateSalary(input);
     setBreakdown(result);
+  };
+
+  const handleScotlandChange = (checked: boolean) => {
+    setIsScottish(checked);
+    if (checked) setIsWelsh(false); // Mutually exclusive
+  };
+
+  const handleWelshChange = (checked: boolean) => {
+    setIsWelsh(checked);
+    if (checked) setIsScottish(false); // Mutually exclusive
   };
 
   const formatCurrency = (val: number) => {
@@ -200,11 +212,22 @@ export default function Home() {
                       <Checkbox
                         id="scotland"
                         checked={isScottish}
-                        onCheckedChange={(checked) => setIsScottish(checked as boolean)}
+                        onCheckedChange={(checked) => handleScotlandChange(checked as boolean)}
                         className="border-slate-300 text-[#1e3a8a] focus-visible:ring-[#1e3a8a] w-5 h-5"
                       />
                       <label htmlFor="scotland" className="text-sm font-medium leading-none text-slate-700 cursor-pointer">
                         Resident in Scotland?
+                      </label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="wales"
+                        checked={isWelsh}
+                        onCheckedChange={(checked) => handleWelshChange(checked as boolean)}
+                        className="border-slate-300 text-[#1e3a8a] focus-visible:ring-[#1e3a8a] w-5 h-5"
+                      />
+                      <label htmlFor="wales" className="text-sm font-medium leading-none text-slate-700 cursor-pointer">
+                        Resident in Wales?
                       </label>
                     </div>
                   </div>

@@ -3,6 +3,7 @@ export interface SalaryInput {
     payFrequency: 'Yearly' | 'Monthly' | '4 Weekly' | 'Weekly' | 'Daily';
     taxYear: '2024/25' | '2025/26';
     isScottish: boolean;
+    isWelsh: boolean;
     taxCode: string;
     studentLoanPlan: 'None' | 'Plan 1' | 'Plan 2' | 'Plan 4' | 'Plan 5';
     hasPostgradLoan: boolean;
@@ -55,15 +56,34 @@ export interface SalaryBreakdown {
     takeHome: BreakdownItem;
 }
 
-const parseTaxCode = (code: string, isScottish: boolean): { allowance: number; rate?: number } => {
-    if (!code) return { allowance: 12570 }; // Default 1257L
+const parseTaxCode = (code: string, isScottish: boolean, isWelsh: boolean): { allowance: number; rate?: number } => {
+    if (!code) {
+        if (isScottish) return { allowance: 12570 }; // Typically S1257L
+        if (isWelsh) return { allowance: 12570 }; // Typically C1257L
+        return { allowance: 12570 }; // Default 1257L
+    }
 
     const upperCode = code.toUpperCase().trim();
 
-    if (upperCode === 'BR' || upperCode === 'SBR') return { allowance: 0, rate: 0.20 };
-    if (upperCode === 'D0' || upperCode === 'SD0') return { allowance: 0, rate: isScottish ? 0.21 : 0.40 };
-    if (upperCode === 'D1' || upperCode === 'SD1') return { allowance: 0, rate: isScottish ? 0.42 : 0.45 };
-    if (upperCode === '0T' || upperCode === 'S0T') return { allowance: 0 };
+    // English/NI codes logic
+    if (upperCode === 'BR') return { allowance: 0, rate: 0.20 };
+    if (upperCode === 'D0') return { allowance: 0, rate: 0.40 };
+    if (upperCode === 'D1') return { allowance: 0, rate: 0.45 };
+    if (upperCode === '0T') return { allowance: 0 };
+
+    // Scottish codes (S prefix)
+    if (upperCode === 'SBR') return { allowance: 0, rate: 0.20 };
+    if (upperCode === 'SD0') return { allowance: 0, rate: 0.21 };
+    if (upperCode === 'SD1') return { allowance: 0, rate: 0.42 };
+    if (upperCode === 'SD2') return { allowance: 0, rate: 0.45 }; // Advanced Scottish
+    if (upperCode === 'SD3') return { allowance: 0, rate: 0.48 }; // Top Scottish
+    if (upperCode === 'S0T') return { allowance: 0 };
+
+    // Welsh codes (C prefix)
+    if (upperCode === 'CBR') return { allowance: 0, rate: 0.20 };
+    if (upperCode === 'CD0') return { allowance: 0, rate: 0.40 };
+    if (upperCode === 'CD1') return { allowance: 0, rate: 0.45 };
+    if (upperCode === 'C0T') return { allowance: 0 };
     if (upperCode === 'NT') return { allowance: 0, rate: 0 }; // No tax
 
     // Parse numeric part (e.g., 1257L -> 12570 allowance)
@@ -235,7 +255,7 @@ export const calculateSalary = (input: SalaryInput): SalaryBreakdown => {
     adjustedNetIncome = Math.max(0, totalAnnualGross - preTaxDeductions);
 
     // 6. Allowance Overrides
-    const taxCodeInfo = parseTaxCode(input.taxCode, input.isScottish);
+    const taxCodeInfo = parseTaxCode(input.taxCode, input.isScottish, input.isWelsh);
     let personalAllowance = taxCodeInfo.allowance;
 
     // Reduce PA by £1 for every £2 over £100,000
