@@ -2,13 +2,13 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-    title: 'About | LitFinance - UK Salary & Tax Calculator 2025/2026',
-    description: 'Learn about LitFinance, the most accurate UK salary calculator. Discover how we help you navigate tax traps, calculate take-home pay, and understand salary sacrifice.',
+    title: 'About | NetPayHome - UK Salary & Tax Calculator 2025/2026',
+    description: 'Learn about NetPayHome, the most accurate UK salary calculator. Discover how we help you navigate tax traps, calculate take-home pay, and understand salary sacrifice.',
     openGraph: {
-        title: 'About | LitFinance - UK Salary Calculator',
-        description: 'Understand your true take-home pay with LitFinance. We automatically detect 60% tax traps, child benefit clawbacks, and calculate complex pension rules.',
+        title: 'About | NetPayHome - UK Salary Calculator',
+        description: 'Understand your true take-home pay with NetPayHome. We automatically detect 60% tax traps, child benefit clawbacks, and calculate complex pension rules.',
         url: 'https://uktaxcal.vercel.app/about',
-        siteName: 'LitFinance',
+        siteName: 'NetPayHome',
         type: 'website',
     },
 };
@@ -21,8 +21,8 @@ export default function AboutPage() {
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
                     <Link href="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
                         <h1 className="text-2xl font-extrabold tracking-tight">
-                            <span className="text-[#1e3a8a]">lit</span>
-                            <span className="text-rose-500">finance</span>
+                            <span className="text-[#1e3a8a]">netpay</span>
+                            <span className="text-rose-500">home</span>
                             <span className="text-[#1e3a8a]">.</span>
                         </h1>
                     </Link>
@@ -46,18 +46,18 @@ export default function AboutPage() {
                     </h1>
 
                     <p className="lead text-xl text-slate-600 font-medium">
-                        At <strong>LitFinance</strong>, our mission is to empower UK employees, sole traders, and company directors by providing the most transparent, accurate, and easy-to-use take-home pay calculator.
+                        At <strong>NetPayHome</strong>, our mission is to empower UK employees, sole traders, and company directors by providing the most transparent, accurate, and easy-to-use take-home pay calculator.
                     </p>
 
                     <p>
-                        Understanding the UK tax system is notoriously complex. Between National Insurance changes, complex pension schemes, and fluctuating tax bands across England, Scotland, and Wales, simply knowing what you will actually take home at the end of the month can feel like guesswork. We built LitFinance to solve exactly this problem.
+                        Understanding the UK tax system is notoriously complex. Between National Insurance changes, complex pension schemes, and fluctuating tax bands across England, Scotland, and Wales, simply knowing what you will actually take home at the end of the month can feel like guesswork. We built NetPayHome to solve exactly this problem.
                     </p>
 
                     <hr className="my-8 border-slate-200" />
 
                     <h2>More Than Just a Basic Calculator</h2>
                     <p>
-                        While many tools online provide generic estimates, LitFinance is engineered for precision and edge cases. We focus on exposing the hidden mechanics of your payslip:
+                        While many tools online provide generic estimates, NetPayHome is engineered for precision and edge cases. We focus on exposing the hidden mechanics of your payslip:
                     </p>
 
                     <ul>
@@ -65,10 +65,10 @@ export default function AboutPage() {
                             <strong>Advanced Pension Handling:</strong> We natively support Auto-Enrolment, Employer Contributions, standard Personal Pensions, and complex <em>Salary Sacrifice</em> schemes to show exactly how your contributions impact your National Insurance exposure.
                         </li>
                         <li>
-                            <strong>Tax Trap Detection:</strong> Not all income is created equal. LitFinance automatically detects if you have crossed into the infamous <em>60% Marginal Tax Trap</em> (where personal allowances are stripped away above £100,000) or if you are subject to the <strong>High Income Child Benefit Charge (HICBC)</strong>.
+                            <strong>Tax Trap Detection:</strong> Not all income is created equal. NetPayHome automatically detects if you have crossed into the infamous <em>60% Marginal Tax Trap</em> (where personal allowances are stripped away above £100,000) or if you are subject to the <strong>High Income Child Benefit Charge (HICBC)</strong>.
                         </li>
                         <li>
-                            <strong>Persona-Based Intelligence:</strong> Whether you are a classic PAYE Employee, a Sole Trader navigating Class 4 NI, or a Company Director drawing Dividends, LitFinance dynamically alters its calculations and user interface to match your exact legal status.
+                            <strong>Persona-Based Intelligence:</strong> Whether you are a classic PAYE Employee, a Sole Trader navigating Class 4 NI, or a Company Director drawing Dividends, NetPayHome dynamically alters its calculations and user interface to match your exact legal status.
                         </li>
                         <li>
                             <strong>Regional Accuracy:</strong> We fully support the specialized Scottish Tax Bands as well as the unique `C` prefix Welsh Rates of Income Tax (WRIT).
@@ -102,7 +102,7 @@ export default function AboutPage() {
             <footer className="bg-slate-900 border-t border-slate-800 py-12 mt-16">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
                     <p className="mt-8 text-center text-sm leading-5 text-slate-400">
-                        &copy; {new Date().getFullYear()} LitFinance. All rights reserved.
+                        &copy; {new Date().getFullYear()} NetPayHome. All rights reserved.
                     </p>
                 </div>
             </footer>

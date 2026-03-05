@@ -111,8 +111,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold tracking-tighter flex justify-center items-baseline">
-              <span className="text-[#1e3a8a] tracking-tight">lit</span>
-              <span className="text-[#c02636] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#c02636] to-[#e11d48]">finance</span>
+              <span className="text-[#1e3a8a] tracking-tight">netpay</span>
+              <span className="text-[#c02636] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#c02636] to-[#e11d48]">home</span>
               <span className="text-[#1e3a8a] text-4xl ml-0.5">.</span>
             </h1>
             <p className="mt-2 text-lg text-slate-600">
@@ -656,11 +656,11 @@ export default function Home() {
       <footer className="bg-slate-900 border-t border-slate-800 py-12 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
           <div className="text-white font-bold text-xl mb-4 md:mb-0">
-            <span className="text-[#1e3a8a]">lit</span><span className="text-rose-500">finance</span><span className="text-[#1e3a8a]">.</span>
+            <span className="text-[#1e3a8a]">netpay</span><span className="text-rose-500">home</span><span className="text-[#1e3a8a]">.</span>
           </div>
           <div className="flex space-x-6">
             <Link href="/about" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
-              About LitFinance
+              About NetPayHome
             </Link>
             <Link href="/privacy" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
               Privacy Policy
@@ -668,7 +668,7 @@ export default function Home() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 text-center md:text-left text-xs text-slate-500">
-          &copy; {new Date().getFullYear()} LitFinance. Designed for accurate UK 2024/2025 & 2025/2026 Salary calculations.
+          &copy; {new Date().getFullYear()} NetPayHome. Designed for accurate UK 2024/2025 & 2025/2026 Salary calculations.
         </div>
       </footer>
     </div>
