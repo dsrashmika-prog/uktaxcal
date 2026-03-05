@@ -46,6 +46,11 @@ export default function Home() {
   const [claimsChildBenefit, setClaimsChildBenefit] = useState(false);
   const [numberOfChildren, setNumberOfChildren] = useState("1");
 
+  // Persona & Demographics
+  const [persona, setPersona] = useState("Employee");
+  const [age, setAge] = useState("30");
+  const [dividendIncome, setDividendIncome] = useState("");
+
   // Output State
   const [breakdown, setBreakdown] = useState<SalaryBreakdown | null>(null);
 
@@ -73,6 +78,9 @@ export default function Home() {
       daysPerWeek: parseFloat(daysPerWeek) || 5,
       claimsChildBenefit,
       numberOfChildren: parseInt(numberOfChildren) || 0,
+      persona,
+      age: parseInt(age) || 30,
+      dividendIncome: parseFloat(dividendIncome) || 0,
     };
 
     const result = calculateSalary(input);
@@ -109,6 +117,37 @@ export default function Home() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6 pt-6">
+
+                {/* Persona & Age Selection */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-100/50 p-4 rounded-lg border border-slate-200">
+                  <div className="space-y-3">
+                    <Label className="text-sm font-semibold text-slate-700">Work Status</Label>
+                    <Select value={persona} onValueChange={setPersona}>
+                      <SelectTrigger className="border-slate-300 bg-white font-medium">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Employee">Employee</SelectItem>
+                        <SelectItem value="Sole Trader">Sole Trader (Self-Employed)</SelectItem>
+                        <SelectItem value="Director">Company Director</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-3">
+                    <Label className="text-sm font-semibold text-slate-700 flex items-center justify-between">
+                      Age
+                      {parseInt(age) >= 66 && <span className="text-xs text-amber-600 bg-amber-100 px-2 py-0.5 rounded-full">Exempt from NI</span>}
+                    </Label>
+                    <Input
+                      type="number"
+                      min="16"
+                      max="120"
+                      value={age}
+                      onChange={(e) => setAge(e.target.value)}
+                      className="border-slate-300 bg-white font-medium focus-visible:ring-[#1e3a8a]"
+                    />
+                  </div>
+                </div>
 
                 {/* Gross Income */}
                 <div className="space-y-3">
@@ -195,35 +234,37 @@ export default function Home() {
                   </AccordionContent>
                 </AccordionItem>
 
-                {/* Student Loan */}
-                <AccordionItem value="student-loan" className="border-b-0">
-                  <AccordionTrigger className="px-6 py-4 hover:bg-slate-50 hover:no-underline text-base font-semibold text-slate-800 bg-white border-b border-slate-100">
-                    Student Loan
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 py-4 bg-slate-50/50 space-y-4">
-                    <div className="space-y-2">
-                      <Label>Student Loan Plan</Label>
-                      <Select value={studentLoanPlan} onValueChange={(val: any) => setStudentLoanPlan(val)}>
-                        <SelectTrigger className="border-slate-300">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="None">None</SelectItem>
-                          <SelectItem value="Plan 1">Plan 1</SelectItem>
-                          <SelectItem value="Plan 2">Plan 2</SelectItem>
-                          <SelectItem value="Plan 4">Plan 4 (Scotland)</SelectItem>
-                          <SelectItem value="Plan 5">Plan 5</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="flex items-center space-x-2 pt-2">
-                      <Checkbox id="postgrad" checked={hasPostgradLoan} onCheckedChange={(c) => setHasPostgradLoan(c as boolean)} />
-                      <label htmlFor="postgrad" className="text-sm font-medium">Repaying Postgraduate Loan?</label>
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+                {/* Student Loan (Hidden if Age > 65) */}
+                {parseInt(age) <= 65 && (
+                  <AccordionItem value="student-loan" className="border-b-0">
+                    <AccordionTrigger className="px-6 py-4 hover:bg-slate-50 hover:no-underline text-base font-semibold text-slate-800 bg-white border-b border-slate-100">
+                      Student Loan
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 py-4 bg-slate-50/50 space-y-4">
+                      <div className="space-y-2">
+                        <Label>Student Loan Plan</Label>
+                        <Select value={studentLoanPlan} onValueChange={(val: any) => setStudentLoanPlan(val)}>
+                          <SelectTrigger className="border-slate-300">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="None">None</SelectItem>
+                            <SelectItem value="Plan 1">Plan 1</SelectItem>
+                            <SelectItem value="Plan 2">Plan 2</SelectItem>
+                            <SelectItem value="Plan 4">Plan 4 (Scotland)</SelectItem>
+                            <SelectItem value="Plan 5">Plan 5</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="flex items-center space-x-2 pt-2">
+                        <Checkbox id="postgrad" checked={hasPostgradLoan} onCheckedChange={(c) => setHasPostgradLoan(c as boolean)} />
+                        <label htmlFor="postgrad" className="text-sm font-medium">Repaying Postgraduate Loan?</label>
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                )}
 
-                {/* Pension */}
+                {/* Pension Tools (Simplified for Sole Traders) */}
                 <AccordionItem value="pension" className="border-b-0">
                   <AccordionTrigger className="px-6 py-4 hover:bg-slate-50 hover:no-underline text-base font-semibold text-slate-800 bg-white border-y border-slate-100">
                     Pension
@@ -231,28 +272,35 @@ export default function Home() {
                   <AccordionContent className="px-6 py-4 bg-slate-50/50 space-y-6">
 
                     <div className="space-y-4 pt-2 pb-2 pl-2">
-                      <RadioGroup
-                        value={pensionScheme}
-                        onValueChange={(val: any) => setPensionScheme(val)}
-                        className="flex flex-col space-y-3"
-                      >
-                        <div className="flex items-center space-x-3">
-                          <RadioGroupItem value="Auto-enrolment" id="r1" className="w-5 h-5" />
-                          <Label htmlFor="r1" className="text-base font-normal text-slate-600 cursor-pointer">Auto-enrolment</Label>
+                      {persona === 'Sole Trader' ? (
+                        <div className="flex items-center space-x-3 bg-white p-3 rounded border border-blue-100">
+                          <Info className="w-5 h-5 text-blue-500" />
+                          <Label className="text-sm font-normal text-slate-600">Sole Traders can only contribute to a Personal Pension (Relief at Source). Employer contributions are hidden.</Label>
                         </div>
-                        <div className="flex items-center space-x-3">
-                          <RadioGroupItem value="Employer" id="r2" className="w-5 h-5" />
-                          <Label htmlFor="r2" className="text-base font-normal text-slate-600 cursor-pointer">Employer</Label>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <RadioGroupItem value="Salary sacrifice" id="r3" className="w-5 h-5" />
-                          <Label htmlFor="r3" className="text-base font-normal text-slate-600 cursor-pointer">Salary sacrifice</Label>
-                        </div>
-                        <div className="flex items-center space-x-3">
-                          <RadioGroupItem value="Personal" id="r4" className="w-5 h-5" />
-                          <Label htmlFor="r4" className="text-base font-normal text-slate-600 cursor-pointer">Personal</Label>
-                        </div>
-                      </RadioGroup>
+                      ) : (
+                        <RadioGroup
+                          value={pensionScheme}
+                          onValueChange={(val: any) => setPensionScheme(val)}
+                          className="flex flex-col space-y-3"
+                        >
+                          <div className="flex items-center space-x-3">
+                            <RadioGroupItem value="Auto-enrolment" id="r1" className="w-5 h-5" />
+                            <Label htmlFor="r1" className="text-base font-normal text-slate-600 cursor-pointer">Auto-enrolment</Label>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <RadioGroupItem value="Employer" id="r2" className="w-5 h-5" />
+                            <Label htmlFor="r2" className="text-base font-normal text-slate-600 cursor-pointer">Employer</Label>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <RadioGroupItem value="Salary sacrifice" id="r3" className="w-5 h-5" />
+                            <Label htmlFor="r3" className="text-base font-normal text-slate-600 cursor-pointer">Salary sacrifice</Label>
+                          </div>
+                          <div className="flex items-center space-x-3">
+                            <RadioGroupItem value="Personal" id="r4" className="w-5 h-5" />
+                            <Label htmlFor="r4" className="text-base font-normal text-slate-600 cursor-pointer">Personal</Label>
+                          </div>
+                        </RadioGroup>
+                      )}
                     </div>
 
                     <div className="flex gap-4 border-t pt-5">
@@ -304,20 +352,33 @@ export default function Home() {
 
                     <div className="space-y-4">
                       <h4 className="font-semibold text-slate-700 border-b pb-1 text-sm uppercase tracking-wide">Extra Earnings</h4>
-                      <div className="space-y-2">
-                        <Label>Yearly Bonus (£)</Label>
-                        <Input type="number" value={bonusAmount} onChange={e => setBonusAmount(e.target.value)} className="border-slate-300" />
-                      </div>
-                      <div className="flex gap-4">
-                        <div className="flex-1 space-y-2">
-                          <Label>Overtime (hrs/mth)</Label>
-                          <Input type="number" value={overtimeHours} onChange={e => setOvertimeHours(e.target.value)} className="border-slate-300" />
+
+                      {persona === 'Director' && (
+                        <div className="space-y-2">
+                          <Label className="text-[#1e3a8a] font-semibold">Yearly Dividends (£)</Label>
+                          <Input type="number" value={dividendIncome} onChange={e => setDividendIncome(e.target.value)} className="border-blue-300 bg-blue-50" />
                         </div>
-                        <div className="flex-1 space-y-2">
-                          <Label>Overtime Rate (£/hr)</Label>
-                          <Input type="number" value={overtimeRate} onChange={e => setOvertimeRate(e.target.value)} className="border-slate-300" />
+                      )}
+
+                      {persona !== 'Sole Trader' && (
+                        <div className="space-y-2">
+                          <Label>Yearly Bonus (£)</Label>
+                          <Input type="number" value={bonusAmount} onChange={e => setBonusAmount(e.target.value)} className="border-slate-300" />
                         </div>
-                      </div>
+                      )}
+
+                      {persona === 'Employee' && (
+                        <div className="flex gap-4">
+                          <div className="flex-1 space-y-2">
+                            <Label>Overtime (hrs/mth)</Label>
+                            <Input type="number" value={overtimeHours} onChange={e => setOvertimeHours(e.target.value)} className="border-slate-300" />
+                          </div>
+                          <div className="flex-1 space-y-2">
+                            <Label>Overtime Rate (£/hr)</Label>
+                            <Input type="number" value={overtimeRate} onChange={e => setOvertimeRate(e.target.value)} className="border-slate-300" />
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     <div className="space-y-4 pt-2">
@@ -339,15 +400,19 @@ export default function Home() {
                     <div className="space-y-4 pt-2">
                       <h4 className="font-semibold text-slate-700 border-b pb-1 text-sm uppercase tracking-wide">Other Deductions (Monthly)</h4>
                       <div className="grid grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label>Childcare Vouchers (£)</Label>
-                          <Input type="number" value={childcareVoucher} onChange={e => setChildcareVoucher(e.target.value)} className="border-slate-300" />
-                        </div>
-                        <div className="space-y-2">
-                          <Label>Give As You Earn (£)</Label>
-                          <Input type="number" value={giveAsYouEarn} onChange={e => setGiveAsYouEarn(e.target.value)} className="border-slate-300" />
-                        </div>
-                        <div className="space-y-2 col-span-2">
+                        {persona !== 'Sole Trader' && (
+                          <div className="space-y-2">
+                            <Label>Childcare Vouchers (£)</Label>
+                            <Input type="number" value={childcareVoucher} onChange={e => setChildcareVoucher(e.target.value)} className="border-slate-300" />
+                          </div>
+                        )}
+                        {persona !== 'Sole Trader' && (
+                          <div className="space-y-2">
+                            <Label>Give As You Earn (£)</Label>
+                            <Input type="number" value={giveAsYouEarn} onChange={e => setGiveAsYouEarn(e.target.value)} className="border-slate-300" />
+                          </div>
+                        )}
+                        <div className={`space-y-2 ${persona !== 'Sole Trader' ? 'col-span-2' : 'col-span-1'}`}>
                           <Label>Gift Aid (After tax - £)</Label>
                           <Input type="number" value={giftAid} onChange={e => setGiftAid(e.target.value)} className="border-slate-300" />
                         </div>
@@ -483,7 +548,17 @@ export default function Home() {
                         <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-200">{formatCurrency(breakdown.incomeTax.daily)}</td>
                       </tr>
 
-                      <tr className="bg-white">
+                      {breakdown.dividendTax.yearly > 0 && (
+                        <tr className="bg-white">
+                          <td className="px-6 py-4 font-semibold text-slate-700 border-r border-slate-200">- Dividend Tax</td>
+                          <td className="px-4 py-4 text-right text-slate-500">{formatCurrency(breakdown.dividendTax.yearly)}</td>
+                          <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.dividendTax.monthly)}</td>
+                          <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.dividendTax.weekly)}</td>
+                          <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.dividendTax.daily)}</td>
+                        </tr>
+                      )}
+
+                      <tr className="bg-slate-100/60">
                         <td className="px-6 py-4 font-semibold text-slate-600 border-r border-slate-200">National Insurance</td>
                         <td className="px-4 py-4 text-right text-slate-500">{formatCurrency(breakdown.nationalInsurance.yearly)}</td>
                         <td className="px-4 py-4 text-right text-slate-500 border-l border-slate-100">{formatCurrency(breakdown.nationalInsurance.monthly)}</td>
@@ -532,20 +607,20 @@ export default function Home() {
                 </div>
               </div>
             ) : (
-                <div className="h-full min-h-[400px] flex flex-col items-center justify-center p-12 bg-white border-2 border-dashed border-slate-200 rounded-xl text-center">
-                  <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-6">
-                    <Calculator className="w-10 h-10 text-slate-400" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-800 mb-3">Ready to calculate</h3>
-                  <p className="text-slate-500 max-w-sm text-lg">
-                    Enter your salary details on the left and click <span className="font-semibold text-[#c02636]">CALCULATE!</span> to view your complete tax breakdown.
-                  </p>
+              <div className="h-full min-h-[400px] flex flex-col items-center justify-center p-12 bg-white border-2 border-dashed border-slate-200 rounded-xl text-center">
+                <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-6">
+                  <Calculator className="w-10 h-10 text-slate-400" />
                 </div>
-            )}
+                <h3 className="text-2xl font-bold text-slate-800 mb-3">Ready to calculate</h3>
+                <p className="text-slate-500 max-w-sm text-lg">
+                  Enter your salary details on the left and click <span className="font-semibold text-[#c02636]">CALCULATE!</span> to view your complete tax breakdown.
+                </p>
               </div>
+            )}
+          </div>
 
         </div>
-        </div>
+      </div>
     </main>
   );
 }

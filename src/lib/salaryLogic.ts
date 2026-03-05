@@ -21,6 +21,9 @@ export interface SalaryInput {
     daysPerWeek: number;
     claimsChildBenefit: boolean;
     numberOfChildren: number;
+    persona: string;
+    age: number;
+    dividendIncome: number;
 }
 
 export interface BreakdownItem {
@@ -44,6 +47,7 @@ export interface SalaryBreakdown {
     childcareVouchers: BreakdownItem;
     giveAsYouEarn: BreakdownItem;
     childBenefitCharge: BreakdownItem;
+    dividendTax: BreakdownItem;
     taxTraps: {
         personalAllowanceLost: number;
         hicbcChargeAmount: number;
@@ -125,20 +129,35 @@ const calculateIncomeTax = (
     return tax;
 };
 
-const calculateNI = (gross: number, exclude: boolean): number => {
-    if (exclude) return 0;
-    // Category A 2024/25
-    const pt = 12570; // Primary Threshold
-    const uel = 50270; // Upper Earnings Limit
+const calculateNI = (gross: number, exclude: boolean, age: number, persona: string): number => {
+    // If over State Pension Age (66), employee/self-employed NI drops to 0.
+    if (exclude || age >= 66) return 0;
+
+    // Thresholds 2024/25
+    const pt = 12570; // Primary Threshold / Lower Profits Limit
+    const uel = 50270; // Upper Earnings Limit / Upper Profits Limit
 
     if (gross <= pt) return 0;
 
     let ni = 0;
-    if (gross <= uel) {
-        ni = (gross - pt) * 0.08; // 8% main rate for 24/25
+
+    if (persona === 'Sole Trader') {
+        // Class 4 NI logic for 2024/25: 6% between LPL and UPL, 2% above UPL.
+        // Class 2 was essentially abolished / reduced to £0 for most.
+        if (gross <= uel) {
+            ni = (gross - pt) * 0.06;
+        } else {
+            ni = (uel - pt) * 0.06 + (gross - uel) * 0.02;
+        }
     } else {
-        ni = (uel - pt) * 0.08 + (gross - uel) * 0.02; // 2% above UEL
+        // Class 1 Employee NI logic for 2024/25: 8% main rate, 2% above UEL.
+        if (gross <= uel) {
+            ni = (gross - pt) * 0.08;
+        } else {
+            ni = (uel - pt) * 0.08 + (gross - uel) * 0.02;
+        }
     }
+
     return ni;
 };
 
@@ -171,10 +190,13 @@ export const calculateSalary = (input: SalaryInput): SalaryBreakdown => {
     if (input.payFrequency === 'Weekly') annualGross *= 52;
     if (input.payFrequency === 'Daily') annualGross *= (52 * input.daysPerWeek);
 
-    // 2. Additions (Overtime + Bonus)
-    const annualOvertime = input.overtimeHours * input.overtimeRate * 12; // Assuming hours are per month
-    const annualBonus = input.bonusAmount; // Assuming bonus is a single yearly lump sum
-    const totalAnnualGross = annualGross + annualOvertime + annualBonus;
+    // 2. Additions (Overtime + Bonus + Dividends)
+    const annualOvertime = input.persona === 'Employee' ? input.overtimeHours * input.overtimeRate * 12 : 0;
+    const annualBonus = input.persona !== 'Sole Trader' ? input.bonusAmount : 0;
+    const annualDividends = input.persona === 'Director' ? input.dividendIncome : 0;
+
+    // Directors draw both a salary (Gross) and Dividends.
+    const totalAnnualGross = annualGross + annualOvertime + annualBonus + annualDividends;
 
     // 3. Pension 
     let annualPension = 0;
@@ -246,19 +268,63 @@ export const calculateSalary = (input: SalaryInput): SalaryBreakdown => {
     // 'Auto-enrolment' and 'Personal' often act as Relief At Source in this layout context.
 
     const taxableIncome = Math.max(0, adjustedNetIncome - personalAllowance);
-    let annualTax = calculateIncomeTax(taxableIncome, input.isScottish, taxCodeInfo, grossedUpRelief);
+
+    let annualTax = 0;
+    let annualDividendTax = 0;
+
+    if (input.persona === 'Director' && annualDividends > 0) {
+        // For Directors, salary uses standard bands first. Dividends sit "on top".
+        const taxableSalary = Math.max(0, (totalAnnualGross - annualDividends) - preTaxDeductions - personalAllowance);
+        annualTax = calculateIncomeTax(taxableSalary, input.isScottish, taxCodeInfo, grossedUpRelief);
+
+        // Dividend Tax (2024/25)
+        // £500 Dividend Allowance
+        let taxableDividends = Math.max(0, annualDividends - 500);
+        if (taxableDividends > 0) {
+            // Find how much of the Basic Rate and Higher Rate bands are left after salary
+            const basicBandLimit = input.isScottish ? 43662 /* Scottish Higher Threshold */ : 37700 + grossedUpRelief;
+            const higherBandLimit = 125140;
+
+            const salaryUsedInBands = taxableSalary;
+
+            const remainingBasicBand = Math.max(0, basicBandLimit - salaryUsedInBands);
+            const remainingHigherBand = Math.max(0, higherBandLimit - salaryUsedInBands - remainingBasicBand);
+
+            // Basic Rate Dividends (8.75%)
+            const basicDividends = Math.min(taxableDividends, remainingBasicBand);
+            annualDividendTax += basicDividends * 0.0875;
+            taxableDividends -= basicDividends;
+
+            // Higher Rate Dividends (33.75%)
+            if (taxableDividends > 0) {
+                const higherDividends = Math.min(taxableDividends, remainingHigherBand);
+                annualDividendTax += higherDividends * 0.3375;
+                taxableDividends -= higherDividends;
+            }
+
+            // Additional Rate Dividends (39.35%)
+            if (taxableDividends > 0) {
+                annualDividendTax += taxableDividends * 0.3935;
+            }
+        }
+    } else {
+        annualTax = calculateIncomeTax(taxableIncome, input.isScottish, taxCodeInfo, grossedUpRelief);
+    }
 
     if (input.isMarried) {
         // Max MCA is £11080 (gives £1108 tax reduction)
         annualTax = Math.max(0, annualTax - 1108);
     }
 
-    // 8. Calculate NI (NI is typically calculated on Gross, before Pension unless Salary Sacrifice, assuming not SalSac for standard calculation)
-    // Childcare vouchers DO reduce NI usually (Salary Sacrifice).
-    const annualNI = calculateNI(niLiableGross, input.excludeNI);
+    // 8. Calculate NI (Class 1 or Class 4 depending on persona. Dividends are exempt from NI.)
+    const niLiableIncome = input.persona === 'Director' ? niLiableGross - annualDividends : niLiableGross;
+    const annualNI = calculateNI(niLiableIncome, input.excludeNI, input.age, input.persona);
 
-    // 9. Calculate Student Loan (Calculated on gross before tax, sometimes after pension depending on scheme, standard is on gross)
-    const annualStudentLoan = calculateStudentLoan(totalAnnualGross, input.studentLoanPlan, input.hasPostgradLoan);
+    // 9. Calculate Student Loan (Hidden if over 65)
+    let annualStudentLoan = 0;
+    if (input.age <= 65) {
+        annualStudentLoan = calculateStudentLoan(totalAnnualGross, input.studentLoanPlan, input.hasPostgradLoan);
+    }
 
     // Child Benefit Clawback (HICBC)
     // For 2024/25: 1% charge per £200 over £60k. Full withdrawal at £80k.
@@ -278,7 +344,7 @@ export const calculateSalary = (input: SalaryInput): SalaryBreakdown => {
     }
 
     // 10. Total Deductions & Take Home
-    let totalDeductions = annualTax + annualNI + annualStudentLoan + annualChildBenefitCharge + (input.giveAsYouEarn * 12) + annualChildcare;
+    let totalDeductions = annualTax + annualDividendTax + annualNI + annualStudentLoan + annualChildBenefitCharge + (input.giveAsYouEarn * 12) + annualChildcare;
 
     // If not Salary sacrifice (which already docked preTaxDeductions), deduct post-tax here
     if (input.pensionScheme === 'Auto-enrolment' || input.pensionScheme === 'Personal') {
@@ -305,6 +371,7 @@ export const calculateSalary = (input: SalaryInput): SalaryBreakdown => {
         childcareVouchers: createBreakdown(annualChildcare, input.daysPerWeek),
         giveAsYouEarn: createBreakdown((input.giveAsYouEarn * 12), input.daysPerWeek),
         childBenefitCharge: createBreakdown(annualChildBenefitCharge, input.daysPerWeek),
+        dividendTax: createBreakdown(annualDividendTax, input.daysPerWeek),
         taxTraps: {
             personalAllowanceLost: personalAllowanceLost,
             hicbcChargeAmount: annualChildBenefitCharge,
