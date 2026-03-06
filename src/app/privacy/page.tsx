@@ -108,6 +108,17 @@ export default function PrivacyPage() {
             {/* Footer */}
             <footer className="bg-slate-900 border-t border-slate-800 py-12 mt-16">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+                    <div className="flex space-x-6">
+                        <Link href="/about" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
+                            About NetPayHome
+                        </Link>
+                        <Link href="/how-to" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
+                            How to Use
+                        </Link>
+                        <Link href="/privacy" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
+                            Privacy Policy
+                        </Link>
+                    </div>
                     <p className="mt-8 text-center text-sm leading-5 text-slate-400">
                         &copy; {new Date().getFullYear()} NetPayHome. Designed for accurate UK 2024/2025 & 2025/2026 Salary calculations.
                     </p>
