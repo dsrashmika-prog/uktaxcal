@@ -150,7 +150,7 @@ export default function Home() {
                     Basic Details
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-6 pt-6">
+                <CardContent className="space-y-8 pt-6">
 
                   {/* Persona & Age Selection */}
                   <div className="flex flex-row gap-4 sm:gap-6 bg-slate-100/50 p-4 rounded-lg border border-slate-200">
