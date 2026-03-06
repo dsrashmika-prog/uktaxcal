@@ -125,15 +125,13 @@ export default function Home() {
 
       {/* Blue Navigation Strip */}
       <nav className="bg-[#1e3a8a] text-white py-3 shadow-md border-b border-blue-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <ul className="flex space-x-8 text-sm font-semibold tracking-wide">
-            <li>
-              <Link href="/" className="text-white hover:text-rose-300 transition-colors">
-                Tax calculator
-              </Link>
-            </li>
-            {/* Future topic links will go here */}
-          </ul>
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-8 text-sm font-semibold tracking-wide">
+          <Link href="/" className="text-white hover:text-rose-300 transition-colors">
+            Tax calculator
+          </Link>
+          <Link href="/how-to" className="text-white hover:text-rose-300 transition-colors">
+            How to use
+          </Link>
         </div>
       </nav>
 
@@ -679,13 +677,10 @@ export default function Home() {
           <div className="text-white font-bold text-xl mb-4 md:mb-0">
             <span className="text-[#1e3a8a]">netpay</span><span className="text-rose-500">home</span><span className="text-[#1e3a8a]">.</span>
           </div>
-          <div className="flex space-x-6">
-            <Link href="/about" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
-              About NetPayHome
-            </Link>
-            <Link href="/privacy" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
-              Privacy Policy
-            </Link>
+          <div className="flex gap-6 mb-8 text-sm font-medium text-slate-400">
+            <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
+            <Link href="/how-to" className="hover:text-white transition-colors">How to Use</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy & Terms</Link>
           </div>
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 text-center md:text-left text-xs text-slate-500">
