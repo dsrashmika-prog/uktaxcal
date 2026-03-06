@@ -117,7 +117,7 @@ export default function Home() {
               <span className="text-[#1e3a8a] text-4xl ml-0.5">.</span>
             </h1>
             <p className="mt-2 text-lg text-slate-600">
-              Find out your take-home pay accurately across both standard UK and Scottish tax bands.
+              Use our accurate UK take home pay calculator to find out your true earnings across both standard and Scottish tax bands.
             </p>
           </div>
         </div>

@@ -55,7 +55,7 @@ export default function AboutPage() {
                     </h1>
 
                     <p className="lead text-xl text-slate-600 font-medium">
-                        At <strong>NetPayHome</strong>, our mission is to empower UK employees, sole traders, and company directors by providing the most transparent, accurate, and easy-to-use take-home pay calculator.
+                        At <strong>NetPayHome</strong>, our mission is to empower UK employees, sole traders, and company directors by providing the most transparent, accurate, and easy-to-use <strong>take home pay calculator</strong>.
                     </p>
 
                     <p>
