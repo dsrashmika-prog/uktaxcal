@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Calculator, Info, PoundSterling } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 import { calculateSalary, SalaryInput, SalaryBreakdown } from "@/lib/salaryLogic";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -651,13 +652,19 @@ export default function Home() {
                   </div>
                 </div>
               ) : (
-                <div className="h-full min-h-[400px] flex flex-col items-center justify-center p-12 bg-white border-2 border-dashed border-slate-200 rounded-xl text-center">
-                  <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mb-6">
-                    <Calculator className="w-10 h-10 text-slate-400" />
+                <div className="h-full min-h-[400px] flex flex-col items-center justify-center p-8 bg-white border-2 border-dashed border-slate-200 rounded-xl text-center">
+                  <div className="mb-6 relative w-56 h-56 sm:w-72 sm:h-72">
+                    <Image
+                      src="/empty-state.png"
+                      alt="Confused person illustration"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-800 mb-3">Ready to calculate</h3>
-                  <p className="text-slate-500 max-w-sm text-lg">
-                    Enter your salary details on the left and click <span className="font-semibold text-[#c02636]">CALCULATE!</span> to view your complete tax breakdown.
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 mb-3">Enter your details above to see your results here.</h3>
+                  <p className="text-slate-500 max-w-md text-base sm:text-lg">
+                    You need to scroll back up and fill in your details before we can give you your results.
                   </p>
                 </div>
               )}
