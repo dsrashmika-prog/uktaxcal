@@ -662,9 +662,9 @@ export default function Home() {
                       priority
                     />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 mb-3">Enter your details above to see your results here.</h3>
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-800 mb-3">Let's work out your take home pay</h3>
                   <p className="text-slate-500 max-w-md text-base sm:text-lg">
-                    You need to scroll back up and fill in your details before we can give you your results.
+                    Pop your salary details into the form above, then hit calculate. We'll crunch the numbers and show you exactly what ends up in your pocket.
                   </p>
                 </div>
               )}
