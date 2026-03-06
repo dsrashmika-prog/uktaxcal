@@ -39,6 +39,15 @@ export default function PrivacyPage() {
                 </div>
             </header>
 
+            {/* Blue Navigation Strip */}
+            <nav className="bg-[#1e3a8a] text-white py-3 shadow-md border-b border-blue-900">
+                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-8 text-sm font-semibold tracking-wide">
+                    <Link href="/" className="text-white hover:text-rose-300 transition-colors">
+                        Tax calculator
+                    </Link>
+                </div>
+            </nav>
+
             {/* Main Content Area */}
             <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
                 <article className="prose prose-slate prose-lg lg:prose-xl mx-auto prose-h2:text-[#1e3a8a] prose-h3:text-slate-800 prose-a:text-[#1e3a8a] prose-a:font-semibold">

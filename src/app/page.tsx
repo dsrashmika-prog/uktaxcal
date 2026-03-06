@@ -122,6 +122,20 @@ export default function Home() {
         </div>
       </header>
 
+      {/* Blue Navigation Strip */}
+      <nav className="bg-[#1e3a8a] text-white py-3 shadow-md border-b border-blue-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <ul className="flex space-x-8 text-sm font-semibold tracking-wide">
+            <li>
+              <Link href="/" className="text-white hover:text-rose-300 transition-colors">
+                Tax calculator
+              </Link>
+            </li>
+            {/* Future topic links will go here */}
+          </ul>
+        </div>
+      </nav>
+
       <main className="flex-grow py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
