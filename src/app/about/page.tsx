@@ -105,9 +105,6 @@ export default function AboutPage() {
                         <Link href="/about" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
                             About NetPayHome
                         </Link>
-                        <Link href="/how-to" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
-                            How to Use
-                        </Link>
                         <Link href="/privacy" className="text-slate-400 hover:text-white transition-colors text-sm font-medium">
                             Privacy Policy
                         </Link>
