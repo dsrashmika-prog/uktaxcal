@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: "H5eTEAz9LZn76xe1nnd9-FPD7prP1KLQjIuwIKQGWCA",
+  },
   openGraph: {
     title: "NetPayHome - UK Take Home Pay Calculator 2025/2026",
     description: "Find out your true earnings with our take home pay calculator. We automatically detect 60% tax traps, child benefit clawbacks, and calculate complex pension rules.",
