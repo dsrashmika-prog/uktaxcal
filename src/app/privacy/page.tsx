@@ -5,7 +5,7 @@ export const metadata: Metadata = {
     title: 'Privacy Policy & Disclaimer | NetPayHome',
     description: 'Privacy policy and legal disclaimers for NetPayHome UK Salary Calculator. Please read our terms regarding data usage and financial information.',
     alternates: {
-        canonical: 'https://uktaxcal.vercel.app/privacy',
+        canonical: 'https://netpayhome.co.uk/privacy',
     },
 };
 

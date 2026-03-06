@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: '/api/',
         },
-        sitemap: 'https://uktaxcal.vercel.app/sitemap.xml',
+        sitemap: 'https://netpayhome.co.uk/sitemap.xml',
     };
 }

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'About | NetPayHome - UK Salary Calculator',
         description: 'Understand your true take-home pay with NetPayHome. We automatically detect 60% tax traps, child benefit clawbacks, and calculate complex pension rules.',
-        url: 'https://uktaxcal.vercel.app/about',
+        url: 'https://netpayhome.co.uk/about',
         siteName: 'NetPayHome',
         type: 'website',
     },
