@@ -125,12 +125,15 @@ export default function Home() {
 
       {/* Blue Navigation Strip */}
       <nav className="bg-[#1e3a8a] text-white py-3 shadow-md border-b border-blue-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-8 text-sm font-semibold tracking-wide">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-6 sm:space-x-8 text-sm font-semibold tracking-wide overflow-x-auto whitespace-nowrap">
           <Link href="/" className="text-white hover:text-rose-300 transition-colors">
             Tax calculator
           </Link>
           <Link href="/how-to" className="text-white hover:text-rose-300 transition-colors">
             How to use
+          </Link>
+          <Link href="/sources" className="text-white hover:text-rose-300 transition-colors">
+            Data sources
           </Link>
         </div>
       </nav>
@@ -677,9 +680,10 @@ export default function Home() {
           <div className="text-white font-bold text-xl mb-4 md:mb-0">
             <span className="text-[#1e3a8a]">netpay</span><span className="text-rose-500">home</span><span className="text-[#1e3a8a]">.</span>
           </div>
-          <div className="flex gap-6 mb-8 text-sm font-medium text-slate-400">
+          <div className="flex flex-wrap gap-4 sm:gap-6 mb-8 text-sm font-medium text-slate-400">
             <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
             <Link href="/how-to" className="hover:text-white transition-colors">How to Use</Link>
+            <Link href="/sources" className="hover:text-white transition-colors">Data Sources</Link>
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy & Terms</Link>
           </div>
         </div>
