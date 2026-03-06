@@ -154,10 +154,10 @@ export default function Home() {
 
                   {/* Persona & Age Selection */}
                   <div className="flex flex-row gap-4 sm:gap-6 bg-slate-100/50 p-4 rounded-lg border border-slate-200">
-                    <div className="space-y-3 flex-1">
+                    <div className="space-y-3 flex-1 min-w-0">
                       <Label className="text-sm font-semibold text-slate-700">Work Status</Label>
                       <Select value={persona} onValueChange={setPersona}>
-                        <SelectTrigger className="border-slate-300 bg-white font-medium text-xs sm:text-sm h-10">
+                        <SelectTrigger className="border-slate-300 bg-white font-medium text-xs sm:text-sm h-10 w-full truncate">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
