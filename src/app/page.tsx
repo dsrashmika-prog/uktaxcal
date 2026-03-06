@@ -153,11 +153,11 @@ export default function Home() {
                 <CardContent className="space-y-6 pt-6">
 
                   {/* Persona & Age Selection */}
-                  <div className="flex flex-col md:flex-row gap-6 bg-slate-100/50 p-4 rounded-lg border border-slate-200">
+                  <div className="flex flex-row gap-4 sm:gap-6 bg-slate-100/50 p-4 rounded-lg border border-slate-200">
                     <div className="space-y-3 flex-1">
                       <Label className="text-sm font-semibold text-slate-700">Work Status</Label>
                       <Select value={persona} onValueChange={setPersona}>
-                        <SelectTrigger className="border-slate-300 bg-white font-medium">
+                        <SelectTrigger className="border-slate-300 bg-white font-medium text-xs sm:text-sm h-10">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -167,10 +167,10 @@ export default function Home() {
                         </SelectContent>
                       </Select>
                     </div>
-                    <div className="space-y-3 w-full md:w-40 shrink-0">
+                    <div className="space-y-3 w-28 sm:w-32 md:w-40 shrink-0">
                       <Label className="text-sm font-semibold text-slate-700 flex items-center justify-between">
                         Age
-                        {parseInt(age) >= 66 && <span className="text-[10px] text-amber-700 bg-amber-200/80 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">No NI</span>}
+                        {parseInt(age) >= 66 && <span className="text-[10px] text-amber-700 bg-amber-200/80 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider hidden sm:inline-block">No NI</span>}
                       </Label>
                       <Input
                         type="number"
