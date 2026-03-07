@@ -107,58 +107,65 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-[#1e3a8a] selection:text-white">
-      {/* Header */}
-      <header className="bg-white border-b border-slate-200 shadow-sm">
-        <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-extrabold tracking-tighter flex justify-center items-baseline">
-              <span className="text-[#1e3a8a] tracking-tight">netpay</span>
-              <span className="text-[#c02636] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#c02636] to-[#e11d48]">home</span>
-              <span className="text-[#1e3a8a] text-4xl ml-0.5">.</span>
-            </h1>
-            <p className="mt-2 text-lg text-slate-600">
-              Use our accurate UK take home pay calculator to find out your true earnings across both standard and Scottish tax bands.
-            </p>
+      {/* MSE-Style Hero Header */}
+      <header className="bg-[#1e3a8a] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex-1">
+              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tighter mb-2">
+                <span className="text-white">NetPayHome </span>
+                <span className="text-yellow-400">Calculator</span>
+              </h1>
+              <p className="text-blue-200 text-base sm:text-lg max-w-xl">
+                Use our accurate UK take home pay calculator to find out your true earnings across both standard and Scottish tax bands.
+              </p>
+            </div>
+            <div className="hidden sm:flex flex-col items-end text-right opacity-60 shrink-0">
+              <span className="text-5xl font-black text-yellow-300">£</span>
+            </div>
           </div>
         </div>
       </header>
 
       {/* Blue Navigation Strip */}
-      <nav className="bg-[#1e3a8a] text-white py-3 shadow-md border-b border-blue-900">
+      <nav className="bg-[#162d6e] text-white py-3 shadow-md border-b border-blue-950">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-6 sm:space-x-8 text-sm font-semibold tracking-wide overflow-x-auto whitespace-nowrap">
-          <Link href="/" className="text-white hover:text-rose-300 transition-colors">
+          <Link href="/" className="text-white hover:text-yellow-300 transition-colors">
             Tax calculator
           </Link>
-          <Link href="/how-to" className="text-white hover:text-rose-300 transition-colors">
+          <Link href="/how-to" className="text-white hover:text-yellow-300 transition-colors">
             How to use
           </Link>
-          <Link href="/sources" className="text-white hover:text-rose-300 transition-colors">
+          <Link href="/sources" className="text-white hover:text-yellow-300 transition-colors">
             Data sources
           </Link>
         </div>
       </nav>
 
+
       <main className="flex-grow py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-            {/* LEFT: INPPUT FORM */}
+            {/* LEFT: INPUT FORM */}
             <div className="lg:col-span-5 space-y-6">
-              <Card className="border-t-4 border-t-[#1e3a8a] shadow-lg">
-                <CardHeader className="bg-slate-50 pb-4">
-                  <CardTitle className="text-xl text-[#1e3a8a] flex items-center gap-2">
-                    <Calculator className="w-5 h-5" />
-                    Basic Details
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-8 pt-6">
+              <Card className="border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+                <CardContent className="space-y-7 pt-6 pb-6">
+
+                  {/* Amber Disclaimer Banner */}
+                  <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-md">
+                    <p className="font-bold text-sm text-gray-900 mb-1">This is just an estimate.</p>
+                    <p className="text-sm text-gray-700">
+                      Your results are based on the information you provide. Always check with HMRC or a qualified accountant to confirm your exact position.
+                    </p>
+                  </div>
 
                   {/* Persona & Age Selection */}
-                  <div className="flex flex-row gap-4 sm:gap-6 bg-slate-100/50 p-4 rounded-lg border border-slate-200">
-                    <div className="space-y-3 flex-1 min-w-0">
-                      <Label className="text-sm font-semibold text-slate-700">Work Status</Label>
+                  <div className="flex flex-row gap-4 sm:gap-6">
+                    <div className="space-y-2 flex-1 min-w-0">
+                      <Label className="text-sm font-bold text-gray-900">Work Status</Label>
                       <Select value={persona} onValueChange={setPersona}>
-                        <SelectTrigger className="border-slate-300 bg-white font-medium text-xs sm:text-sm h-10 w-full truncate">
+                        <SelectTrigger className="border-gray-300 bg-white font-medium text-xs sm:text-sm h-11 w-full truncate rounded-lg">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -168,8 +175,8 @@ export default function Home() {
                         </SelectContent>
                       </Select>
                     </div>
-                    <div className="space-y-3 w-28 sm:w-32 md:w-40 shrink-0">
-                      <Label className="text-sm font-semibold text-slate-700 flex items-center justify-between">
+                    <div className="space-y-2 w-28 sm:w-32 md:w-40 shrink-0">
+                      <Label className="text-sm font-bold text-gray-900 flex items-center justify-between">
                         Age
                         {parseInt(age) >= 66 && <span className="text-[10px] text-amber-700 bg-amber-200/80 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider hidden sm:inline-block">No NI</span>}
                       </Label>
@@ -179,27 +186,27 @@ export default function Home() {
                         max="120"
                         value={age}
                         onChange={(e) => setAge(e.target.value)}
-                        className="border-slate-300 bg-white font-medium focus-visible:ring-[#1e3a8a] w-full"
+                        className="border-gray-300 bg-white font-medium focus-visible:ring-[#1e3a8a] w-full h-11 rounded-lg"
                       />
                     </div>
                   </div>
 
                   {/* Gross Income */}
-                  <div className="space-y-3">
-                    <Label className="text-sm font-semibold text-slate-700">Gross income (pre tax)</Label>
-                    <div className="flex rounded-md shadow-sm">
-                      <span className="inline-flex items-center px-4 rounded-l-md border border-r-0 border-slate-300 bg-slate-100 text-slate-500 font-bold">
+                  <div className="space-y-2">
+                    <Label className="text-sm font-bold text-gray-900">Gross income (pre tax)</Label>
+                    <div className="flex rounded-lg shadow-sm overflow-hidden border border-gray-300">
+                      <span className="inline-flex items-center px-4 bg-gray-100 text-gray-700 font-bold border-r border-gray-300">
                         £
                       </span>
                       <Input
                         type="number"
                         placeholder="e.g. 50000"
-                        className="rounded-none shadow-none border-slate-300 focus-visible:ring-[#1e3a8a] text-lg font-medium"
+                        className="rounded-none shadow-none border-0 focus-visible:ring-0 text-lg font-medium"
                         value={grossIncome}
                         onChange={(e) => setGrossIncome(e.target.value)}
                       />
                       <Select value={payFrequency} onValueChange={(val: any) => setPayFrequency(val)}>
-                        <SelectTrigger className="w-[140px] rounded-l-none border-l-0 shadow-none border-slate-300bg-slate-50 font-medium">
+                        <SelectTrigger className="w-[130px] rounded-none border-0 border-l border-gray-300 shadow-none bg-gray-50 font-medium">
                           <SelectValue />
                         </SelectTrigger>
                         <SelectContent>
@@ -213,51 +220,70 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Tax Year & Scotland Toggle */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-3">
-                      <Label className="text-sm font-semibold text-slate-700 flex items-center gap-1">
-                        Tax Year <Info className="w-3.5 h-3.5 text-slate-400" />
-                      </Label>
-                      <Select value={taxYear} onValueChange={(val: any) => setTaxYear(val)}>
-                        <SelectTrigger className="border-slate-300">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="2025/26">2025 / 26</SelectItem>
-                          <SelectItem value="2024/25">2024 / 25</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="space-y-3 flex flex-col justify-end pb-2">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="scotland"
-                          checked={isScottish}
-                          onCheckedChange={(checked) => handleScotlandChange(checked as boolean)}
-                          className="border-slate-300 text-[#1e3a8a] focus-visible:ring-[#1e3a8a] w-5 h-5"
-                        />
-                        <label htmlFor="scotland" className="text-sm font-medium leading-none text-slate-700 cursor-pointer">
-                          Resident in Scotland?
-                        </label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox
-                          id="wales"
-                          checked={isWelsh}
-                          onCheckedChange={(checked) => handleWelshChange(checked as boolean)}
-                          className="border-slate-300 text-[#1e3a8a] focus-visible:ring-[#1e3a8a] w-5 h-5"
-                        />
-                        <label htmlFor="wales" className="text-sm font-medium leading-none text-slate-700 cursor-pointer">
-                          Resident in Wales?
-                        </label>
-                      </div>
+                  {/* Tax Year - Pill Radio Buttons */}
+                  <div className="space-y-2">
+                    <Label className="text-sm font-bold text-gray-900 flex items-center gap-1">
+                      Tax Year <Info className="w-3.5 h-3.5 text-gray-400" />
+                    </Label>
+                    <div className="grid grid-cols-2 gap-2">
+                      {(['2025/26', '2024/25'] as const).map((year) => (
+                        <button
+                          key={year}
+                          type="button"
+                          onClick={() => setTaxYear(year)}
+                          className={`flex items-center gap-2.5 px-4 py-3 rounded-lg border-2 text-sm font-medium transition-all cursor-pointer text-left
+                            ${taxYear === year
+                              ? 'border-[#1e3a8a] bg-blue-50 text-[#1e3a8a]'
+                              : 'border-gray-200 bg-white text-gray-700 hover:border-gray-400'
+                            }`}
+                        >
+                          <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${taxYear === year ? 'border-[#1e3a8a]' : 'border-gray-400'
+                            }`}>
+                            {taxYear === year && <span className="w-2 h-2 rounded-full bg-[#1e3a8a]"></span>}
+                          </span>
+                          {year.replace('/', '/')}
+                        </button>
+                      ))}
                     </div>
                   </div>
 
+                  {/* Scotland & Wales */}
+                  <div className="flex flex-col sm:flex-row sm:gap-6 pt-1 border-t border-gray-100">
+                    <div className="flex items-center space-x-2 py-2">
+                      <Checkbox
+                        id="scotland"
+                        checked={isScottish}
+                        onCheckedChange={(checked) => handleScotlandChange(checked as boolean)}
+                        className="border-gray-300 text-[#1e3a8a] focus-visible:ring-[#1e3a8a] w-5 h-5"
+                      />
+                      <label htmlFor="scotland" className="text-sm font-medium text-gray-700 cursor-pointer">
+                        Resident in Scotland?
+                      </label>
+                    </div>
+                    <div className="flex items-center space-x-2 py-2">
+                      <Checkbox
+                        id="wales"
+                        checked={isWelsh}
+                        onCheckedChange={(checked) => handleWelshChange(checked as boolean)}
+                        className="border-gray-300 text-[#1e3a8a] focus-visible:ring-[#1e3a8a] w-5 h-5"
+                      />
+                      <label htmlFor="wales" className="text-sm font-medium text-gray-700 cursor-pointer">
+                        Resident in Wales?
+                      </label>
+                    </div>
+                  </div>
+
+                  {/* Calculate Button — inside the card */}
+                  <Button
+                    onClick={handleCalculate}
+                    className="w-full h-14 text-lg bg-[#c02636] hover:bg-[#a01f2d] text-white font-bold tracking-wide shadow-sm rounded-lg transition-all hover:-translate-y-0.5"
+                  >
+                    Calculate
+                  </Button>
+
                 </CardContent>
               </Card>
+
 
               {/* ADVANCED OPTIONS ACCORDION */}
               <Card className="border border-slate-200 overflow-hidden">
@@ -471,12 +497,6 @@ export default function Home() {
                 </Accordion>
               </Card>
 
-              <Button
-                onClick={handleCalculate}
-                className="w-full h-14 text-lg bg-[#c02636] hover:bg-[#a01f2d] text-white font-bold tracking-wide shadow-md transition-all hover:-translate-y-0.5"
-              >
-                CALCULATE!
-              </Button>
             </div>
 
             {/* RIGHT: RESULTS TABLE */}
