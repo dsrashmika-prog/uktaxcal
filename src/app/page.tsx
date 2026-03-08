@@ -134,7 +134,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", background: "#f6f6f6", fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', color: "#333" }}>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", background: "#f6f6f6", fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', color: "#333", overflowX: "hidden", maxWidth: "100vw" }}>
 
       {/* ===== HEADER (unchanged) ===== */}
       <header style={{ background: "#1e3a8a", color: "white" }}>
