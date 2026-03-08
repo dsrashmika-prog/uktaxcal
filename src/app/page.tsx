@@ -449,12 +449,12 @@ export default function Home() {
                         </div>
                       )}
                       {persona === 'Employee' && (
-                        <div style={{ display: "flex", gap: "12px", marginBottom: "12px" }}>
-                          <div style={{ flex: 1 }}>
+                        <div style={{ display: "flex", gap: "12px", marginBottom: "12px", flexWrap: "wrap" }}>
+                          <div style={{ flex: "1 1 140px", minWidth: 0 }}>
                             <label style={mseLabel}>Overtime (hrs/mth)</label>
                             <input type="number" value={overtimeHours} onChange={e => setOvertimeHours(e.target.value)} style={mseInput} />
                           </div>
-                          <div style={{ flex: 1 }}>
+                          <div style={{ flex: "1 1 140px", minWidth: 0 }}>
                             <label style={mseLabel}>Overtime Rate (£/hr)</label>
                             <input type="number" value={overtimeRate} onChange={e => setOvertimeRate(e.target.value)} style={mseInput} />
                           </div>
