@@ -1,19 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Calculator, Info, PoundSterling } from "lucide-react";
+import { Info } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 import { calculateSalary, SalaryInput, SalaryBreakdown } from "@/lib/salaryLogic";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Button } from "@/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export default function Home() {
   // Input States
@@ -54,6 +46,9 @@ export default function Home() {
   const [age, setAge] = useState("30");
   const [dividendIncome, setDividendIncome] = useState("");
 
+  // Advanced accordion open state
+  const [advancedOpen, setAdvancedOpen] = useState(false);
+
   // Output State
   const [breakdown, setBreakdown] = useState<SalaryBreakdown | null>(null);
 
@@ -86,605 +81,538 @@ export default function Home() {
       age: parseInt(age) || 30,
       dividendIncome: parseFloat(dividendIncome) || 0,
     };
-
     const result = calculateSalary(input);
     setBreakdown(result);
   };
 
   const handleScotlandChange = (checked: boolean) => {
     setIsScottish(checked);
-    if (checked) setIsWelsh(false); // Mutually exclusive
+    if (checked) setIsWelsh(false);
   };
 
   const handleWelshChange = (checked: boolean) => {
     setIsWelsh(checked);
-    if (checked) setIsScottish(false); // Mutually exclusive
+    if (checked) setIsScottish(false);
   };
 
-  const formatCurrency = (val: number) => {
-    return new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(val);
+  const formatCurrency = (val: number) =>
+    new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(val);
+
+  // MSE colour tokens
+  const mseBlue = "#2e54bf";
+  const inputBg = "#f5f7fe";
+  const inputBorder = "1px solid #c8d0e8";
+
+  const mseInput = {
+    background: inputBg,
+    border: inputBorder,
+    borderRadius: "4px",
+    height: "48px",
+    padding: "0 12px",
+    fontSize: "15px",
+    color: "#273157",
+    width: "100%",
+    outline: "none",
+  } as React.CSSProperties;
+
+  const mseLabel = {
+    display: "block",
+    fontWeight: 700,
+    fontSize: "15px",
+    color: "#4a4a4a",
+    marginBottom: "6px",
+  } as React.CSSProperties;
+
+  const mseSelect = {
+    ...mseInput,
+    appearance: "none" as const,
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23273157' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "right 14px center",
+    paddingRight: "36px",
+    cursor: "pointer",
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 font-sans text-gray-900 selection:bg-[#1e3a8a] selection:text-white">
-      {/* MSE-Style Hero Header */}
-      <header className="bg-[#1e3a8a] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex-1">
-              <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tighter mb-2">
-                <span className="text-white">NetPayHome </span>
-                <span className="text-yellow-400">Calculator</span>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", background: "#f6f6f6", fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', color: "#333" }}>
+
+      {/* ===== HEADER (unchanged) ===== */}
+      <header style={{ background: "#1e3a8a", color: "white" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 24px" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
+            <div style={{ flex: 1 }}>
+              <h1 style={{ fontSize: "clamp(28px, 5vw, 36px)", fontWeight: 800, letterSpacing: "-0.04em", marginBottom: "8px", lineHeight: 1.1 }}>
+                <span style={{ color: "white" }}>NetPayHome </span>
+                <span style={{ color: "#facc15" }}>Calculator</span>
               </h1>
-              <p className="text-blue-200 text-base sm:text-lg max-w-xl">
+              <p style={{ color: "#bfdbfe", fontSize: "16px", maxWidth: "520px" }}>
                 Use our accurate UK take home pay calculator to find out your true earnings across both standard and Scottish tax bands.
               </p>
             </div>
-            <div className="hidden sm:flex flex-col items-end text-right opacity-60 shrink-0">
-              <span className="text-5xl font-black text-yellow-300">£</span>
-            </div>
+            <span style={{ fontSize: "60px", fontWeight: 900, color: "#fde68a", opacity: 0.6, display: "none" }} className="hero-pound">£</span>
           </div>
         </div>
       </header>
 
-      {/* Blue Navigation Strip */}
-      <nav className="bg-[#162d6e] text-white py-3 shadow-md border-b border-blue-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-6 sm:space-x-8 text-sm font-semibold tracking-wide overflow-x-auto whitespace-nowrap">
-          <Link href="/" className="text-white hover:text-yellow-300 transition-colors">
+      {/* ===== NAV STRIP ===== */}
+      <nav style={{ background: "#162d6e", color: "white", borderBottom: "1px solid #1e3a8a", padding: "12px 24px" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", display: "flex", gap: "32px", overflowX: "auto", whiteSpace: "nowrap" }}>
+          <Link href="/" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }} onMouseOver={e => (e.currentTarget.style.color = "#facc15")} onMouseOut={e => (e.currentTarget.style.color = "white")}>
             Tax calculator
           </Link>
-          <Link href="/how-to" className="text-white hover:text-yellow-300 transition-colors">
+          <Link href="/how-to" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }} onMouseOver={e => (e.currentTarget.style.color = "#facc15")} onMouseOut={e => (e.currentTarget.style.color = "white")}>
             How to use
           </Link>
-          <Link href="/sources" className="text-white hover:text-yellow-300 transition-colors">
+          <Link href="/sources" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }} onMouseOver={e => (e.currentTarget.style.color = "#facc15")} onMouseOut={e => (e.currentTarget.style.color = "white")}>
             Data sources
           </Link>
         </div>
       </nav>
 
+      {/* ===== MAIN ===== */}
+      <main style={{ flex: 1, padding: "32px 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
-      <main className="flex-grow py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* "Your details" section heading */}
+          <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#1a1a1a", marginBottom: "20px" }}>Your details</h2>
 
-            {/* LEFT: INPUT FORM */}
-            <div className="lg:col-span-5 space-y-6">
-              <Card className="border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-                <CardContent className="space-y-7 pt-6 pb-6">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "24px" }} className="calc-grid">
 
-                  {/* Amber Disclaimer Banner */}
-                  <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-md">
-                    <p className="font-bold text-sm text-gray-900 mb-1">This is just an estimate.</p>
-                    <p className="text-sm text-gray-700">
-                      Your results are based on the information you provide. Always check with HMRC or a qualified accountant to confirm your exact position.
-                    </p>
+            {/* ===== LEFT: INPUT PANEL ===== */}
+            <div>
+
+              {/* Basic Details Card */}
+              <div style={{ background: "white", border: "1px solid #dde3f0", borderRadius: "6px", padding: "24px", marginBottom: "16px" }}>
+
+                {/* Amber disclaimer */}
+                <div style={{ background: "#fffbeb", borderLeft: "4px solid #f59e0b", padding: "12px 16px", borderRadius: "0 4px 4px 0", marginBottom: "24px" }}>
+                  <p style={{ fontWeight: 700, fontSize: "14px", color: "#1a1a1a", marginBottom: "4px" }}>This is just an estimate.</p>
+                  <p style={{ fontSize: "13px", color: "#555" }}>
+                    Your results are based on the information you provide. Always check with HMRC or a qualified accountant.
+                  </p>
+                </div>
+
+                <h3 style={{ fontSize: "18px", fontWeight: 700, color: mseBlue, marginBottom: "20px" }}>Basic details</h3>
+
+                {/* Work Status + Age */}
+                <div style={{ display: "flex", gap: "16px", marginBottom: "20px", flexWrap: "wrap" }}>
+                  <div style={{ flex: "1 1 200px" }}>
+                    <label style={mseLabel}>Work Status</label>
+                    <select value={persona} onChange={e => setPersona(e.target.value)} style={mseSelect}>
+                      <option value="Employee">Employee</option>
+                      <option value="Sole Trader">Sole Trader (Self-Employed)</option>
+                      <option value="Director">Company Director</option>
+                    </select>
                   </div>
-
-                  {/* Persona & Age Selection */}
-                  <div className="flex flex-row gap-4 sm:gap-6">
-                    <div className="space-y-2 flex-1 min-w-0">
-                      <Label className="text-sm font-bold text-gray-900">Work Status</Label>
-                      <Select value={persona} onValueChange={setPersona}>
-                        <SelectTrigger className="border-gray-300 bg-white font-medium text-xs sm:text-sm h-11 w-full truncate rounded-lg">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Employee">Employee</SelectItem>
-                          <SelectItem value="Sole Trader">Sole Trader (Self-Employed)</SelectItem>
-                          <SelectItem value="Director">Company Director</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="space-y-2 w-28 sm:w-32 md:w-40 shrink-0">
-                      <Label className="text-sm font-bold text-gray-900 flex items-center justify-between">
-                        Age
-                        {parseInt(age) >= 66 && <span className="text-[10px] text-amber-700 bg-amber-200/80 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider hidden sm:inline-block">No NI</span>}
-                      </Label>
-                      <Input
-                        type="number"
-                        min="16"
-                        max="120"
-                        value={age}
-                        onChange={(e) => setAge(e.target.value)}
-                        className="border-gray-300 bg-white font-medium focus-visible:ring-[#1e3a8a] w-full h-11 rounded-lg"
-                      />
-                    </div>
+                  <div style={{ flex: "0 0 120px" }}>
+                    <label style={mseLabel}>
+                      Age
+                      {parseInt(age) >= 66 && <span style={{ marginLeft: "8px", fontSize: "11px", fontWeight: 700, background: "#fef3c7", color: "#92400e", padding: "2px 8px", borderRadius: "12px" }}>No NI</span>}
+                    </label>
+                    <input type="number" min="16" max="120" value={age} onChange={e => setAge(e.target.value)} style={mseInput} />
                   </div>
+                </div>
 
-                  {/* Gross Income */}
-                  <div className="space-y-2">
-                    <Label className="text-sm font-bold text-gray-900">Gross income (pre tax)</Label>
-                    <div className="flex rounded-lg shadow-sm overflow-hidden border border-gray-300">
-                      <span className="inline-flex items-center px-4 bg-gray-100 text-gray-700 font-bold border-r border-gray-300">
-                        £
-                      </span>
-                      <Input
+                {/* Gross Income */}
+                <div style={{ marginBottom: "20px" }}>
+                  <label style={mseLabel}>Gross (pre-tax) income</label>
+                  <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                    <div style={{ flex: "1 1 180px", display: "flex", border: inputBorder, borderRadius: "4px", overflow: "hidden", background: inputBg }}>
+                      <span style={{ background: "#e8ecf8", padding: "0 14px", display: "flex", alignItems: "center", fontWeight: 700, color: "#273157", fontSize: "16px", borderRight: inputBorder }}>£</span>
+                      <input
                         type="number"
-                        placeholder="e.g. 50000"
-                        className="rounded-none shadow-none border-0 focus-visible:ring-0 text-lg font-medium"
+                        placeholder="Value"
                         value={grossIncome}
-                        onChange={(e) => setGrossIncome(e.target.value)}
+                        onChange={e => setGrossIncome(e.target.value)}
+                        style={{ flex: 1, border: "none", background: "transparent", padding: "0 12px", fontSize: "15px", color: "#273157", outline: "none", height: "48px" }}
                       />
-                      <Select value={payFrequency} onValueChange={(val: any) => setPayFrequency(val)}>
-                        <SelectTrigger className="w-[130px] rounded-none border-0 border-l border-gray-300 shadow-none bg-gray-50 font-medium">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="Yearly">A Year</SelectItem>
-                          <SelectItem value="Monthly">A Month</SelectItem>
-                          <SelectItem value="4 Weekly">4 Weekly</SelectItem>
-                          <SelectItem value="Weekly">A Week</SelectItem>
-                          <SelectItem value="Daily">A Day</SelectItem>
-                        </SelectContent>
-                      </Select>
                     </div>
+                    <select value={payFrequency} onChange={e => setPayFrequency(e.target.value as any)} style={{ ...mseSelect, flex: "0 0 140px" }}>
+                      <option value="Yearly">A year</option>
+                      <option value="Monthly">A month</option>
+                      <option value="4 Weekly">4 weekly</option>
+                      <option value="Weekly">A week</option>
+                      <option value="Daily">A day</option>
+                    </select>
                   </div>
+                </div>
 
-                  {/* Tax Year - Pill Radio Buttons */}
-                  <div className="space-y-2">
-                    <Label className="text-sm font-bold text-gray-900 flex items-center gap-1">
-                      Tax Year <Info className="w-3.5 h-3.5 text-gray-400" />
-                    </Label>
-                    <div className="grid grid-cols-2 gap-2">
-                      {(['2025/26', '2024/25'] as const).map((year) => (
-                        <button
-                          key={year}
-                          type="button"
-                          onClick={() => setTaxYear(year)}
-                          className={`flex items-center gap-2.5 px-4 py-3 rounded-lg border-2 text-sm font-medium transition-all cursor-pointer text-left
-                            ${taxYear === year
-                              ? 'border-[#1e3a8a] bg-blue-50 text-[#1e3a8a]'
-                              : 'border-gray-200 bg-white text-gray-700 hover:border-gray-400'
-                            }`}
-                        >
-                          <span className={`w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${taxYear === year ? 'border-[#1e3a8a]' : 'border-gray-400'
-                            }`}>
-                            {taxYear === year && <span className="w-2 h-2 rounded-full bg-[#1e3a8a]"></span>}
-                          </span>
-                          {year.replace('/', '/')}
-                        </button>
-                      ))}
-                    </div>
+                {/* Tax Year */}
+                <div style={{ marginBottom: "20px" }}>
+                  <label style={mseLabel}>Tax Year <Info style={{ display: "inline", width: "14px", height: "14px", color: "#888", verticalAlign: "middle", marginLeft: "4px" }} /></label>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+                    {(['2025/26', '2024/25'] as const).map(year => (
+                      <button
+                        key={year}
+                        type="button"
+                        onClick={() => setTaxYear(year)}
+                        style={{
+                          display: "flex", alignItems: "center", gap: "10px",
+                          padding: "12px 14px", borderRadius: "4px",
+                          border: taxYear === year ? "2px solid #2e54bf" : "2px solid #c8d0e8",
+                          background: taxYear === year ? "#ebf0fd" : inputBg,
+                          color: taxYear === year ? "#2e54bf" : "#4a4a4a",
+                          fontWeight: 600, fontSize: "14px", cursor: "pointer", textAlign: "left",
+                          transition: "all 0.15s",
+                        }}
+                      >
+                        <span style={{
+                          width: "16px", height: "16px", borderRadius: "50%",
+                          border: `2px solid ${taxYear === year ? "#2e54bf" : "#999"}`,
+                          display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                        }}>
+                          {taxYear === year && <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#2e54bf" }} />}
+                        </span>
+                        {year}
+                      </button>
+                    ))}
                   </div>
+                </div>
 
-                  {/* Scotland & Wales */}
-                  <div className="flex flex-col sm:flex-row sm:gap-6 pt-1 border-t border-gray-100">
-                    <div className="flex items-center space-x-2 py-2">
-                      <Checkbox
-                        id="scotland"
-                        checked={isScottish}
-                        onCheckedChange={(checked) => handleScotlandChange(checked as boolean)}
-                        className="border-gray-300 text-[#1e3a8a] focus-visible:ring-[#1e3a8a] w-5 h-5"
+                {/* Scotland & Wales */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", paddingTop: "12px", borderTop: "1px solid #eef0f7", marginBottom: "20px" }}>
+                  {[
+                    { id: "scotland", label: "Resident in Scotland?", checked: isScottish, onChange: handleScotlandChange },
+                    { id: "wales", label: "Resident in Wales?", checked: isWelsh, onChange: handleWelshChange },
+                  ].map(({ id, label, checked, onChange }) => (
+                    <label key={id} htmlFor={id} style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", fontSize: "14px", fontWeight: 500, color: "#333" }}>
+                      <input
+                        type="checkbox"
+                        id={id}
+                        checked={checked}
+                        onChange={e => onChange(e.target.checked)}
+                        style={{ width: "18px", height: "18px", accentColor: mseBlue, cursor: "pointer" }}
                       />
-                      <label htmlFor="scotland" className="text-sm font-medium text-gray-700 cursor-pointer">
-                        Resident in Scotland?
-                      </label>
-                    </div>
-                    <div className="flex items-center space-x-2 py-2">
-                      <Checkbox
-                        id="wales"
-                        checked={isWelsh}
-                        onCheckedChange={(checked) => handleWelshChange(checked as boolean)}
-                        className="border-gray-300 text-[#1e3a8a] focus-visible:ring-[#1e3a8a] w-5 h-5"
-                      />
-                      <label htmlFor="wales" className="text-sm font-medium text-gray-700 cursor-pointer">
-                        Resident in Wales?
-                      </label>
-                    </div>
-                  </div>
+                      {label}
+                    </label>
+                  ))}
+                </div>
 
-                  {/* Calculate Button — inside the card */}
-                  <Button
-                    onClick={handleCalculate}
-                    className="w-full h-14 text-lg bg-[#c02636] hover:bg-[#a01f2d] text-white font-bold tracking-wide shadow-sm rounded-lg transition-all hover:-translate-y-0.5"
-                  >
-                    Calculate
-                  </Button>
+                {/* CALCULATE BUTTON */}
+                <button
+                  onClick={handleCalculate}
+                  style={{
+                    width: "100%", height: "52px",
+                    background: "#c62035", color: "white",
+                    fontWeight: 700, fontSize: "17px",
+                    border: "none", borderRadius: "5px",
+                    cursor: "pointer", letterSpacing: "0.02em",
+                    transition: "background 0.15s",
+                  }}
+                  onMouseOver={e => (e.currentTarget.style.background = "#a01829")}
+                  onMouseOut={e => (e.currentTarget.style.background = "#c62035")}
+                >
+                  Calculate
+                </button>
+              </div>
 
-                </CardContent>
-              </Card>
+              {/* ===== ADVANCED OPTIONS ===== */}
+              <div style={{ background: "white", border: "1px solid #dde3f0", borderRadius: "6px", overflow: "hidden" }}>
+                <button
+                  onClick={() => setAdvancedOpen(!advancedOpen)}
+                  style={{
+                    width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
+                    padding: "16px 24px", background: "white", border: "none", cursor: "pointer",
+                    fontWeight: 700, fontSize: "15px", color: "#1a1a1a",
+                    borderBottom: advancedOpen ? "1px solid #eef0f7" : "none",
+                  }}
+                >
+                  <span>Advanced options</span>
+                  <span style={{ fontSize: "20px", color: "#888", lineHeight: 1 }}>{advancedOpen ? "−" : "+"}</span>
+                </button>
 
+                {advancedOpen && (
+                  <div style={{ padding: "24px" }}>
 
-              {/* ADVANCED OPTIONS ACCORDION */}
-              <Card className="border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-                <Accordion type="single" collapsible className="w-full">
-
-                  {/* Tax Code */}
-                  <AccordionItem value="tax-code-only" className="border-b border-gray-200">
-                    <AccordionTrigger className="px-5 py-4 hover:bg-gray-50 hover:no-underline text-sm font-bold text-gray-900 bg-white">
-                      Tax Code (optional)
-                    </AccordionTrigger>
-                    <AccordionContent className="px-5 py-4 bg-gray-50 space-y-4">
-                      <div className="space-y-2">
-                        <Label className="text-sm font-bold text-gray-900">Tax Code</Label>
-                        <Input
-                          placeholder={`Leave blank for default (e.g. ${isScottish ? 'S1257L' : isWelsh ? 'C1257L' : '1257L'})`}
-                          value={taxCode} onChange={(e) => setTaxCode(e.target.value)}
-                          className="border-gray-300 rounded-lg h-11"
+                    {/* Tax Code */}
+                    <div style={{ marginBottom: "24px" }}>
+                      <h4 style={{ fontSize: "16px", fontWeight: 700, color: mseBlue, marginBottom: "14px" }}>Tax Code (optional)</h4>
+                      <div style={{ marginBottom: "14px" }}>
+                        <label style={mseLabel}>Tax Code</label>
+                        <input
+                          type="text"
+                          placeholder={`e.g. ${isScottish ? 'S1257L' : isWelsh ? 'C1257L' : '1257L'}`}
+                          value={taxCode}
+                          onChange={e => setTaxCode(e.target.value)}
+                          style={mseInput}
                         />
                       </div>
-                    </AccordionContent>
-                  </AccordionItem>
+                    </div>
 
-                  {/* Student Loan */}
-                  {parseInt(age) <= 65 && (
-                    <AccordionItem value="student-loan" className="border-b border-gray-200">
-                      <AccordionTrigger className="px-5 py-4 hover:bg-gray-50 hover:no-underline text-sm font-bold text-gray-900 bg-white">
-                        Student Loan
-                      </AccordionTrigger>
-                      <AccordionContent className="px-5 py-4 bg-gray-50 space-y-4">
-                        <div className="space-y-2">
-                          <Label className="text-sm font-bold text-gray-900">Student Loan Plan</Label>
-                          <Select value={studentLoanPlan} onValueChange={(val: any) => setStudentLoanPlan(val)}>
-                            <SelectTrigger className="border-gray-300 rounded-lg h-11">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="None">None</SelectItem>
-                              <SelectItem value="Plan 1">Plan 1</SelectItem>
-                              <SelectItem value="Plan 2">Plan 2</SelectItem>
-                              <SelectItem value="Plan 4">Plan 4 (Scotland)</SelectItem>
-                              <SelectItem value="Plan 5">Plan 5</SelectItem>
-                            </SelectContent>
-                          </Select>
+                    {/* Student Loan */}
+                    {parseInt(age) <= 65 && (
+                      <div style={{ marginBottom: "24px", paddingTop: "20px", borderTop: "1px solid #eef0f7" }}>
+                        <h4 style={{ fontSize: "16px", fontWeight: 700, color: mseBlue, marginBottom: "14px" }}>Student Loan</h4>
+                        <div style={{ marginBottom: "14px" }}>
+                          <label style={mseLabel}>Loan Plan</label>
+                          <select value={studentLoanPlan} onChange={e => setStudentLoanPlan(e.target.value as any)} style={mseSelect}>
+                            <option value="None">None</option>
+                            <option value="Plan 1">Plan 1</option>
+                            <option value="Plan 2">Plan 2</option>
+                            <option value="Plan 4">Plan 4 (Scotland)</option>
+                            <option value="Plan 5">Plan 5</option>
+                          </select>
                         </div>
-                        <div className="flex items-center space-x-2">
-                          <Checkbox id="postgrad" checked={hasPostgradLoan} onCheckedChange={(c) => setHasPostgradLoan(c as boolean)} className="border-gray-300 w-5 h-5" />
-                          <label htmlFor="postgrad" className="text-sm font-medium text-gray-700 cursor-pointer">Repaying Postgraduate Loan?</label>
-                        </div>
-                      </AccordionContent>
-                    </AccordionItem>
-                  )}
+                        <label style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "14px", fontWeight: 500, cursor: "pointer" }}>
+                          <input type="checkbox" checked={hasPostgradLoan} onChange={e => setHasPostgradLoan(e.target.checked)} style={{ width: "18px", height: "18px", accentColor: mseBlue }} />
+                          Repaying Postgraduate Loan?
+                        </label>
+                      </div>
+                    )}
 
-                  {/* Pension */}
-                  <AccordionItem value="pension" className="border-b border-gray-200">
-                    <AccordionTrigger className="px-5 py-4 hover:bg-gray-50 hover:no-underline text-sm font-bold text-gray-900 bg-white">
-                      Pension
-                    </AccordionTrigger>
-                    <AccordionContent className="px-5 py-4 bg-gray-50 space-y-5">
+                    {/* Pension */}
+                    <div style={{ marginBottom: "24px", paddingTop: "20px", borderTop: "1px solid #eef0f7" }}>
+                      <h4 style={{ fontSize: "16px", fontWeight: 700, color: mseBlue, marginBottom: "14px" }}>Pension</h4>
                       {persona === 'Sole Trader' ? (
-                        <div className="flex items-start gap-3 bg-blue-50 border border-blue-100 p-3 rounded-lg">
-                          <Info className="w-5 h-5 text-blue-500 mt-0.5 shrink-0" />
-                          <p className="text-sm text-blue-800">Sole Traders can only contribute to a Personal Pension (Relief at Source). Employer contributions are not applicable.</p>
+                        <div style={{ display: "flex", gap: "10px", background: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: "4px", padding: "12px" }}>
+                          <Info style={{ width: "18px", height: "18px", color: "#3b82f6", flexShrink: 0, marginTop: "2px" }} />
+                          <p style={{ fontSize: "13px", color: "#1e40af" }}>Sole Traders can only contribute to a Personal Pension (Relief at Source). Employer contributions are not applicable.</p>
                         </div>
                       ) : (
-                        <div className="grid grid-cols-2 gap-2">
-                          {(['Auto-enrolment', 'Employer', 'Salary sacrifice', 'Personal'] as const).map((scheme) => (
-                            <button
-                              key={scheme}
-                              type="button"
-                              onClick={() => setPensionScheme(scheme)}
-                              className={`flex items-center gap-2 px-3 py-2.5 rounded-lg border-2 text-sm font-medium transition-all cursor-pointer text-left ${pensionScheme === scheme
-                                ? 'border-[#1e3a8a] bg-blue-50 text-[#1e3a8a]'
-                                : 'border-gray-200 bg-white text-gray-700 hover:border-gray-400'
-                                }`}
-                            >
-                              <span className={`w-3.5 h-3.5 rounded-full border-2 flex items-center justify-center shrink-0 ${pensionScheme === scheme ? 'border-[#1e3a8a]' : 'border-gray-400'
-                                }`}>
-                                {pensionScheme === scheme && <span className="w-1.5 h-1.5 rounded-full bg-[#1e3a8a]"></span>}
-                              </span>
-                              {scheme}
-                            </button>
-                          ))}
+                        <div style={{ marginBottom: "14px" }}>
+                          <label style={mseLabel}>Pension Scheme</label>
+                          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                            {(['Auto-enrolment', 'Employer', 'Salary sacrifice', 'Personal'] as const).map(scheme => (
+                              <button
+                                key={scheme}
+                                type="button"
+                                onClick={() => setPensionScheme(scheme)}
+                                style={{
+                                  display: "flex", alignItems: "center", gap: "8px",
+                                  padding: "10px 12px", borderRadius: "4px",
+                                  border: pensionScheme === scheme ? "2px solid #2e54bf" : "2px solid #c8d0e8",
+                                  background: pensionScheme === scheme ? "#ebf0fd" : inputBg,
+                                  color: pensionScheme === scheme ? "#2e54bf" : "#4a4a4a",
+                                  fontWeight: 600, fontSize: "13px", cursor: "pointer", textAlign: "left",
+                                }}
+                              >
+                                <span style={{
+                                  width: "14px", height: "14px", borderRadius: "50%", flexShrink: 0,
+                                  border: `2px solid ${pensionScheme === scheme ? "#2e54bf" : "#999"}`,
+                                  display: "flex", alignItems: "center", justifyContent: "center",
+                                }}>
+                                  {pensionScheme === scheme && <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#2e54bf" }} />}
+                                </span>
+                                {scheme}
+                              </button>
+                            ))}
+                          </div>
                         </div>
                       )}
-                      <div className="flex gap-4 pt-1">
-                        <div className="flex-1 space-y-2">
-                          <Label className="text-sm font-bold text-gray-900">Contribution Amount</Label>
-                          <Input type="number" placeholder="e.g. 5" value={pensionValue} onChange={(e) => setPensionValue(e.target.value)} className="border-gray-300 rounded-lg h-11" />
+                      <div style={{ display: "flex", gap: "12px", marginTop: "12px" }}>
+                        <div style={{ flex: 1 }}>
+                          <label style={mseLabel}>Contribution Amount</label>
+                          <input type="number" placeholder="e.g. 5" value={pensionValue} onChange={e => setPensionValue(e.target.value)} style={mseInput} />
                         </div>
-                        <div className="flex-1 space-y-2">
-                          <Label className="text-sm font-bold text-gray-900">Type</Label>
-                          <Select value={pensionType} onValueChange={(val: any) => setPensionType(val)}>
-                            <SelectTrigger className="border-gray-300 rounded-lg h-11">
-                              <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="Percentage">%</SelectItem>
-                              <SelectItem value="Amount">£</SelectItem>
-                            </SelectContent>
-                          </Select>
+                        <div style={{ flex: "0 0 120px" }}>
+                          <label style={mseLabel}>Type</label>
+                          <select value={pensionType} onChange={e => setPensionType(e.target.value as any)} style={mseSelect}>
+                            <option value="Percentage">%</option>
+                            <option value="Amount">£</option>
+                          </select>
                         </div>
                       </div>
-                    </AccordionContent>
-                  </AccordionItem>
+                    </div>
 
-                  {/* Family & Child Benefit */}
-                  <AccordionItem value="family" className="border-b border-gray-200">
-                    <AccordionTrigger className="px-5 py-4 hover:bg-gray-50 hover:no-underline text-sm font-bold text-gray-900 bg-white">
-                      Family &amp; Child Benefit
-                    </AccordionTrigger>
-                    <AccordionContent className="px-5 py-4 bg-gray-50 space-y-4">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="child-benefit" checked={claimsChildBenefit} onCheckedChange={(c) => setClaimsChildBenefit(c as boolean)} className="border-gray-300 w-5 h-5" />
-                        <label htmlFor="child-benefit" className="text-sm font-medium text-gray-700 cursor-pointer">Claiming Child Benefit?</label>
-                      </div>
+                    {/* Family & Child Benefit */}
+                    <div style={{ marginBottom: "24px", paddingTop: "20px", borderTop: "1px solid #eef0f7" }}>
+                      <h4 style={{ fontSize: "16px", fontWeight: 700, color: mseBlue, marginBottom: "14px" }}>Family &amp; Child Benefit</h4>
+                      <label style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "14px", fontWeight: 500, cursor: "pointer", marginBottom: "12px" }}>
+                        <input type="checkbox" checked={claimsChildBenefit} onChange={e => setClaimsChildBenefit(e.target.checked)} style={{ width: "18px", height: "18px", accentColor: mseBlue }} />
+                        Claiming Child Benefit?
+                      </label>
                       {claimsChildBenefit && (
-                        <div className="space-y-2 animate-in fade-in slide-in-from-top-2">
-                          <Label className="text-sm font-bold text-gray-900">Number of Children</Label>
-                          <Input type="number" min="1" value={numberOfChildren} onChange={e => setNumberOfChildren(e.target.value)} className="border-gray-300 rounded-lg h-11 w-1/3" />
+                        <div style={{ marginTop: "10px" }}>
+                          <label style={mseLabel}>Number of Children</label>
+                          <input type="number" min="1" value={numberOfChildren} onChange={e => setNumberOfChildren(e.target.value)} style={{ ...mseInput, maxWidth: "120px" }} />
                         </div>
                       )}
-                    </AccordionContent>
-                  </AccordionItem>
+                    </div>
 
-                  {/* Additional Options */}
-                  <AccordionItem value="additional" className="border-b-0">
-                    <AccordionTrigger className="px-5 py-4 hover:bg-gray-50 hover:no-underline text-sm font-bold text-gray-900 bg-white">
-                      Additional Options
-                    </AccordionTrigger>
-                    <AccordionContent className="px-5 py-4 bg-gray-50 space-y-5">
+                    {/* Additional Options */}
+                    <div style={{ paddingTop: "20px", borderTop: "1px solid #eef0f7" }}>
+                      <h4 style={{ fontSize: "16px", fontWeight: 700, color: mseBlue, marginBottom: "14px" }}>Additional Options</h4>
 
-                      <div className="space-y-3">
-                        <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">Extra Earnings</p>
+                      {/* Extra Earnings */}
+                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "10px" }}>Extra Earnings</p>
 
-                        {persona === 'Director' && (
-                          <div className="space-y-2">
-                            <Label className="text-sm font-bold text-gray-900">Yearly Dividends (£)</Label>
-                            <Input type="number" value={dividendIncome} onChange={e => setDividendIncome(e.target.value)} className="border-gray-300 rounded-lg h-11" />
+                      {persona === 'Director' && (
+                        <div style={{ marginBottom: "12px" }}>
+                          <label style={mseLabel}>Yearly Dividends (£)</label>
+                          <input type="number" value={dividendIncome} onChange={e => setDividendIncome(e.target.value)} style={mseInput} />
+                        </div>
+                      )}
+                      {persona !== 'Sole Trader' && (
+                        <div style={{ marginBottom: "12px" }}>
+                          <label style={mseLabel}>Yearly Bonus (£)</label>
+                          <input type="number" value={bonusAmount} onChange={e => setBonusAmount(e.target.value)} style={mseInput} />
+                        </div>
+                      )}
+                      {persona === 'Employee' && (
+                        <div style={{ display: "flex", gap: "12px", marginBottom: "12px" }}>
+                          <div style={{ flex: 1 }}>
+                            <label style={mseLabel}>Overtime (hrs/mth)</label>
+                            <input type="number" value={overtimeHours} onChange={e => setOvertimeHours(e.target.value)} style={mseInput} />
                           </div>
-                        )}
+                          <div style={{ flex: 1 }}>
+                            <label style={mseLabel}>Overtime Rate (£/hr)</label>
+                            <input type="number" value={overtimeRate} onChange={e => setOvertimeRate(e.target.value)} style={mseInput} />
+                          </div>
+                        </div>
+                      )}
 
+                      {/* Allowances */}
+                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", margin: "16px 0 10px" }}>Allowances &amp; Exemptions</p>
+                      {[
+                        { id: "no-ni", label: "I do not pay National Insurance", checked: excludeNI, onChange: setExcludeNI },
+                        { id: "blind", label: "Eligible for Blind Person's Allowance", checked: isBlind, onChange: setIsBlind },
+                        { id: "married", label: "Married & born before 6th April 1935", checked: isMarried, onChange: setIsMarried },
+                      ].map(({ id, label, checked, onChange }) => (
+                        <label key={id} htmlFor={id} style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "14px", fontWeight: 500, cursor: "pointer", marginBottom: "8px" }}>
+                          <input type="checkbox" id={id} checked={checked} onChange={e => onChange(e.target.checked)} style={{ width: "18px", height: "18px", accentColor: mseBlue }} />
+                          {label}
+                        </label>
+                      ))}
+
+                      {/* Other Deductions */}
+                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", margin: "16px 0 10px" }}>Other Deductions (Monthly)</p>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
                         {persona !== 'Sole Trader' && (
-                          <div className="space-y-2">
-                            <Label className="text-sm font-bold text-gray-900">Yearly Bonus (£)</Label>
-                            <Input type="number" value={bonusAmount} onChange={e => setBonusAmount(e.target.value)} className="border-gray-300 rounded-lg h-11" />
+                          <div>
+                            <label style={mseLabel}>Childcare Vouchers (£)</label>
+                            <input type="number" value={childcareVoucher} onChange={e => setChildcareVoucher(e.target.value)} style={mseInput} />
                           </div>
                         )}
-
-                        {persona === 'Employee' && (
-                          <div className="flex gap-4">
-                            <div className="flex-1 space-y-2">
-                              <Label className="text-sm font-bold text-gray-900">Overtime (hrs/mth)</Label>
-                              <Input type="number" value={overtimeHours} onChange={e => setOvertimeHours(e.target.value)} className="border-gray-300 rounded-lg h-11" />
-                            </div>
-                            <div className="flex-1 space-y-2">
-                              <Label className="text-sm font-bold text-gray-900">Overtime Rate (£/hr)</Label>
-                              <Input type="number" value={overtimeRate} onChange={e => setOvertimeRate(e.target.value)} className="border-gray-300 rounded-lg h-11" />
-                            </div>
+                        {persona !== 'Sole Trader' && (
+                          <div>
+                            <label style={mseLabel}>Give As You Earn (£)</label>
+                            <input type="number" value={giveAsYouEarn} onChange={e => setGiveAsYouEarn(e.target.value)} style={mseInput} />
                           </div>
                         )}
-                      </div>
-
-                      <div className="space-y-3 pt-2 border-t border-gray-200">
-                        <p className="text-xs font-bold text-gray-500 uppercase tracking-widest pt-2">Allowances &amp; Exemptions</p>
-                        <div className="flex items-center space-x-2">
-                          <Checkbox id="no-ni" checked={excludeNI} onCheckedChange={(c) => setExcludeNI(c as boolean)} className="border-gray-300 w-5 h-5" />
-                          <label htmlFor="no-ni" className="text-sm text-gray-700 cursor-pointer">I do not pay National Insurance</label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Checkbox id="blind" checked={isBlind} onCheckedChange={(c) => setIsBlind(c as boolean)} className="border-gray-300 w-5 h-5" />
-                          <label htmlFor="blind" className="text-sm text-gray-700 cursor-pointer">Eligible for Blind Person's Allowance</label>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Checkbox id="married" checked={isMarried} onCheckedChange={(c) => setIsMarried(c as boolean)} className="border-gray-300 w-5 h-5" />
-                          <label htmlFor="married" className="text-sm text-gray-700 cursor-pointer">Married &amp; born before 6th April 1935</label>
+                        <div style={{ gridColumn: persona !== 'Sole Trader' ? "1 / -1" : "auto" }}>
+                          <label style={mseLabel}>Gift Aid (After tax - £)</label>
+                          <input type="number" value={giftAid} onChange={e => setGiftAid(e.target.value)} style={mseInput} />
                         </div>
                       </div>
+                    </div>
 
-                      <div className="space-y-3 pt-2 border-t border-gray-200">
-                        <p className="text-xs font-bold text-gray-500 uppercase tracking-widest pt-2">Other Deductions (Monthly)</p>
-                        <div className="grid grid-cols-2 gap-4">
-                          {persona !== 'Sole Trader' && (
-                            <div className="space-y-2">
-                              <Label className="text-sm font-bold text-gray-900">Childcare Vouchers (£)</Label>
-                              <Input type="number" value={childcareVoucher} onChange={e => setChildcareVoucher(e.target.value)} className="border-gray-300 rounded-lg h-11" />
-                            </div>
-                          )}
-                          {persona !== 'Sole Trader' && (
-                            <div className="space-y-2">
-                              <Label className="text-sm font-bold text-gray-900">Give As You Earn (£)</Label>
-                              <Input type="number" value={giveAsYouEarn} onChange={e => setGiveAsYouEarn(e.target.value)} className="border-gray-300 rounded-lg h-11" />
-                            </div>
-                          )}
-                          <div className={`space-y-2 ${persona !== 'Sole Trader' ? 'col-span-2' : 'col-span-1'}`}>
-                            <Label className="text-sm font-bold text-gray-900">Gift Aid (After tax - £)</Label>
-                            <Input type="number" value={giftAid} onChange={e => setGiftAid(e.target.value)} className="border-gray-300 rounded-lg h-11" />
-                          </div>
-                        </div>
-                      </div>
-
-                    </AccordionContent>
-                  </AccordionItem>
-
-                </Accordion>
-              </Card>
-
+                  </div>
+                )}
+              </div>
             </div>
 
-            {/* RIGHT: RESULTS TABLE */}
-            <div className="lg:col-span-7">
+            {/* ===== RIGHT: RESULTS TABLE ===== */}
+            <div>
               {breakdown ? (
-                <div className="space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <div>
 
-                  {/* TAX TRAPS BANNER */}
+                  {/* Tax Traps Warning */}
                   {(breakdown.taxTraps.personalAllowanceLost > 0 || breakdown.taxTraps.hicbcChargeAmount > 0) && (
-                    <div className="border-l-4 border-l-red-500 bg-red-50 p-5 rounded-r-lg">
-                      <h3 className="text-base font-bold text-red-800 flex items-center gap-2 mb-2">
-                        ⚠️ Tax Traps Detected
-                      </h3>
-                      <p className="text-sm text-red-900 leading-relaxed mb-3">
-                        Your income level has triggered one or more UK marginal tax rate traps:
-                      </p>
-                      <ul className="list-disc pl-5 space-y-1 text-sm text-red-800 font-medium pb-4 border-b border-red-200/50">
+                    <div style={{ borderLeft: "4px solid #dc2626", background: "#fef2f2", padding: "16px 20px", borderRadius: "0 4px 4px 0", marginBottom: "20px" }}>
+                      <p style={{ fontWeight: 700, fontSize: "15px", color: "#7f1d1d", marginBottom: "8px" }}>⚠️ Tax Traps Detected</p>
+                      <ul style={{ paddingLeft: "18px", fontSize: "13px", color: "#7f1d1d", lineHeight: 1.6 }}>
                         {breakdown.taxTraps.personalAllowanceLost > 0 && (
-                          <li>
-                            <strong>60% Marginal Trap:</strong> You have lost <strong>{formatCurrency(breakdown.taxTraps.personalAllowanceLost)}</strong> of your Personal Allowance.
-                          </li>
+                          <li><strong>60% Marginal Trap:</strong> You've lost <strong>{formatCurrency(breakdown.taxTraps.personalAllowanceLost)}</strong> of your Personal Allowance.</li>
                         )}
                         {breakdown.taxTraps.hicbcChargeAmount > 0 && (
-                          <li>
-                            <strong>Child Benefit Clawback:</strong> You are being charged <strong>{formatCurrency(breakdown.taxTraps.hicbcChargeAmount)}</strong> to repay your Child Benefit.
-                          </li>
+                          <li><strong>Child Benefit Clawback:</strong> Charge of <strong>{formatCurrency(breakdown.taxTraps.hicbcChargeAmount)}</strong>.</li>
                         )}
                       </ul>
-                      <p className="text-xs text-red-700 font-semibold mt-3 flex items-center gap-1.5">
-                        <Info className="w-3.5 h-3.5" />
-                        Pro Tip: Allocating more salary into a pension can help mitigate these traps.
-                      </p>
+                      <p style={{ fontSize: "12px", color: "#991b1b", marginTop: "8px" }}>💡 Allocating more into a pension can help mitigate these traps.</p>
                     </div>
                   )}
 
-                  {/* Results Table */}
-                  <Card className="border border-gray-200 rounded-xl shadow-sm overflow-hidden">
-                    <div className="bg-[#1e3a8a] px-6 py-4">
-                      <h2 className="text-white font-bold text-lg">Your Take Home Pay Results</h2>
-                      <p className="text-blue-200 text-sm">Based on tax year {taxYear}</p>
+                  {/* Results Card */}
+                  <div style={{ background: "white", border: "1px solid #dde3f0", borderRadius: "6px", overflow: "hidden" }}>
+                    <div style={{ background: "#1e3a8a", padding: "16px 20px" }}>
+                      <h2 style={{ color: "white", fontWeight: 700, fontSize: "17px", margin: 0 }}>Your Take Home Pay Results</h2>
+                      <p style={{ color: "#bfdbfe", fontSize: "13px", margin: "4px 0 0" }}>Based on tax year {taxYear}</p>
                     </div>
-                    <div className="overflow-x-auto">
-                      <table className="w-full min-w-[560px] text-sm text-left">
-                        <thead className="bg-gray-50 border-b border-gray-200">
-                          <tr>
-                            <th className="px-5 py-3 font-bold text-gray-900 text-left w-[32%]"></th>
-                            <th className="px-4 py-3 font-bold text-gray-700 text-right">Yearly</th>
-                            <th className="px-4 py-3 font-bold text-gray-700 text-right border-l border-gray-100">Monthly</th>
-                            <th className="px-4 py-3 font-bold text-gray-700 text-right border-l border-gray-100">Weekly</th>
-                            <th className="px-4 py-3 font-bold text-gray-700 text-right border-l border-gray-100">Daily</th>
+
+                    <div style={{ overflowX: "auto" }}>
+                      <table style={{ width: "100%", minWidth: "540px", borderCollapse: "collapse", fontSize: "14px" }}>
+                        <thead>
+                          <tr style={{ background: "#f5f7fe", borderBottom: "1px solid #dde3f0" }}>
+                            <th style={{ padding: "12px 16px", textAlign: "left", fontWeight: 700, color: "#273157", width: "35%" }}></th>
+                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157" }}>Yearly</th>
+                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Monthly</th>
+                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Weekly</th>
+                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Daily</th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-gray-100 text-gray-700">
-                          <tr className="bg-white">
-                            <td className="px-5 py-3.5 font-bold text-gray-900 border-r border-gray-100">Gross Income</td>
-                            <td className="px-4 py-3.5 text-right font-semibold text-gray-900">{formatCurrency(breakdown.grossIncome.yearly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.grossIncome.monthly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.grossIncome.weekly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.grossIncome.daily)}</td>
-                          </tr>
+                        <tbody>
+                          {/* Rows helper */}
+                          {[
+                            { label: "Gross Income", data: breakdown.grossIncome, bold: true, show: true },
+                            { label: "+ Overtime", data: breakdown.overtime, bold: false, show: breakdown.overtime.yearly > 0 },
+                            { label: "+ Bonus", data: breakdown.bonus, bold: false, show: breakdown.bonus.yearly > 0 },
+                            { label: "− Pension", data: breakdown.pension, bold: false, show: breakdown.pension.yearly > 0 },
+                            { label: "+ Employer Pension", data: breakdown.employerPension, bold: false, show: breakdown.employerPension.yearly > 0 },
+                            { label: "− Childcare Vouchers", data: breakdown.childcareVouchers, bold: false, show: breakdown.childcareVouchers.yearly > 0 },
+                            { label: "Taxable Income", data: breakdown.taxableIncome, bold: false, show: true },
+                            { label: "− Income Tax", data: breakdown.incomeTax, bold: false, show: true },
+                            { label: "− Dividend Tax", data: breakdown.dividendTax, bold: false, show: breakdown.dividendTax.yearly > 0 },
+                            { label: "− National Insurance", data: breakdown.nationalInsurance, bold: false, show: true },
+                            { label: "− Student Loan", data: breakdown.studentLoan, bold: false, show: breakdown.studentLoan.yearly > 0 },
+                          ].filter(r => r.show).map((row, i) => (
+                            <tr key={row.label} style={{ background: i % 2 === 0 ? "white" : "#ebf0fd" }}>
+                              <td style={{ padding: "11px 16px", fontWeight: row.bold ? 700 : 500, color: "#273157", borderRight: "1px solid #eef0f7" }}>{row.label}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", fontWeight: row.bold ? 700 : 400, color: "#273157" }}>{formatCurrency(row.data.yearly)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.monthly)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.weekly)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.daily)}</td>
+                            </tr>
+                          ))}
 
-                          {breakdown.overtime.yearly > 0 && (
-                            <tr className="bg-gray-50">
-                              <td className="px-5 py-3.5 font-medium text-gray-700 border-r border-gray-100">+ Overtime</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600">{formatCurrency(breakdown.overtime.yearly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.overtime.monthly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.overtime.weekly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.overtime.daily)}</td>
-                            </tr>
-                          )}
-                          {breakdown.bonus.yearly > 0 && (
-                            <tr className="bg-white">
-                              <td className="px-5 py-3.5 font-medium text-gray-700 border-r border-gray-100">+ Bonus</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600">{formatCurrency(breakdown.bonus.yearly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.bonus.monthly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.bonus.weekly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.bonus.daily)}</td>
-                            </tr>
-                          )}
-                          {breakdown.pension.yearly > 0 && (
-                            <tr className="bg-gray-50">
-                              <td className="px-5 py-3.5 font-medium text-gray-700 border-r border-gray-100">- Pension</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600">{formatCurrency(breakdown.pension.yearly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.pension.monthly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.pension.weekly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.pension.daily)}</td>
-                            </tr>
-                          )}
-                          {breakdown.employerPension.yearly > 0 && (
-                            <tr className="bg-white">
-                              <td className="px-5 py-3.5 font-medium text-gray-700 border-r border-gray-100">+ Employer Pension</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600">{formatCurrency(breakdown.employerPension.yearly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.employerPension.monthly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.employerPension.weekly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.employerPension.daily)}</td>
-                            </tr>
-                          )}
-                          {breakdown.childcareVouchers.yearly > 0 && (
-                            <tr className="bg-gray-50">
-                              <td className="px-5 py-3.5 font-medium text-gray-700 border-r border-gray-100">- Childcare Vouchers</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600">{formatCurrency(breakdown.childcareVouchers.yearly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.childcareVouchers.monthly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.childcareVouchers.weekly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600 border-l border-gray-100">{formatCurrency(breakdown.childcareVouchers.daily)}</td>
-                            </tr>
-                          )}
-
-                          <tr className="bg-gray-50">
-                            <td className="px-5 py-3.5 font-medium text-gray-600 border-r border-gray-100">Taxable Income</td>
-                            <td className="px-4 py-3.5 text-right text-gray-600">{formatCurrency(breakdown.taxableIncome.yearly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.taxableIncome.monthly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.taxableIncome.weekly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.taxableIncome.daily)}</td>
-                          </tr>
-
-                          <tr className="bg-white">
-                            <td className="px-5 py-3.5 font-medium text-gray-700 border-r border-gray-100">- Income Tax</td>
-                            <td className="px-4 py-3.5 text-right text-gray-600">{formatCurrency(breakdown.incomeTax.yearly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.incomeTax.monthly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.incomeTax.weekly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.incomeTax.daily)}</td>
-                          </tr>
-
-                          {breakdown.dividendTax.yearly > 0 && (
-                            <tr className="bg-gray-50">
-                              <td className="px-5 py-3.5 font-medium text-gray-700 border-r border-gray-100">- Dividend Tax</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600">{formatCurrency(breakdown.dividendTax.yearly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.dividendTax.monthly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.dividendTax.weekly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.dividendTax.daily)}</td>
-                            </tr>
-                          )}
-
-                          <tr className="bg-white">
-                            <td className="px-5 py-3.5 font-medium text-gray-700 border-r border-gray-100">- National Insurance</td>
-                            <td className="px-4 py-3.5 text-right text-gray-600">{formatCurrency(breakdown.nationalInsurance.yearly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.nationalInsurance.monthly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.nationalInsurance.weekly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.nationalInsurance.daily)}</td>
-                          </tr>
-
-                          {breakdown.studentLoan.yearly > 0 && (
-                            <tr className="bg-gray-50">
-                              <td className="px-5 py-3.5 font-medium text-gray-700 border-r border-gray-100">- Student Loan</td>
-                              <td className="px-4 py-3.5 text-right text-gray-600">{formatCurrency(breakdown.studentLoan.yearly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.studentLoan.monthly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.studentLoan.weekly)}</td>
-                              <td className="px-4 py-3.5 text-right text-gray-500 border-l border-gray-100">{formatCurrency(breakdown.studentLoan.daily)}</td>
-                            </tr>
-                          )}
+                          {/* Child Benefit Charge */}
                           {breakdown.childBenefitCharge.yearly > 0 && (
-                            <tr className="bg-white">
-                              <td className="px-5 py-3.5 font-medium text-red-600 border-r border-gray-100">- Child Benefit Charge</td>
-                              <td className="px-4 py-3.5 text-right text-red-600 font-medium">-{formatCurrency(breakdown.childBenefitCharge.yearly)}</td>
-                              <td className="px-4 py-3.5 text-right text-red-600 font-medium border-l border-gray-100">-{formatCurrency(breakdown.childBenefitCharge.monthly)}</td>
-                              <td className="px-4 py-3.5 text-right text-red-600 font-medium border-l border-gray-100">-{formatCurrency(breakdown.childBenefitCharge.weekly)}</td>
-                              <td className="px-4 py-3.5 text-right text-red-600 font-medium border-l border-gray-100">-{formatCurrency(breakdown.childBenefitCharge.daily)}</td>
+                            <tr style={{ background: "#fff1f2" }}>
+                              <td style={{ padding: "11px 16px", fontWeight: 500, color: "#be123c", borderRight: "1px solid #eef0f7" }}>− Child Benefit Charge</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", fontWeight: 600 }}>−{formatCurrency(breakdown.childBenefitCharge.yearly)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.monthly)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.weekly)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.daily)}</td>
                             </tr>
                           )}
 
-                          {/* Take Home - highlighted green row */}
-                          <tr className="bg-green-50 border-t-2 border-green-200">
-                            <td className="px-5 py-4 font-bold text-green-900 border-r border-green-200 text-base">{taxYear.split('/')[0]} Take Home</td>
-                            <td className="px-4 py-4 text-right font-bold text-green-900 text-base">{formatCurrency(breakdown.takeHome.yearly)}</td>
-                            <td className="px-4 py-4 text-right font-bold text-green-800 border-l border-green-200">{formatCurrency(breakdown.takeHome.monthly)}</td>
-                            <td className="px-4 py-4 text-right font-bold text-green-800 border-l border-green-200">{formatCurrency(breakdown.takeHome.weekly)}</td>
-                            <td className="px-4 py-4 text-right font-bold text-green-800 border-l border-green-200">{formatCurrency(breakdown.takeHome.daily)}</td>
+                          {/* Take Home — highlighted */}
+                          <tr style={{ background: "#d3dcf7", borderTop: "2px solid #2e54bf" }}>
+                            <td style={{ padding: "14px 16px", fontWeight: 700, fontSize: "15px", color: "#1e3a8a", borderRight: "1px solid #b0bde8" }}>
+                              {taxYear.split('/')[0]} Take Home
+                            </td>
+                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, fontSize: "15px", color: "#1e3a8a" }}>{formatCurrency(breakdown.takeHome.yearly)}</td>
+                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.monthly)}</td>
+                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.weekly)}</td>
+                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.daily)}</td>
                           </tr>
 
-                          <tr className="bg-white">
-                            <td className="px-5 py-3.5 font-medium text-gray-500 border-r border-gray-100 text-sm">{parseInt(taxYear.split('/')[0]) + 1} Take Home</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 text-sm">{formatCurrency(breakdown.takeHome.yearly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 text-sm border-l border-gray-100">{formatCurrency(breakdown.takeHome.monthly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 text-sm border-l border-gray-100">{formatCurrency(breakdown.takeHome.weekly)}</td>
-                            <td className="px-4 py-3.5 text-right text-gray-500 text-sm border-l border-gray-100">{formatCurrency(breakdown.takeHome.daily)}</td>
+                          {/* Next year estimate */}
+                          <tr style={{ background: "#f5f7fe" }}>
+                            <td style={{ padding: "11px 16px", fontWeight: 500, color: "#888", fontSize: "13px", borderRight: "1px solid #eef0f7" }}>
+                              {parseInt(taxYear.split('/')[0]) + 1} estimate
+                            </td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px" }}>{formatCurrency(breakdown.takeHome.yearly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.monthly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.weekly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.daily)}</td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
-                  </Card>
+                  </div>
                 </div>
               ) : (
-                <div className="h-full min-h-[400px] flex flex-col items-center justify-center p-8 bg-white border border-gray-200 rounded-xl text-center shadow-sm">
-                  <div className="mb-6 relative w-56 h-56 sm:w-72 sm:h-72">
-                    <Image
-                      src="/empty-state.png"
-                      alt="Confused person illustration"
-                      fill
-                      className="object-contain"
-                      priority
-                    />
+                <div style={{
+                  minHeight: "400px", background: "white", border: "1px solid #dde3f0", borderRadius: "6px",
+                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+                  padding: "40px 24px", textAlign: "center",
+                }}>
+                  <div style={{ position: "relative", width: "200px", height: "200px", marginBottom: "24px" }}>
+                    <Image src="/empty-state.png" alt="Illustration" fill style={{ objectFit: "contain" }} priority />
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">Let's work out your take home pay</h3>
-                  <p className="text-gray-500 max-w-md text-base sm:text-lg">
-                    Pop your salary details into the form, then hit Calculate. We'll crunch the numbers and show you exactly what ends up in your pocket.
+                  <h3 style={{ fontSize: "20px", fontWeight: 700, color: "#1a1a1a", marginBottom: "10px" }}>Let&#39;s work out your take home pay</h3>
+                  <p style={{ color: "#666", maxWidth: "360px", fontSize: "15px", lineHeight: 1.6 }}>
+                    Pop your salary details into the form, then hit Calculate. We&#39;ll crunch the numbers and show you exactly what ends up in your pocket.
                   </p>
                 </div>
               )}
@@ -694,23 +622,49 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-800 py-12 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
-          <div className="text-white font-bold text-xl mb-4 md:mb-0">
-            <span className="text-blue-400">netpay</span><span className="text-rose-500">home</span><span className="text-blue-400">.</span>
+      {/* ===== RESPONSIVE GRID CSS ===== */}
+      <style jsx>{`
+        @media (min-width: 1024px) {
+          .calc-grid {
+            grid-template-columns: 1fr 1.4fr !important;
+          }
+          .hero-pound {
+            display: flex !important;
+          }
+        }
+      `}</style>
+
+      {/* ===== FOOTER — matches the dark blue header ===== */}
+      <footer style={{ background: "#1e3a8a", color: "white", marginTop: "auto" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px 24px 24px" }}>
+          <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "24px", borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: "24px", marginBottom: "24px" }}>
+            {/* Brand */}
+            <div style={{ fontWeight: 800, fontSize: "20px", letterSpacing: "-0.02em" }}>
+              <span style={{ color: "#93c5fd" }}>netpay</span><span style={{ color: "#facc15" }}>home</span><span style={{ color: "#93c5fd" }}>.</span>
+            </div>
+            {/* Links */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "20px 32px" }}>
+              {[
+                { href: "/about", label: "About Us" },
+                { href: "/how-to", label: "How to Use" },
+                { href: "/sources", label: "Data Sources" },
+                { href: "/privacy", label: "Privacy & Terms" },
+              ].map(({ href, label }) => (
+                <Link key={href} href={href} style={{ color: "#93c5fd", textDecoration: "none", fontSize: "14px", fontWeight: 500 }}
+                  onMouseOver={e => (e.currentTarget.style.color = "#facc15")}
+                  onMouseOut={e => (e.currentTarget.style.color = "#93c5fd")}
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
           </div>
-          <div className="flex flex-wrap gap-4 sm:gap-6 mb-8 text-sm font-medium text-slate-400">
-            <Link href="/about" className="hover:text-white transition-colors">About Us</Link>
-            <Link href="/how-to" className="hover:text-white transition-colors">How to Use</Link>
-            <Link href="/sources" className="hover:text-white transition-colors">Data Sources</Link>
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy &amp; Terms</Link>
-          </div>
-        </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 text-center md:text-left text-xs text-slate-500">
-          &copy; {new Date().getFullYear()} NetPayHome. Designed for accurate UK 2024/2025 &amp; 2025/2026 Salary calculations.
+          <p style={{ fontSize: "12px", color: "rgba(255,255,255,0.45)", textAlign: "center" }}>
+            &copy; {new Date().getFullYear()} NetPayHome. Designed for accurate UK 2024/2025 &amp; 2025/2026 Salary calculations.
+          </p>
         </div>
       </footer>
+
     </div>
   );
 }
