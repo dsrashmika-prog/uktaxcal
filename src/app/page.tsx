@@ -52,6 +52,24 @@ export default function Home() {
   // Output State
   const [breakdown, setBreakdown] = useState<SalaryBreakdown | null>(null);
 
+  // Sparks effect state
+  type Spark = { id: number; angle: number; size: number; speed: number; color: string; delay: number };
+  const [sparks, setSparks] = useState<Spark[]>([]);
+
+  const fireSparks = () => {
+    const colors = ["#facc15", "#fbbf24", "#f97316", "#ffffff", "#fde68a", "#fed7aa", "#ff6b6b"];
+    const newSparks: Spark[] = Array.from({ length: 22 }, (_, i) => ({
+      id: Date.now() + i,
+      angle: Math.random() * 360,
+      size: 4 + Math.random() * 6,
+      speed: 60 + Math.random() * 80,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      delay: Math.random() * 0.12,
+    }));
+    setSparks(newSparks);
+    setTimeout(() => setSparks([]), 700);
+  };
+
   const handleCalculate = () => {
     const input: SalaryInput = {
       grossIncome: parseFloat(grossIncome) || 0,
@@ -485,9 +503,32 @@ export default function Home() {
             </div>
 
             {/* ===== CALCULATE BUTTON ===== */}
-            <div style={{ gridColumn: "1 / -1", minWidth: 0 }}>
+            <div style={{ gridColumn: "1 / -1", minWidth: 0, position: "relative" }}>
+              {/* Spark particles */}
+              {sparks.map(spark => (
+                <span
+                  key={spark.id}
+                  style={{
+                    position: "absolute",
+                    left: "50%",
+                    top: "50%",
+                    width: `${spark.size}px`,
+                    height: `${spark.size}px`,
+                    borderRadius: spark.size > 6 ? "50%" : "2px",
+                    background: spark.color,
+                    boxShadow: `0 0 4px ${spark.color}`,
+                    pointerEvents: "none",
+                    animation: `spark-fly 0.65s ease-out forwards`,
+                    animationDelay: `${spark.delay}s`,
+                    // Custom CSS vars passed as inline style for each spark's unique angle+speed
+                    ['--spark-tx' as string]: `${Math.cos((spark.angle * Math.PI) / 180) * spark.speed}px`,
+                    ['--spark-ty' as string]: `${Math.sin((spark.angle * Math.PI) / 180) * spark.speed}px`,
+                    zIndex: 50,
+                  }}
+                />
+              ))}
               <button
-                onClick={handleCalculate}
+                onClick={() => { fireSparks(); handleCalculate(); }}
                 style={{
                   width: "100%", height: "56px",
                   background: "#c62035", color: "white",
@@ -496,6 +537,7 @@ export default function Home() {
                   cursor: "pointer", letterSpacing: "0.02em",
                   transition: "background 0.15s",
                   marginBottom: "8px",
+                  position: "relative",
                 }}
                 onMouseOver={e => (e.currentTarget.style.background = "#a01829")}
                 onMouseOut={e => (e.currentTarget.style.background = "#c62035")}
@@ -665,6 +707,22 @@ export default function Home() {
             flex: 1 1 100% !important;
             width: 100% !important;
           }
+        }
+
+        /* Spark animation — uses CSS custom properties set per spark */
+        @keyframes spark-fly {
+          0% {
+            transform: translate(-50%, -50%) translate(0, 0) scale(1);
+            opacity: 1;
+          }
+          70% {
+            opacity: 0.9;
+          }
+          100% {
+            transform: translate(-50%, -50%) translate(var(--spark-tx), var(--spark-ty)) scale(0);
+            opacity: 0;
+          }
+        }
       `}</style>
 
       {/* ===== FOOTER — matches the dark blue header ===== */}
