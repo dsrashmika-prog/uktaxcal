@@ -196,7 +196,7 @@ export default function Home() {
 
                 {/* Work Status + Age */}
                 <div style={{ display: "flex", gap: "16px", marginBottom: "20px", flexWrap: "wrap" }}>
-                  <div style={{ flex: "1 1 200px" }}>
+                  <div style={{ flex: "1 1 200px", minWidth: 0 }}>
                     <label style={mseLabel}>Work Status</label>
                     <select value={persona} onChange={e => setPersona(e.target.value)} style={mseSelect}>
                       <option value="Employee">Employee</option>
@@ -204,7 +204,7 @@ export default function Home() {
                       <option value="Director">Company Director</option>
                     </select>
                   </div>
-                  <div style={{ flex: "0 0 120px" }}>
+                  <div className="age-field">
                     <label style={mseLabel}>
                       Age
                       {parseInt(age) >= 66 && <span style={{ marginLeft: "8px", fontSize: "11px", fontWeight: 700, background: "#fef3c7", color: "#92400e", padding: "2px 8px", borderRadius: "12px" }}>No NI</span>}
@@ -227,7 +227,7 @@ export default function Home() {
                         style={{ flex: 1, border: "none", background: "transparent", padding: "0 12px", fontSize: "15px", color: "#273157", outline: "none", height: "48px" }}
                       />
                     </div>
-                    <select value={payFrequency} onChange={e => setPayFrequency(e.target.value as any)} style={{ ...mseSelect, flex: "0 0 140px" }}>
+                    <select value={payFrequency} onChange={e => setPayFrequency(e.target.value as any)} className="freq-select" style={{ ...mseSelect }}>
                       <option value="Yearly">A year</option>
                       <option value="Monthly">A month</option>
                       <option value="4 Weekly">4 weekly</option>
@@ -622,14 +622,35 @@ export default function Home() {
         </div>
       </main>
 
-      {/* ===== RESPONSIVE GRID CSS ===== */}
       <style jsx>{`
+        /* Desktop: two-column grid */
         @media (min-width: 1024px) {
           .calc-grid {
             grid-template-columns: 1fr 1.4fr !important;
           }
           .hero-pound {
             display: flex !important;
+          }
+        }
+
+        /* Age field: fixed width on wider screens, full width on mobile */
+        .age-field {
+          flex: 0 0 130px;
+        }
+        @media (max-width: 639px) {
+          .age-field {
+            flex: 1 1 100% !important;
+          }
+        }
+
+        /* Frequency dropdown: fixed width on wider screens, full width on mobile */
+        .freq-select {
+          flex: 0 0 150px;
+        }
+        @media (max-width: 639px) {
+          .freq-select {
+            flex: 1 1 100% !important;
+            width: 100% !important;
           }
         }
       `}</style>
