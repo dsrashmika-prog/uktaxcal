@@ -134,7 +134,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", background: "#f6f6f6", fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', color: "#333", overflowX: "hidden", maxWidth: "100vw" }}>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", background: "#f6f6f6", fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', color: "#333" }}>
 
       {/* ===== HEADER (unchanged) ===== */}
       <header style={{ background: "#1e3a8a", color: "white" }}>
@@ -179,7 +179,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "24px" }} className="calc-grid">
 
             {/* ===== LEFT: INPUT PANEL ===== */}
-            <div>
+            <div style={{ minWidth: 0 }}>
 
               {/* Basic Details Card */}
               <div style={{ background: "white", border: "1px solid #dde3f0", borderRadius: "6px", padding: "24px", marginBottom: "16px" }}>
@@ -485,7 +485,7 @@ export default function Home() {
             </div>
 
             {/* ===== CALCULATE BUTTON ===== */}
-            <div style={{ gridColumn: "1 / -1" }}>
+            <div style={{ gridColumn: "1 / -1", minWidth: 0 }}>
               <button
                 onClick={handleCalculate}
                 style={{
@@ -505,7 +505,7 @@ export default function Home() {
             </div>
 
             {/* ===== RIGHT: RESULTS TABLE ===== */}
-            <div>
+            <div style={{ minWidth: 0 }}>
               {breakdown ? (
                 <div>
 
