@@ -500,50 +500,47 @@ export default function Home() {
                   </div>
                 )}
               </div>
-            </div>
-
-            {/* ===== CALCULATE BUTTON ===== */}
-            <div style={{ gridColumn: "1 / -1", minWidth: 0, position: "relative" }}>
-              {/* Spark particles */}
-              {sparks.map(spark => (
-                <span
-                  key={spark.id}
+              {/* ===== CALCULATE BUTTON ===== */}
+              <div style={{ position: "relative", marginTop: "16px" }}>
+                {/* Spark particles */}
+                {sparks.map(spark => (
+                  <span
+                    key={spark.id}
+                    style={{
+                      position: "absolute",
+                      left: "50%",
+                      top: "50%",
+                      width: `${spark.size}px`,
+                      height: `${spark.size}px`,
+                      borderRadius: spark.size > 6 ? "50%" : "2px",
+                      background: spark.color,
+                      boxShadow: `0 0 4px ${spark.color}`,
+                      pointerEvents: "none",
+                      animation: `spark-fly 0.65s ease-out forwards`,
+                      animationDelay: `${spark.delay}s`,
+                      ['--spark-tx' as string]: `${Math.cos((spark.angle * Math.PI) / 180) * spark.speed}px`,
+                      ['--spark-ty' as string]: `${Math.sin((spark.angle * Math.PI) / 180) * spark.speed}px`,
+                      zIndex: 50,
+                    }}
+                  />
+                ))}
+                <button
+                  onClick={() => { fireSparks(); handleCalculate(); }}
                   style={{
-                    position: "absolute",
-                    left: "50%",
-                    top: "50%",
-                    width: `${spark.size}px`,
-                    height: `${spark.size}px`,
-                    borderRadius: spark.size > 6 ? "50%" : "2px",
-                    background: spark.color,
-                    boxShadow: `0 0 4px ${spark.color}`,
-                    pointerEvents: "none",
-                    animation: `spark-fly 0.65s ease-out forwards`,
-                    animationDelay: `${spark.delay}s`,
-                    // Custom CSS vars passed as inline style for each spark's unique angle+speed
-                    ['--spark-tx' as string]: `${Math.cos((spark.angle * Math.PI) / 180) * spark.speed}px`,
-                    ['--spark-ty' as string]: `${Math.sin((spark.angle * Math.PI) / 180) * spark.speed}px`,
-                    zIndex: 50,
+                    width: "100%", height: "56px",
+                    background: "#c62035", color: "white",
+                    fontWeight: 700, fontSize: "18px",
+                    border: "none", borderRadius: "6px",
+                    cursor: "pointer", letterSpacing: "0.02em",
+                    transition: "background 0.15s",
+                    position: "relative",
                   }}
-                />
-              ))}
-              <button
-                onClick={() => { fireSparks(); handleCalculate(); }}
-                style={{
-                  width: "100%", height: "56px",
-                  background: "#c62035", color: "white",
-                  fontWeight: 700, fontSize: "18px",
-                  border: "none", borderRadius: "6px",
-                  cursor: "pointer", letterSpacing: "0.02em",
-                  transition: "background 0.15s",
-                  marginBottom: "8px",
-                  position: "relative",
-                }}
-                onMouseOver={e => (e.currentTarget.style.background = "#a01829")}
-                onMouseOut={e => (e.currentTarget.style.background = "#c62035")}
-              >
-                Calculate
-              </button>
+                  onMouseOver={e => (e.currentTarget.style.background = "#a01829")}
+                  onMouseOut={e => (e.currentTarget.style.background = "#c62035")}
+                >
+                  Calculate
+                </button>
+              </div>
             </div>
 
             {/* ===== RIGHT: RESULTS TABLE ===== */}
