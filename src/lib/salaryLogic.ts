@@ -31,6 +31,7 @@ export interface BreakdownItem {
     yearly: number;
     monthly: number;
     fourWeekly: number;
+    twoWeekly: number;
     weekly: number;
     daily: number;
 }
@@ -198,6 +199,7 @@ const createBreakdown = (yearlyValue: number, daysPerWeek: number): BreakdownIte
     yearly: yearlyValue,
     monthly: yearlyValue / 12,
     fourWeekly: yearlyValue / 13,
+    twoWeekly: yearlyValue / 26,
     weekly: yearlyValue / 52,
     daily: yearlyValue / (52 * daysPerWeek),
 });

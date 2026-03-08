@@ -533,14 +533,16 @@ export default function Home() {
                     </div>
 
                     <div style={{ overflowX: "auto", maxWidth: "100%" }}>
-                      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "14px" }}>
+                      <table style={{ width: "100%", minWidth: "750px", borderCollapse: "collapse", fontSize: "14px", whiteSpace: "nowrap" }}>
                         <thead>
                           <tr style={{ background: "#f5f7fe", borderBottom: "1px solid #dde3f0" }}>
-                            <th style={{ padding: "12px 16px", textAlign: "left", fontWeight: 700, color: "#273157", width: "35%" }}></th>
+                            <th style={{ padding: "12px 16px", textAlign: "left", fontWeight: 700, color: "#273157", width: "30%" }}></th>
                             <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157" }}>Yearly</th>
                             <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Monthly</th>
-                            <th className="col-hide-mobile" style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Weekly</th>
-                            <th className="col-hide-mobile" style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Daily</th>
+                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>4 Weekly</th>
+                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>2 Weekly</th>
+                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Weekly</th>
+                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Daily</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -562,8 +564,10 @@ export default function Home() {
                               <td style={{ padding: "11px 16px", fontWeight: row.bold ? 700 : 500, color: "#273157", borderRight: "1px solid #eef0f7" }}>{row.label}</td>
                               <td style={{ padding: "11px 12px", textAlign: "right", fontWeight: row.bold ? 700 : 400, color: "#273157" }}>{formatCurrency(row.data.yearly)}</td>
                               <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.monthly)}</td>
-                              <td className="col-hide-mobile" style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.weekly)}</td>
-                              <td className="col-hide-mobile" style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.daily)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.fourWeekly)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.twoWeekly)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.weekly)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.daily)}</td>
                             </tr>
                           ))}
 
@@ -573,8 +577,10 @@ export default function Home() {
                               <td style={{ padding: "11px 16px", fontWeight: 500, color: "#be123c", borderRight: "1px solid #eef0f7" }}>− Child Benefit Charge</td>
                               <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", fontWeight: 600 }}>−{formatCurrency(breakdown.childBenefitCharge.yearly)}</td>
                               <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.monthly)}</td>
-                              <td className="col-hide-mobile" style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.weekly)}</td>
-                              <td className="col-hide-mobile" style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.daily)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.fourWeekly)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.twoWeekly)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.weekly)}</td>
+                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.daily)}</td>
                             </tr>
                           )}
 
@@ -585,8 +591,10 @@ export default function Home() {
                             </td>
                             <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, fontSize: "15px", color: "#1e3a8a" }}>{formatCurrency(breakdown.takeHome.yearly)}</td>
                             <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.monthly)}</td>
-                            <td className="col-hide-mobile" style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.weekly)}</td>
-                            <td className="col-hide-mobile" style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.daily)}</td>
+                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.fourWeekly)}</td>
+                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.twoWeekly)}</td>
+                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.weekly)}</td>
+                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.daily)}</td>
                           </tr>
 
                           {/* Next year estimate */}
@@ -596,8 +604,10 @@ export default function Home() {
                             </td>
                             <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px" }}>{formatCurrency(breakdown.takeHome.yearly)}</td>
                             <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.monthly)}</td>
-                            <td className="col-hide-mobile" style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.weekly)}</td>
-                            <td className="col-hide-mobile" style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.daily)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.fourWeekly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.twoWeekly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.weekly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.daily)}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -655,14 +665,6 @@ export default function Home() {
             flex: 1 1 100% !important;
             width: 100% !important;
           }
-        }
-
-        /* Hide Weekly and Daily columns on mobile to prevent viewport zoom */
-        @media (max-width: 639px) {
-          .col-hide-mobile {
-            display: none !important;
-          }
-        }
       `}</style>
 
       {/* ===== FOOTER — matches the dark blue header ===== */}
