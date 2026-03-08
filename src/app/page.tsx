@@ -287,23 +287,6 @@ export default function Home() {
                     </label>
                   ))}
                 </div>
-
-                {/* CALCULATE BUTTON */}
-                <button
-                  onClick={handleCalculate}
-                  style={{
-                    width: "100%", height: "52px",
-                    background: "#c62035", color: "white",
-                    fontWeight: 700, fontSize: "17px",
-                    border: "none", borderRadius: "5px",
-                    cursor: "pointer", letterSpacing: "0.02em",
-                    transition: "background 0.15s",
-                  }}
-                  onMouseOver={e => (e.currentTarget.style.background = "#a01829")}
-                  onMouseOut={e => (e.currentTarget.style.background = "#c62035")}
-                >
-                  Calculate
-                </button>
               </div>
 
               {/* ===== ADVANCED OPTIONS ===== */}
@@ -499,6 +482,26 @@ export default function Home() {
                   </div>
                 )}
               </div>
+            </div>
+
+            {/* ===== CALCULATE BUTTON ===== */}
+            <div style={{ gridColumn: "1 / -1" }}>
+              <button
+                onClick={handleCalculate}
+                style={{
+                  width: "100%", height: "56px",
+                  background: "#c62035", color: "white",
+                  fontWeight: 700, fontSize: "18px",
+                  border: "none", borderRadius: "6px",
+                  cursor: "pointer", letterSpacing: "0.02em",
+                  transition: "background 0.15s",
+                  marginBottom: "8px",
+                }}
+                onMouseOver={e => (e.currentTarget.style.background = "#a01829")}
+                onMouseOut={e => (e.currentTarget.style.background = "#c62035")}
+              >
+                Calculate
+              </button>
             </div>
 
             {/* ===== RIGHT: RESULTS TABLE ===== */}
