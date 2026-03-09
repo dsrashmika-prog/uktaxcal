@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
     return (
-        <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-[#1e3a8a] selection:text-white">
+        <div className="min-h-screen font-sans text-slate-800 selection:bg-[#1e3a8a] selection:text-white">
             {/* ===== HEADER (Standardised) ===== */}
             <header style={{ background: "#1e3a8a", color: "white" }}>
                 <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 24px" }}>

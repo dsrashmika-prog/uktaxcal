@@ -152,7 +152,7 @@ export default function Home() {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", background: "#f6f6f6", fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', color: "#333" }}>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", fontFamily: "var(--font-inter), sans-serif", background: "#ffffff" }}>
 
       {/* ===== HEADER (unchanged) ===== */}
       <header style={{ background: "#1e3a8a", color: "white" }}>
@@ -200,7 +200,7 @@ export default function Home() {
             <div style={{ minWidth: 0 }}>
 
               {/* Basic Details Card */}
-              <div style={{ background: "white", border: "1px solid #dde3f0", borderRadius: "6px", padding: "24px", marginBottom: "16px" }}>
+              <div style={{ padding: "24px", marginBottom: "16px" }}>
 
                 {/* Amber disclaimer */}
                 <div style={{ background: "#fffbeb", borderLeft: "4px solid #f59e0b", padding: "12px 16px", borderRadius: "0 4px 4px 0", marginBottom: "24px" }}>
@@ -308,7 +308,7 @@ export default function Home() {
               </div>
 
               {/* ===== ADVANCED OPTIONS ===== */}
-              <div style={{ background: "white", border: "1px solid #dde3f0", borderRadius: "6px", overflow: "hidden" }}>
+              <div style={{ overflow: "hidden" }}>
                 <button
                   onClick={() => setAdvancedOpen(!advancedOpen)}
                   style={{
@@ -565,7 +565,7 @@ export default function Home() {
                   )}
 
                   {/* Results Card */}
-                  <div style={{ background: "white", border: "1px solid #dde3f0", borderRadius: "6px", overflow: "hidden" }}>
+                  <div style={{ overflow: "hidden" }}>
                     <div style={{ background: "#1e3a8a", padding: "16px 20px" }}>
                       <h2 style={{ color: "white", fontWeight: 700, fontSize: "17px", margin: 0 }}>Your Take Home Pay Results</h2>
                       <p style={{ color: "#bfdbfe", fontSize: "13px", margin: "4px 0 0" }}>Based on tax year {taxYear}</p>
@@ -655,7 +655,7 @@ export default function Home() {
                 </div>
               ) : (
                 <div style={{
-                  minHeight: "400px", background: "white", border: "1px solid #dde3f0", borderRadius: "6px",
+                  minHeight: "400px",
                   display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
                   padding: "40px 24px", textAlign: "center",
                 }}>

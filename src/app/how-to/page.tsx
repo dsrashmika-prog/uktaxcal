@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function HowToUse() {
     return (
-        <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+        <div className="min-h-screen flex flex-col font-sans">
             {/* ===== HEADER (Standardised) ===== */}
             <header style={{ background: "#1e3a8a", color: "white" }}>
                 <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 24px" }}>
@@ -58,7 +58,7 @@ export default function HowToUse() {
 
             {/* Main Content Area */}
             <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 w-full">
-                <article className="prose prose-slate prose-lg lg:prose-xl mx-auto prose-h2:text-[#1e3a8a] prose-h3:text-slate-800 prose-a:text-[#1e3a8a] prose-a:font-semibold prose-img:rounded-xl prose-img:border prose-img:border-slate-200">
+                <article className="prose prose-slate prose-lg lg:prose-xl mx-auto prose-h2:text-[#1e3a8a] prose-h3:text-slate-800 prose-a:text-[#1e3a8a] prose-a:font-semibold">
 
                     <h1 className="text-3xl sm:text-5xl font-extrabold text-[#1e3a8a] mb-6 tracking-tight">
                         How to use the calculator

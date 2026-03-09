@@ -147,9 +147,6 @@ function BarChart() {
 
 // ── Shared card style ─────────────────────────────────────────────────────────
 const card: React.CSSProperties = {
-    background: 'white',
-    border: '1px solid #dde3f0',
-    borderRadius: 8,
     overflow: 'hidden',
     marginBottom: 32,
 };
@@ -157,7 +154,7 @@ const card: React.CSSProperties = {
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function SalaryGuidePage() {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: '#f6f6f6', fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', color: '#333' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: '#ffffff', fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', color: '#333' }}>
 
             {/* ===== HEADER (Standardised) ===== */}
             <header style={{ background: "#1e3a8a", color: "white" }}>

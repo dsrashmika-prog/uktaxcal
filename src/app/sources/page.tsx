@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function SourcesPage() {
     return (
-        <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+        <div className="min-h-screen font-sans text-slate-800 selection:bg-[#1e3a8a] selection:text-white flex flex-col">
             {/* ===== HEADER (Standardised) ===== */}
             <header style={{ background: "#1e3a8a", color: "white" }}>
                 <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "24px 24px" }}>
@@ -80,7 +80,7 @@ export default function SourcesPage() {
                         Below are the direct links to the official GOV.UK pages and documentation where we source our calculation rates for the current tax years.
                     </p>
 
-                    <div className="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 not-prose mb-12">
+                    <div className="p-6 sm:p-8 not-prose mb-12">
                         <h3 className="text-[#1e3a8a] font-bold text-xl mb-4 border-b pb-2">1. UK Income Tax (England & Northern Ireland)</h3>
                         <p className="text-slate-600 mb-4">The standard UK Income Tax rates, covering the Basic, Higher, and Additional rates, as well as the standard Personal Allowance.</p>
                         <ul className="space-y-2">
@@ -93,7 +93,7 @@ export default function SourcesPage() {
                         </ul>
                     </div>
 
-                    <div className="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 not-prose mb-12">
+                    <div className="p-6 sm:p-8 not-prose mb-12">
                         <h3 className="text-[#1e3a8a] font-bold text-xl mb-4 border-b pb-2">2. Scottish Income Tax</h3>
                         <p className="text-slate-600 mb-4">Scotland has devolved powers to set its own Income Tax rates and bands. Our calculator fully supports the Starter, Basic, Intermediate, Higher, Advanced, and Top rates defined by the Scottish Government.</p>
                         <ul className="space-y-2">
@@ -112,7 +112,7 @@ export default function SourcesPage() {
                         </ul>
                     </div>
 
-                    <div className="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 not-prose mb-12">
+                    <div className="p-6 sm:p-8 not-prose mb-12">
                         <h3 className="text-[#1e3a8a] font-bold text-xl mb-4 border-b pb-2">3. Welsh Income Tax</h3>
                         <p className="text-slate-600 mb-4">Wales also holds devolved tax powers. Currently, the Welsh Rates of Income Tax (WRIT) are set so that overall rates match those in England and Northern Ireland, but we calculate this distinctly to ensure future accuracy if the Welsh Government diverges.</p>
                         <ul className="space-y-2">
@@ -131,7 +131,7 @@ export default function SourcesPage() {
                         </ul>
                     </div>
 
-                    <div className="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 not-prose mb-12">
+                    <div className="p-6 sm:p-8 not-prose mb-12">
                         <h3 className="text-[#1e3a8a] font-bold text-xl mb-4 border-b pb-2">4. National Insurance (NI)</h3>
                         <p className="text-slate-600 mb-4">National Insurance contributions are calculated differently depending on your employment status. We apply Class 1 rates for Employees and Directors, and Class 4 rates for Sole Traders (Self-Employed).</p>
                         <ul className="space-y-2">
@@ -150,7 +150,7 @@ export default function SourcesPage() {
                         </ul>
                     </div>
 
-                    <div className="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 not-prose mb-12">
+                    <div className="p-6 sm:p-8 not-prose mb-12">
                         <h3 className="text-[#1e3a8a] font-bold text-xl mb-4 border-b pb-2">5. High Income Child Benefit Charge (HICBC)</h3>
                         <p className="text-slate-600 mb-4">When a taxpayer or their partner earns over £60,000, they must repay a portion (or all) of their Child Benefit. We automate this calculation to clearly highlight exactly what is being clawed back.</p>
                         <ul className="space-y-2">

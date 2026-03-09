@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
     return (
-        <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-[#1e3a8a] selection:text-white flex flex-col">
+        <div className="min-h-screen font-sans text-slate-800 selection:bg-[#1e3a8a] selection:text-white flex flex-col">
             {/* ===== HEADER (Standardised) ===== */}
             <header style={{ background: "#1e3a8a", color: "white" }}>
                 <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 24px" }}>

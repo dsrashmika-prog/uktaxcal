@@ -31,8 +31,8 @@
 }
 
 :root {
-  --background: oklch(0.98 0.01 250);
-  /* #f8fafc very light slate blue */
+  --background: oklch(1 0 0);
+  /* #ffffff pure white */
   --foreground: oklch(0.14 0.03 255);
   /* #0f172a deep navy */
 
