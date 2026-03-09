@@ -204,7 +204,7 @@ export default function Home() {
                 <h3 style={{ fontSize: "18px", fontWeight: 700, color: mseBlue, marginBottom: "20px" }}>Basic details</h3>
 
                 {/* Work Status + Age */}
-                <div style={{ display: "flex", gap: "16px", marginBottom: "20px", flexWrap: "wrap" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "16px", marginBottom: "20px", alignItems: "flex-end" }}>
                   <div style={{ flex: "1 1 200px", minWidth: 0 }}>
                     <label style={mseLabel}>Work Status</label>
                     <select value={persona} onChange={e => setPersona(e.target.value)} style={mseSelect}>
@@ -225,7 +225,7 @@ export default function Home() {
                 {/* Gross Income */}
                 <div style={{ marginBottom: "20px" }}>
                   <label style={mseLabel}>Gross (pre-tax) income</label>
-                  <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "12px", alignItems: "flex-end" }}>
                     <div style={{ flex: "1 1 180px", display: "flex", border: inputBorder, borderRadius: "4px", overflow: "hidden", background: inputBg }}>
                       <span style={{ background: "#e8ecf8", padding: "0 14px", display: "flex", alignItems: "center", fontWeight: 700, color: "#273157", fontSize: "16px", borderRight: inputBorder }}>£</span>
                       <input
@@ -362,7 +362,7 @@ export default function Home() {
                       ) : (
                         <div style={{ marginBottom: "14px" }}>
                           <label style={mseLabel}>Pension Scheme</label>
-                          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "8px" }}>
                             {(['Auto-enrolment', 'Employer', 'Salary sacrifice', 'Personal'] as const).map(scheme => (
                               <button
                                 key={scheme}
@@ -390,7 +390,7 @@ export default function Home() {
                           </div>
                         </div>
                       )}
-                      <div style={{ display: "flex", gap: "12px", marginTop: "12px" }}>
+                      <div style={{ display: "flex", gap: "12px", marginTop: "12px", flexWrap: "wrap", alignItems: "flex-end" }}>
                         <div style={{ flex: 1 }}>
                           <label style={mseLabel}>Contribution Amount</label>
                           <input type="number" placeholder="e.g. 5" value={pensionValue} onChange={e => setPensionValue(e.target.value)} style={mseInput} />
@@ -440,12 +440,12 @@ export default function Home() {
                         </div>
                       )}
                       {persona === 'Employee' && (
-                        <div style={{ display: "flex", gap: "12px", marginBottom: "12px", flexWrap: "wrap" }}>
-                          <div style={{ flex: "1 1 140px", minWidth: 0 }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "12px", marginBottom: "12px", alignItems: "flex-end" }}>
+                          <div style={{ minWidth: 0 }}>
                             <label style={mseLabel}>Overtime (hrs/mth)</label>
                             <input type="number" value={overtimeHours} onChange={e => setOvertimeHours(e.target.value)} style={mseInput} />
                           </div>
-                          <div style={{ flex: "1 1 140px", minWidth: 0 }}>
+                          <div style={{ minWidth: 0 }}>
                             <label style={mseLabel}>Overtime Rate (£/hr)</label>
                             <input type="number" value={overtimeRate} onChange={e => setOvertimeRate(e.target.value)} style={mseInput} />
                           </div>
