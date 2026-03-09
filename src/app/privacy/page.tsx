@@ -14,7 +14,7 @@ export default function PrivacyPage() {
         <div className="min-h-screen bg-slate-50 font-sans text-slate-800 selection:bg-[#1e3a8a] selection:text-white flex flex-col">
             {/* ===== HEADER (Standardised) ===== */}
             <header style={{ background: "#1e3a8a", color: "white" }}>
-                <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "24px 24px" }}>
+                <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 24px" }}>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
                         <div style={{ flex: 1 }}>
                             <Link href="/" style={{ textDecoration: 'none' }}>
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
 
             {/* ===== NAV STRIP ===== */}
             <nav style={{ background: "#162d6e", color: "white", borderBottom: "1px solid #1e3a8a", padding: "12px 0" }}>
-                <div className="scrollbar-hide" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", display: "flex", gap: "32px", overflowX: "auto", whiteSpace: "nowrap" }}>
+                <div className="scrollbar-hide" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px", display: "flex", gap: "32px", overflowX: "auto", whiteSpace: "nowrap" }}>
                     <Link href="/" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
                         Tax calculator
                     </Link>
@@ -50,7 +50,7 @@ export default function PrivacyPage() {
             </nav>
 
             {/* Main Content Area */}
-            <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
+            <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 w-full">
                 <article className="prose prose-slate prose-lg lg:prose-xl mx-auto prose-h2:text-[#1e3a8a] prose-h3:text-slate-800 prose-a:text-[#1e3a8a] prose-a:font-semibold">
 
                     <h1 className="text-4xl sm:text-5xl font-extrabold text-[#1e3a8a] mb-2 tracking-tight">

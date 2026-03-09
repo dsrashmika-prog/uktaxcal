@@ -197,7 +197,7 @@ export default function SalaryGuidePage() {
             </nav>
 
             {/* ── Main ── */}
-            <main style={{ flex: 1, padding: '40px 24px', maxWidth: 860, margin: '0 auto', width: '100%' }}>
+            <main style={{ flex: 1, padding: '40px 24px', maxWidth: 1280, margin: '0 auto', width: '100%' }}>
 
                 {/* ── Article header ── */}
                 <div style={{ ...card, padding: '32px 36px' }}>

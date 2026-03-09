@@ -156,7 +156,7 @@ export default function Home() {
 
       {/* ===== HEADER (unchanged) ===== */}
       <header style={{ background: "#1e3a8a", color: "white" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "24px 24px" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 24px" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
             <div style={{ flex: 1 }}>
               <h1 style={{ fontSize: "clamp(28px, 5vw, 36px)", fontWeight: 800, letterSpacing: "-0.04em", marginBottom: "8px", lineHeight: 1.1 }}>
@@ -174,7 +174,7 @@ export default function Home() {
 
       {/* ===== NAV STRIP ===== */}
       <nav style={{ background: "#162d6e", color: "white", borderBottom: "1px solid #1e3a8a", padding: "12px 0" }}>
-        <div className="scrollbar-hide" style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", display: "flex", gap: "32px", overflowX: "auto", whiteSpace: "nowrap" }}>
+        <div className="scrollbar-hide" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px", display: "flex", gap: "32px", overflowX: "auto", whiteSpace: "nowrap" }}>
           <Link href="/" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }} onMouseOver={e => (e.currentTarget.style.color = "#facc15")} onMouseOut={e => (e.currentTarget.style.color = "white")}>
             Tax calculator
           </Link>
@@ -192,7 +192,7 @@ export default function Home() {
 
       {/* ===== MAIN ===== */}
       <main style={{ flex: 1, padding: "24px 0" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "24px" }} className="calc-grid">
 
@@ -678,7 +678,7 @@ export default function Home() {
         /* Desktop: two-column grid */
         @media (min-width: 1024px) {
           .calc-grid {
-            grid-template-columns: 1fr 1.4fr !important;
+            grid-template-columns: 1fr 1fr !important;
           }
           .hero-pound {
             display: flex !important;
@@ -724,7 +724,7 @@ export default function Home() {
 
       {/* ===== FOOTER — matches the dark blue header ===== */}
       <footer style={{ background: "#1e3a8a", color: "white", marginTop: "auto" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "40px 24px 24px" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "40px 24px 24px" }}>
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "24px", borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: "24px", marginBottom: "24px" }}>
             {/* Brand */}
             <div style={{ fontWeight: 800, fontSize: "20px", letterSpacing: "-0.02em" }}>

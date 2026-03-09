@@ -56,7 +56,7 @@ export default function SourcesPage() {
             </nav>
 
             {/* Main Content Area */}
-            <main className="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 w-full">
+            <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 w-full">
                 <article className="prose prose-slate prose-lg lg:prose-xl mx-auto prose-h2:text-[#1e3a8a] prose-h3:text-slate-800 prose-a:text-[#1e3a8a] prose-a:font-semibold">
 
                     <h1 className="text-3xl sm:text-5xl font-extrabold text-[#1e3a8a] mb-6 tracking-tight">
