@@ -89,3 +89,13 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Hide scrollbar on horizontal nav strips while preserving swipe */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
