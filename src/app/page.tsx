@@ -191,11 +191,8 @@ export default function Home() {
       </nav>
 
       {/* ===== MAIN ===== */}
-      <main style={{ flex: 1, padding: "32px 0" }}>
+      <main style={{ flex: 1, padding: "24px 0" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
-
-          {/* "Your details" section heading */}
-          <h2 style={{ fontSize: "22px", fontWeight: 700, color: "#1a1a1a", marginBottom: "20px" }}>Your details</h2>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "24px" }} className="calc-grid">
 
