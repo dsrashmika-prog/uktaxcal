@@ -161,7 +161,7 @@ export default function SalaryGuidePage() {
 
             {/* ===== HEADER (Standardised) ===== */}
             <header style={{ background: "#1e3a8a", color: "white" }}>
-                <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 24px" }}>
+                <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "24px 24px" }}>
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
                         <div style={{ flex: 1 }}>
                             <Link href="/" style={{ textDecoration: 'none' }}>
@@ -176,8 +176,8 @@ export default function SalaryGuidePage() {
             </header>
 
             {/* ===== NAV STRIP ===== */}
-            <nav style={{ background: "#162d6e", color: "white", borderBottom: "1px solid #1e3a8a", padding: "12px 24px" }}>
-                <div style={{ maxWidth: "1280px", margin: "0 auto", display: "flex", gap: "32px", overflowX: "auto", whiteSpace: "nowrap" }}>
+            <nav style={{ background: "#162d6e", color: "white", borderBottom: "1px solid #1e3a8a", padding: "12px 0" }}>
+                <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", display: "flex", gap: "32px", overflowX: "auto", whiteSpace: "nowrap" }}>
                     <Link href="/" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
                         Tax calculator
                     </Link>
