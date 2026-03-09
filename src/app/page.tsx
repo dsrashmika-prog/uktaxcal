@@ -13,7 +13,6 @@ export default function Home() {
   const [payFrequency, setPayFrequency] = useState<SalaryInput['payFrequency']>('Yearly');
   const [taxYear, setTaxYear] = useState<SalaryInput['taxYear']>('2025/26');
   const [isScottish, setIsScottish] = useState(false);
-  const [isWelsh, setIsWelsh] = useState(false);
 
   // Advanced States
   const [taxCode, setTaxCode] = useState("");
@@ -76,7 +75,6 @@ export default function Home() {
       payFrequency,
       taxYear,
       isScottish,
-      isWelsh,
       taxCode,
       studentLoanPlan,
       hasPostgradLoan,
@@ -105,12 +103,6 @@ export default function Home() {
 
   const handleScotlandChange = (checked: boolean) => {
     setIsScottish(checked);
-    if (checked) setIsWelsh(false);
-  };
-
-  const handleWelshChange = (checked: boolean) => {
-    setIsWelsh(checked);
-    if (checked) setIsScottish(false);
   };
 
   const formatCurrency = (val: number) =>
@@ -290,7 +282,6 @@ export default function Home() {
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", paddingTop: "12px", borderTop: "1px solid #eef0f7", marginBottom: "20px" }}>
                   {[
                     { id: "scotland", label: "Resident in Scotland?", checked: isScottish, onChange: handleScotlandChange },
-                    { id: "wales", label: "Resident in Wales?", checked: isWelsh, onChange: handleWelshChange },
                   ].map(({ id, label, checked, onChange }) => (
                     <label key={id} htmlFor={id} style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", fontSize: "14px", fontWeight: 500, color: "#333" }}>
                       <input
@@ -331,7 +322,7 @@ export default function Home() {
                         <label style={mseLabel}>Tax Code</label>
                         <input
                           type="text"
-                          placeholder={`e.g. ${isScottish ? 'S1257L' : isWelsh ? 'C1257L' : '1257L'}`}
+                          placeholder={`e.g. ${isScottish ? 'S1257L' : '1257L'}`}
                           value={taxCode}
                           onChange={e => setTaxCode(e.target.value)}
                           style={mseInput}
