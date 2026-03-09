@@ -202,8 +202,8 @@ export default function SalaryGuidePage() {
                 {/* ── Article header ── */}
                 <div style={{ ...card, padding: '32px 36px' }}>
                     <p style={{ fontSize: 12, fontWeight: 700, color: '#888', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: 10 }}>Salary Guide · 2025/26 Tax Year</p>
-                    <h2 style={{ fontSize: 'clamp(22px, 4vw, 34px)', fontWeight: 800, color: BLUE, lineHeight: 1.2, margin: '0 0 16px' }}>
-                        What Is the UK Take-Home Pay for <span style={{ color: '#c62035' }}>£30k, £50k, and £100k</span>?
+                    <h2 style={{ fontFamily: "var(--font-inter), sans-serif", fontSize: 'clamp(22px, 4vw, 34px)', fontWeight: 800, color: BLUE, lineHeight: 1.2, margin: '0 0 16px' }}>
+                        What is the current UK Take Home Pay for <span style={{ color: '#c62035' }}>£30k, £50k, and £100k</span>? No problem, let me explain.
                     </h2>
                     <p style={{ fontSize: 16, lineHeight: 1.8, color: '#444', margin: 0 }}>
                         Whether you are comparing a new job offer, planning your finances, or just curious about how HMRC divides your salary, this guide gives you the real numbers for three of the most common UK salary benchmarks — using precise 2025/26 tax figures.
