@@ -45,7 +45,7 @@ export default function HowToUse() {
                         Tax calculator
                     </Link>
                     <Link href="/salary-guide" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
-                        £30k / £50k / £100k guide
+                        Salary Guide
                     </Link>
                     <Link href="/how-to" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
                         How to use

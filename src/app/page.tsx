@@ -179,7 +179,7 @@ export default function Home() {
             Tax calculator
           </Link>
           <Link href="/salary-guide" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }} onMouseOver={e => (e.currentTarget.style.color = "#facc15")} onMouseOut={e => (e.currentTarget.style.color = "white")}>
-            £30k / £50k / £100k guide
+            Salary Guide
           </Link>
           <Link href="/how-to" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }} onMouseOver={e => (e.currentTarget.style.color = "#facc15")} onMouseOut={e => (e.currentTarget.style.color = "white")}>
             How to use
