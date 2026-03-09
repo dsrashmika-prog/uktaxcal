@@ -453,21 +453,21 @@ export default function Home() {
                       )}
 
                       {/* Allowances */}
-                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", margin: "24px 0 16px" }}>Allowances &amp; Exemptions</p>
+                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", margin: "36px 0 20px" }}>Allowances &amp; Exemptions</p>
                       {[
                         { id: "no-ni", label: "I do not pay National Insurance", checked: excludeNI, onChange: setExcludeNI },
                         { id: "blind", label: "Eligible for Blind Person's Allowance", checked: isBlind, onChange: setIsBlind },
                         { id: "married", label: "Married & born before 6th April 1935", checked: isMarried, onChange: setIsMarried },
                       ].map(({ id, label, checked, onChange }) => (
-                        <label key={id} htmlFor={id} style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "14px", fontWeight: 500, cursor: "pointer", marginBottom: "8px" }}>
-                          <input type="checkbox" id={id} checked={checked} onChange={e => onChange(e.target.checked)} style={{ width: "18px", height: "18px", accentColor: mseBlue }} />
+                        <label key={id} htmlFor={id} style={{ display: "flex", alignItems: "center", gap: "12px", fontSize: "14px", fontWeight: 500, cursor: "pointer", marginBottom: "16px" }}>
+                          <input type="checkbox" id={id} checked={checked} onChange={e => onChange(e.target.checked)} style={{ width: "22px", height: "22px", accentColor: mseBlue }} />
                           {label}
                         </label>
                       ))}
 
                       {/* Other Deductions */}
-                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", margin: "24px 0 16px" }}>Other Deductions (Monthly)</p>
-                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", margin: "36px 0 20px" }}>Other Deductions (Monthly)</p>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px 16px" }}>
                         {persona !== 'Sole Trader' && (
                           <div>
                             <label style={mseLabel}>Childcare Vouchers (£)</label>
@@ -491,7 +491,7 @@ export default function Home() {
                 )}
               </div>
               {/* ===== CALCULATE BUTTON ===== */}
-              <div style={{ position: "relative", marginTop: "16px" }}>
+              <div style={{ position: "relative", marginTop: "32px", marginBottom: "16px" }}>
                 {/* Spark particles */}
                 {sparks.map(spark => (
                   <span
