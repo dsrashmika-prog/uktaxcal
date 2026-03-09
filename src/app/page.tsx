@@ -43,7 +43,7 @@ export default function Home() {
 
   // Persona & Demographics
   const [persona, setPersona] = useState("Employee");
-  const [age, setAge] = useState("30");
+  const [age, setAge] = useState("");
   const [dividendIncome, setDividendIncome] = useState("");
 
   // Advanced accordion open state
@@ -230,7 +230,7 @@ export default function Home() {
                       Age
                       {parseInt(age) >= 66 && <span style={{ marginLeft: "8px", fontSize: "11px", fontWeight: 700, background: "#fef3c7", color: "#92400e", padding: "2px 8px", borderRadius: "12px" }}>No NI</span>}
                     </label>
-                    <input type="number" min="16" max="120" value={age} onChange={e => setAge(e.target.value)} style={mseInput} />
+                    <input type="number" min="16" max="120" placeholder="Age" className="placeholder:text-slate-400" value={age} onChange={e => setAge(e.target.value)} style={mseInput} />
                   </div>
                 </div>
 
