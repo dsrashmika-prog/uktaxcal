@@ -58,7 +58,7 @@ export default function PrivacyPage() {
                     </h1>
                     <p className="text-slate-500 text-sm mb-12 font-medium">Last updated: March 2024</p>
 
-                    <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-lg mb-12 shadow-sm">
+                    <div className="bg-amber-50 border-l-4 border-amber-500 p-6 rounded-r-lg mb-12">
                         <h2 className="text-amber-800 font-bold text-2xl mt-0 mb-4 flex items-center gap-2">
                             <span className="text-2xl">⚠️</span> Important Legal Disclaimer
                         </h2>

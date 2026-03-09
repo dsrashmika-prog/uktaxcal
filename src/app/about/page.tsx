@@ -105,7 +105,7 @@ export default function AboutPage() {
                         <div className="mt-6">
                             <Link
                                 href="/"
-                                className="inline-flex items-center justify-center rounded-md bg-[#1e3a8a] px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-800 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a8a]"
+                                className="inline-flex items-center justify-center rounded-md bg-[#1e3a8a] px-6 py-3 text-sm font-semibold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1e3a8a]"
                             >
                                 Go to the Calculator
                             </Link>
