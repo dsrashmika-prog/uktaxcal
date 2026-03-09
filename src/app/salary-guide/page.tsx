@@ -159,42 +159,37 @@ export default function SalaryGuidePage() {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: '#f6f6f6', fontFamily: '"Helvetica Neue", Helvetica, Arial, sans-serif', color: '#333' }}>
 
-            {/* ── Header ── */}
-            <header style={{ background: BLUE, color: 'white' }}>
-                <div style={{ maxWidth: 1200, margin: '0 auto', padding: '24px 24px' }}>
-                    <Link href="/" style={{ textDecoration: 'none' }}>
-                        <h1 style={{ fontSize: 'clamp(24px, 4vw, 32px)', fontWeight: 800, letterSpacing: '-0.04em', margin: 0 }}>
-                            <span style={{ color: 'white' }}>NetPayHome </span>
-                            <span style={{ color: YELLOW }}>Calculator</span>
-                        </h1>
-                    </Link>
+            {/* ===== HEADER (Standardised) ===== */}
+            <header style={{ background: "#1e3a8a", color: "white" }}>
+                <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 24px" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
+                        <div style={{ flex: 1 }}>
+                            <Link href="/" style={{ textDecoration: 'none' }}>
+                                <h1 style={{ fontSize: "clamp(28px, 5vw, 36px)", fontWeight: 800, letterSpacing: "-0.04em", marginBottom: 0, lineHeight: 1.1 }}>
+                                    <span style={{ color: "white" }}>NetPayHome </span>
+                                    <span style={{ color: "#facc15" }}>Calculator</span>
+                                </h1>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </header>
 
-            {/* ── Nav strip ── */}
-            <nav style={{ background: LBLUE, borderBottom: '1px solid #1e3a8a', padding: '12px 24px' }}>
-                <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', gap: 32, overflowX: 'auto', whiteSpace: 'nowrap' }}>
-                    {[
-                        { href: '/', label: 'Tax calculator' },
-                        { href: '/salary-guide', label: '£30k / £50k / £100k guide', active: true },
-                        { href: '/how-to', label: 'How to use' },
-                        { href: '/sources', label: 'Data sources' },
-                    ].map(link => (
-                        <Link
-                            key={link.href}
-                            href={link.href}
-                            style={{
-                                color: link.active ? YELLOW : 'white',
-                                textDecoration: 'none',
-                                fontWeight: 600,
-                                fontSize: 14,
-                                borderBottom: link.active ? `2px solid ${YELLOW}` : 'none',
-                                paddingBottom: link.active ? 2 : 0,
-                            }}
-                        >
-                            {link.label}
-                        </Link>
-                    ))}
+            {/* ===== NAV STRIP ===== */}
+            <nav style={{ background: "#162d6e", color: "white", borderBottom: "1px solid #1e3a8a", padding: "12px 24px" }}>
+                <div style={{ maxWidth: "1280px", margin: "0 auto", display: "flex", gap: "32px", overflowX: "auto", whiteSpace: "nowrap" }}>
+                    <Link href="/" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
+                        Tax calculator
+                    </Link>
+                    <Link href="/salary-guide" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
+                        £30k / £50k / £100k guide
+                    </Link>
+                    <Link href="/how-to" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
+                        How to use
+                    </Link>
+                    <Link href="/sources" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
+                        Data sources
+                    </Link>
                 </div>
             </nav>
 

@@ -18,26 +18,35 @@ export const metadata: Metadata = {
 export default function SourcesPage() {
     return (
         <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-            {/* Header / Logo */}
-            <header className="bg-white border-b border-slate-200">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                    <Link href="/" className="inline-block">
-                        <span className="text-3xl font-extrabold tracking-tight text-[#1e3a8a]">netpayhome</span>
-                        <span className="text-[#c02636] text-4xl leading-none">.</span>
-                    </Link>
+            {/* ===== HEADER (Standardised) ===== */}
+            <header style={{ background: "#1e3a8a", color: "white" }}>
+                <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 24px" }}>
+                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
+                        <div style={{ flex: 1 }}>
+                            <Link href="/" style={{ textDecoration: 'none' }}>
+                                <h1 style={{ fontSize: "clamp(28px, 5vw, 36px)", fontWeight: 800, letterSpacing: "-0.04em", marginBottom: 0, lineHeight: 1.1 }}>
+                                    <span style={{ color: "white" }}>NetPayHome </span>
+                                    <span style={{ color: "#facc15" }}>Calculator</span>
+                                </h1>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
             </header>
 
-            {/* Blue Navigation Strip */}
-            <nav className="bg-[#1e3a8a] text-white py-3 shadow-md border-b border-blue-900">
-                <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-6 sm:space-x-8 text-sm font-semibold tracking-wide overflow-x-auto whitespace-nowrap">
-                    <Link href="/" className="text-white hover:text-rose-300 transition-colors">
+            {/* ===== NAV STRIP ===== */}
+            <nav style={{ background: "#162d6e", color: "white", borderBottom: "1px solid #1e3a8a", padding: "12px 24px" }}>
+                <div style={{ maxWidth: "1280px", margin: "0 auto", display: "flex", gap: "32px", overflowX: "auto", whiteSpace: "nowrap" }}>
+                    <Link href="/" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
                         Tax calculator
                     </Link>
-                    <Link href="/how-to" className="text-white hover:text-rose-300 transition-colors">
+                    <Link href="/salary-guide" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
+                        £30k / £50k / £100k guide
+                    </Link>
+                    <Link href="/how-to" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
                         How to use
                     </Link>
-                    <Link href="/sources" className="text-rose-300 hover:text-white transition-colors">
+                    <Link href="/sources" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }}>
                         Data sources
                     </Link>
                 </div>
