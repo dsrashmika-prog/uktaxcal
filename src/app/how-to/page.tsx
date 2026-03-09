@@ -25,10 +25,13 @@ export default function HowToUse() {
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
                         <div style={{ flex: 1 }}>
                             <Link href="/" style={{ textDecoration: 'none' }}>
-                                <h1 style={{ fontSize: "clamp(28px, 5vw, 36px)", fontWeight: 800, letterSpacing: "-0.04em", marginBottom: 0, lineHeight: 1.1 }}>
+                                <h1 style={{ fontSize: "clamp(28px, 5vw, 36px)", fontWeight: 800, letterSpacing: "-0.04em", marginBottom: "8px", lineHeight: 1.1 }}>
                                     <span style={{ color: "white" }}>NetPayHome </span>
                                     <span style={{ color: "#facc15" }}>Calculator</span>
                                 </h1>
+                                <p style={{ color: "#bfdbfe", fontSize: "16px", maxWidth: "520px", marginTop: 0, marginBottom: 0 }}>
+                                    Here is our accurate UK take home pay calculator to see your actual earnings for both standard and Scottish tax bands.
+                                </p>
                             </Link>
                         </div>
                     </div>
