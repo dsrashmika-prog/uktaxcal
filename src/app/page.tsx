@@ -164,7 +164,7 @@ export default function Home() {
                 <span style={{ color: "#facc15" }}>Calculator</span>
               </h1>
               <p style={{ color: "#bfdbfe", fontSize: "16px", maxWidth: "520px" }}>
-                Use our accurate UK take home pay calculator to find out your true earnings across both standard and Scottish tax bands.
+                Here is our accurate UK take home pay calculator to see your actual earnings for both standard and Scottish tax bands.
               </p>
             </div>
             <span style={{ fontSize: "60px", fontWeight: 900, color: "#fde68a", opacity: 0.6, display: "none" }} className="hero-pound">£</span>
