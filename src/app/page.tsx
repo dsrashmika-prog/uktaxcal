@@ -196,7 +196,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "24px" }} className="calc-grid">
 
             {/* ===== LEFT: INPUT PANEL ===== */}
-            <div className="bg-white border border-slate-200 rounded-xl shadow-sm p-4 sm:p-6 lg:p-8" style={{ minWidth: 0 }}>
+            <div className="bg-white border border-slate-200 rounded-md shadow-sm p-4 sm:p-6 lg:p-8" style={{ minWidth: 0 }}>
 
               {/* Basic Details content */}
               <div style={{ marginBottom: "16px" }}>
@@ -543,13 +543,13 @@ export default function Home() {
             </div>
 
             {/* ===== RIGHT: RESULTS TABLE ===== */}
-            <div className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden h-fit" style={{ minWidth: 0 }}>
+            <div className="bg-white border border-slate-200 rounded-md shadow-sm overflow-hidden h-fit" style={{ minWidth: 0 }}>
               {breakdown ? (
-                <div className="p-4 sm:p-6 lg:p-0">
+                <div>
 
                   {/* Tax Traps Warning */}
                   {(breakdown.taxTraps.personalAllowanceLost > 0 || breakdown.taxTraps.hicbcChargeAmount > 0) && (
-                    <div style={{ borderLeft: "4px solid #dc2626", background: "#fef2f2", padding: "16px 20px", borderRadius: "0 4px 4px 0", marginBottom: "20px" }}>
+                    <div style={{ borderLeft: "4px solid #dc2626", background: "#fef2f2", padding: "16px 20px", borderRadius: "0 4px 4px 0", margin: "16px" }}>
                       <p style={{ fontWeight: 700, fontSize: "15px", color: "#7f1d1d", marginBottom: "8px" }}>⚠️ Tax Traps Detected</p>
                       <ul style={{ paddingLeft: "18px", fontSize: "13px", color: "#7f1d1d", lineHeight: 1.6 }}>
                         {breakdown.taxTraps.personalAllowanceLost > 0 && (
@@ -564,7 +564,7 @@ export default function Home() {
                   )}
 
                   {/* Results Table Header */}
-                  <div style={{ overflow: "hidden", borderRadius: "8px" }}>
+                  <div style={{ overflow: "hidden" }}>
                     <div style={{ background: "#1e3a8a", padding: "16px 20px" }}>
                       <h2 style={{ color: "white", fontWeight: 700, fontSize: "17px", margin: 0 }}>Your Take Home Pay Results</h2>
                       <p style={{ color: "#bfdbfe", fontSize: "13px", margin: "4px 0 0" }}>Based on tax year {taxYear}</p>
