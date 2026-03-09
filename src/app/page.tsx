@@ -130,7 +130,7 @@ export default function Home() {
     fontWeight: 700,
     fontSize: "15px",
     color: "#4a4a4a",
-    marginBottom: "6px",
+    marginBottom: "10px",
   } as React.CSSProperties;
 
   const mseSelect = {
@@ -201,10 +201,10 @@ export default function Home() {
                   </p>
                 </div>
 
-                <h3 style={{ fontSize: "18px", fontWeight: 700, color: mseBlue, marginBottom: "20px" }}>Basic details</h3>
+                <h3 style={{ fontSize: "18px", fontWeight: 700, color: mseBlue, marginBottom: "24px" }}>Basic details</h3>
 
                 {/* Work Status + Age */}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "16px", marginBottom: "20px", alignItems: "flex-end" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "16px", marginBottom: "28px", alignItems: "flex-end" }}>
                   <div style={{ flex: "1 1 200px", minWidth: 0 }}>
                     <label style={mseLabel}>Work Status</label>
                     <select value={persona} onChange={e => setPersona(e.target.value)} style={mseSelect}>
@@ -223,7 +223,7 @@ export default function Home() {
                 </div>
 
                 {/* Gross Income */}
-                <div style={{ marginBottom: "20px" }}>
+                <div style={{ marginBottom: "28px" }}>
                   <label style={mseLabel}>Gross (pre-tax) income</label>
                   <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "12px", alignItems: "flex-end" }}>
                     <div style={{ flex: "1 1 180px", display: "flex", border: inputBorder, borderRadius: "4px", overflow: "hidden", background: inputBg }}>
@@ -247,7 +247,7 @@ export default function Home() {
                 </div>
 
                 {/* Tax Year */}
-                <div style={{ marginBottom: "20px" }}>
+                <div style={{ marginBottom: "28px" }}>
                   <label style={mseLabel}>Tax Year <Info style={{ display: "inline", width: "14px", height: "14px", color: "#888", verticalAlign: "middle", marginLeft: "4px" }} /></label>
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
                     {(['2025/26', '2024/25'] as const).map(year => (
@@ -279,7 +279,7 @@ export default function Home() {
                 </div>
 
                 {/* Scotland & Wales */}
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", paddingTop: "12px", borderTop: "1px solid #eef0f7", marginBottom: "20px" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", paddingTop: "12px", borderTop: "1px solid #eef0f7", marginBottom: "28px" }}>
                   {[
                     { id: "scotland", label: "Resident in Scotland?", checked: isScottish, onChange: handleScotlandChange },
                   ].map(({ id, label, checked, onChange }) => (
@@ -374,7 +374,7 @@ export default function Home() {
                                   border: pensionScheme === scheme ? "2px solid #2e54bf" : "2px solid #c8d0e8",
                                   background: pensionScheme === scheme ? "#ebf0fd" : inputBg,
                                   color: pensionScheme === scheme ? "#2e54bf" : "#4a4a4a",
-                                  fontWeight: 600, fontSize: "13px", cursor: "pointer", textAlign: "left",
+                                  fontWeight: 600, fontSize: "13px", cursor: "pointer", textAlign: "left", height: "100%",
                                 }}
                               >
                                 <span style={{
@@ -390,12 +390,12 @@ export default function Home() {
                           </div>
                         </div>
                       )}
-                      <div style={{ display: "flex", gap: "12px", marginTop: "12px", flexWrap: "wrap", alignItems: "flex-end" }}>
-                        <div style={{ flex: 1 }}>
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "16px", marginTop: "16px", alignItems: "flex-end" }}>
+                        <div style={{ minWidth: 0 }}>
                           <label style={mseLabel}>Contribution Amount</label>
                           <input type="number" placeholder="e.g. 5" value={pensionValue} onChange={e => setPensionValue(e.target.value)} style={mseInput} />
                         </div>
-                        <div style={{ flex: "0 0 120px" }}>
+                        <div style={{ minWidth: 0 }}>
                           <label style={mseLabel}>Type</label>
                           <select value={pensionType} onChange={e => setPensionType(e.target.value as any)} style={mseSelect}>
                             <option value="Percentage">%</option>
@@ -425,22 +425,22 @@ export default function Home() {
                       <h4 style={{ fontSize: "16px", fontWeight: 700, color: mseBlue, marginBottom: "14px" }}>Additional Options</h4>
 
                       {/* Extra Earnings */}
-                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "10px" }}>Extra Earnings</p>
+                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "16px" }}>Extra Earnings</p>
 
                       {persona === 'Director' && (
-                        <div style={{ marginBottom: "12px" }}>
+                        <div style={{ marginBottom: "16px" }}>
                           <label style={mseLabel}>Yearly Dividends (£)</label>
                           <input type="number" value={dividendIncome} onChange={e => setDividendIncome(e.target.value)} style={mseInput} />
                         </div>
                       )}
                       {persona !== 'Sole Trader' && (
-                        <div style={{ marginBottom: "12px" }}>
+                        <div style={{ marginBottom: "16px" }}>
                           <label style={mseLabel}>Yearly Bonus (£)</label>
                           <input type="number" value={bonusAmount} onChange={e => setBonusAmount(e.target.value)} style={mseInput} />
                         </div>
                       )}
                       {persona === 'Employee' && (
-                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "12px", marginBottom: "12px", alignItems: "flex-end" }}>
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(140px, 1fr))", gap: "16px", marginBottom: "16px", alignItems: "flex-end" }}>
                           <div style={{ minWidth: 0 }}>
                             <label style={mseLabel}>Overtime (hrs/mth)</label>
                             <input type="number" value={overtimeHours} onChange={e => setOvertimeHours(e.target.value)} style={mseInput} />
@@ -453,7 +453,7 @@ export default function Home() {
                       )}
 
                       {/* Allowances */}
-                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", margin: "16px 0 10px" }}>Allowances &amp; Exemptions</p>
+                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", margin: "24px 0 16px" }}>Allowances &amp; Exemptions</p>
                       {[
                         { id: "no-ni", label: "I do not pay National Insurance", checked: excludeNI, onChange: setExcludeNI },
                         { id: "blind", label: "Eligible for Blind Person's Allowance", checked: isBlind, onChange: setIsBlind },
@@ -466,8 +466,8 @@ export default function Home() {
                       ))}
 
                       {/* Other Deductions */}
-                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", margin: "16px 0 10px" }}>Other Deductions (Monthly)</p>
-                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+                      <p style={{ fontSize: "11px", fontWeight: 700, color: "#888", textTransform: "uppercase", letterSpacing: "0.1em", margin: "24px 0 16px" }}>Other Deductions (Monthly)</p>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
                         {persona !== 'Sole Trader' && (
                           <div>
                             <label style={mseLabel}>Childcare Vouchers (£)</label>
