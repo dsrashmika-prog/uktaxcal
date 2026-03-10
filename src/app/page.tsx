@@ -170,7 +170,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "24px" }} className="calc-grid">
 
             {/* ===== LEFT: INPUT PANEL ===== */}
-            <div className="bg-white border border-slate-200 rounded-md shadow-sm p-4 sm:p-6 lg:p-8" style={{ minWidth: 0 }}>
+            <div className="bg-white border rounded-md p-4 sm:p-6 lg:p-8" style={{ minWidth: 0, borderColor: "#e8eaf0" }}>
 
               {/* Basic Details content */}
               <div style={{ marginBottom: "16px" }}>
@@ -516,7 +516,7 @@ export default function Home() {
             </div>
 
             {/* ===== RIGHT: RESULTS TABLE ===== */}
-            <div className="bg-white border border-slate-200 rounded-md shadow-sm overflow-hidden h-fit" style={{ minWidth: 0 }}>
+            <div className="bg-white border rounded-md overflow-hidden h-fit" style={{ minWidth: 0, borderColor: "#e8eaf0" }}>
               {breakdown ? (
                 <div>
 
