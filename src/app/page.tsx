@@ -170,80 +170,29 @@ export default function Home() {
 
 
 
-                <h3 style={{ fontSize: "18px", fontWeight: 700, color: mseBlue, marginBottom: "24px", letterSpacing: "-0.02em" }}>Basic details</h3>
+                <h3 style={{ fontSize: "18px", fontWeight: 700, color: mseBlue, marginBottom: "20px", letterSpacing: "-0.02em" }}>Enter your income</h3>
 
-                {/* Work Status + Age */}
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "16px", marginBottom: "28px", alignItems: "flex-end" }}>
-                  <div style={{ flex: "1 1 200px", minWidth: 0 }}>
-                    <label style={mseLabel}>Work Status</label>
-                    <select value={persona} onChange={e => setPersona(e.target.value)} style={mseSelect}>
-                      <option value="Employee">Employee</option>
-                      <option value="Sole Trader">Sole Trader (Self-Employed)</option>
-                      <option value="Director">Company Director</option>
-                    </select>
-                  </div>
-                  <div className="age-field">
-                    <label style={mseLabel}>
-                      Age
-                      {parseInt(age) >= 66 && <span style={{ marginLeft: "8px", fontSize: "11px", fontWeight: 700, background: "#fef3c7", color: "#92400e", padding: "2px 8px", borderRadius: "12px" }}>No NI</span>}
-                    </label>
-                    <input type="number" min="16" max="120" placeholder="Age" className="placeholder:text-slate-400" value={age} onChange={e => setAge(e.target.value)} style={mseInput} />
-                  </div>
-                </div>
-
-                {/* Gross Income */}
-                <div style={{ marginBottom: "28px" }}>
-                  <label style={mseLabel}>Gross (pre-tax) income</label>
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "12px", alignItems: "flex-end" }}>
-                    <div style={{ flex: "1 1 180px", display: "flex", border: inputBorder, borderRadius: "4px", overflow: "hidden", background: inputBg }}>
-                      <span style={{ background: "#e8ecf8", padding: "0 14px", display: "flex", alignItems: "center", fontWeight: 700, color: "#273157", fontSize: "16px", borderRight: inputBorder }}>£</span>
+                {/* Gross Income Primary Box */}
+                <div style={{ background: "#f8faff", border: "1px solid #bfdbfe", padding: "24px", borderRadius: "12px", marginBottom: "28px" }}>
+                  <label style={{ ...mseLabel, fontSize: "15px", marginBottom: "12px" }}>Gross (pre-tax) income</label>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "12px" }}>
+                    <div style={{ flex: "1 1 180px", display: "flex", border: "1px solid #bfdbfe", borderRadius: "8px", overflow: "hidden", background: "white", boxShadow: "inset 0 2px 4px rgba(0,0,0,0.02)" }}>
+                      <span style={{ background: "#eff6ff", padding: "0 18px", display: "flex", alignItems: "center", fontWeight: 700, color: "#1d4ed8", fontSize: "18px", borderRight: "1px solid #bfdbfe" }}>£</span>
                       <input
                         type="number"
-                        placeholder="Value"
+                        placeholder="e.g. 50000"
                         value={grossIncome}
                         onChange={e => setGrossIncome(e.target.value)}
-                        style={{ flex: 1, border: "none", background: "transparent", padding: "0 12px", fontSize: "15px", color: "#273157", outline: "none", height: "48px" }}
+                        style={{ flex: 1, border: "none", background: "transparent", padding: "0 16px", fontSize: "18px", fontWeight: 600, color: "#1e3a8a", outline: "none", height: "56px" }}
                       />
                     </div>
-                    <select value={payFrequency} onChange={e => setPayFrequency(e.target.value as any)} className="freq-select" style={{ ...mseSelect }}>
+                    <select value={payFrequency} onChange={e => setPayFrequency(e.target.value as any)} className="freq-select" style={{ ...mseSelect, height: "56px", fontSize: "16px", fontWeight: 500, border: "1px solid #bfdbfe", background: "white" }}>
                       <option value="Yearly">A year</option>
                       <option value="Monthly">A month</option>
                       <option value="4 Weekly">4 weekly</option>
                       <option value="Weekly">A week</option>
                       <option value="Daily">A day</option>
                     </select>
-                  </div>
-                </div>
-
-                {/* Tax Year */}
-                <div style={{ marginBottom: "28px" }}>
-                  <label style={mseLabel}>Tax Year <Info style={{ display: "inline", width: "14px", height: "14px", color: "#888", verticalAlign: "middle", marginLeft: "4px" }} /></label>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
-                    {(['2025/26', '2024/25'] as const).map(year => (
-                      <button
-                        key={year}
-                        type="button"
-                        onClick={() => setTaxYear(year)}
-                        style={{
-                          display: "flex", alignItems: "center", gap: "10px",
-                          padding: "12px 14px", borderRadius: "4px",
-                          border: taxYear === year ? "2px solid #2e54bf" : "2px solid #c8d0e8",
-                          background: taxYear === year ? "#ebf0fd" : inputBg,
-                          color: taxYear === year ? "#2e54bf" : "#4a4a4a",
-                          fontWeight: 600, fontSize: "14px", cursor: "pointer", textAlign: "left",
-                          transition: "all 0.15s",
-                        }}
-                      >
-                        <span style={{
-                          width: "16px", height: "16px", borderRadius: "50%",
-                          border: `2px solid ${taxYear === year ? "#2e54bf" : "#999"}`,
-                          display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-                        }}>
-                          {taxYear === year && <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#2e54bf" }} />}
-                        </span>
-                        {year}
-                      </button>
-                    ))}
                   </div>
                 </div>
 
@@ -284,8 +233,62 @@ export default function Home() {
                 {advancedOpen && (
                   <div style={{ paddingTop: "16px" }}>
 
-                    {/* Tax Code */}
+                    {/* Work Status + Age */}
                     <div style={{ marginBottom: "24px" }}>
+                      <h4 style={{ fontSize: "16px", fontWeight: 700, color: mseBlue, marginBottom: "14px" }}>Your Circumstances</h4>
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "16px", alignItems: "flex-end" }}>
+                        <div style={{ flex: "1 1 200px", minWidth: 0 }}>
+                          <label style={mseLabel}>Work Status</label>
+                          <select value={persona} onChange={e => setPersona(e.target.value)} style={mseSelect}>
+                            <option value="Employee">Employee</option>
+                            <option value="Sole Trader">Sole Trader (Self-Employed)</option>
+                            <option value="Director">Company Director</option>
+                          </select>
+                        </div>
+                        <div className="age-field">
+                          <label style={mseLabel}>
+                            Age
+                            {parseInt(age) >= 66 && <span style={{ marginLeft: "8px", fontSize: "11px", fontWeight: 700, background: "#fef3c7", color: "#92400e", padding: "2px 8px", borderRadius: "12px" }}>No NI</span>}
+                          </label>
+                          <input type="number" min="16" max="120" placeholder="Age" className="placeholder:text-slate-400" value={age} onChange={e => setAge(e.target.value)} style={mseInput} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Tax Year */}
+                    <div style={{ marginBottom: "24px", paddingTop: "20px", borderTop: "1px solid #eef0f7" }}>
+                      <h4 style={{ fontSize: "16px", fontWeight: 700, color: mseBlue, marginBottom: "14px" }}>Tax Year</h4>
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+                        {(['2025/26', '2024/25'] as const).map(year => (
+                          <button
+                            key={year}
+                            type="button"
+                            onClick={() => setTaxYear(year)}
+                            style={{
+                              display: "flex", alignItems: "center", gap: "10px",
+                              padding: "12px 14px", borderRadius: "4px",
+                              border: taxYear === year ? "2px solid #2e54bf" : "2px solid #c8d0e8",
+                              background: taxYear === year ? "#ebf0fd" : inputBg,
+                              color: taxYear === year ? "#2e54bf" : "#4a4a4a",
+                              fontWeight: 600, fontSize: "14px", cursor: "pointer", textAlign: "left",
+                              transition: "all 0.15s",
+                            }}
+                          >
+                            <span style={{
+                              width: "16px", height: "16px", borderRadius: "50%",
+                              border: `2px solid ${taxYear === year ? "#2e54bf" : "#999"}`,
+                              display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+                            }}>
+                              {taxYear === year && <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#2e54bf" }} />}
+                            </span>
+                            {year}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Tax Code */}
+                    <div style={{ marginBottom: "24px", paddingTop: "20px", borderTop: "1px solid #eef0f7" }}>
                       <h4 style={{ fontSize: "16px", fontWeight: 700, color: mseBlue, marginBottom: "14px" }}>Tax Code (optional)</h4>
                       <div style={{ marginBottom: "14px" }}>
                         <label style={mseLabel}>Tax Code</label>
