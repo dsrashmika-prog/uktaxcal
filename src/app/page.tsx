@@ -163,10 +163,10 @@ export default function Home() {
       {/* ===== MAIN ===== */}
       <main style={{ flex: 1, padding: "28px 0 48px" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "28px" }} className="calc-grid">
+          <div className="bg-white border rounded-xl overflow-hidden shadow-sm calc-grid" style={{ display: "grid", gridTemplateColumns: "1fr", gap: "0", borderColor: "#e2e8f5", boxShadow: "0 1px 4px rgba(30,58,138,0.06)" }}>
 
             {/* ===== LEFT: INPUT PANEL ===== */}
-            <div className="bg-white border rounded-lg p-4 sm:p-6 lg:p-8" style={{ minWidth: 0, borderColor: "#e2e8f5", boxShadow: "0 1px 4px rgba(30,58,138,0.06)" }}>
+            <div style={{ minWidth: 0, padding: "clamp(20px, 4vw, 32px)" }}>
 
               {/* Basic Details content */}
               <div style={{ marginBottom: "16px" }}>
@@ -466,7 +466,7 @@ export default function Home() {
             </div>
 
             {/* ===== RIGHT: RESULTS TABLE ===== */}
-            <div className="bg-white border rounded-lg overflow-hidden h-fit" style={{ minWidth: 0, borderColor: "#e2e8f5", boxShadow: "0 1px 4px rgba(30,58,138,0.06)" }}>
+            <div className="results-panel" style={{ minWidth: 0, background: "#f8faff", height: "100%" }}>
               {breakdown ? (
                 <div>
 
@@ -597,9 +597,16 @@ export default function Home() {
 
       <style jsx>{`
         /* Desktop: two-column grid */
+        .results-panel {
+          border-top: 1px solid #e2e8f5;
+        }
         @media (min-width: 1024px) {
           .calc-grid {
             grid-template-columns: 1fr 1fr !important;
+          }
+          .results-panel {
+            border-top: none;
+            border-left: 1px solid #e2e8f5;
           }
           .hero-pound {
             display: flex !important;
