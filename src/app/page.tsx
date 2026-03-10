@@ -108,76 +108,81 @@ export default function Home() {
   const formatCurrency = (val: number) =>
     new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(val);
 
-  // MSE colour tokens
-  const mseBlue = "#2e54bf";
-  const inputBg = "#f5f7fe";
-  const inputBorder = "1px solid #c8d0e8";
+  // Design tokens — modern professional palette
+  const mseBlue = "#1d4ed8";
+  const inputBg = "#f8faff";
+  const inputBorder = "1px solid #dde3f5";
 
   const mseInput = {
     background: inputBg,
     border: inputBorder,
-    borderRadius: "4px",
+    borderRadius: "8px",
     height: "48px",
-    padding: "0 12px",
+    padding: "0 14px",
     fontSize: "15px",
-    color: "#273157",
+    color: "#1e293b",
     width: "100%",
     outline: "none",
+    transition: "border-color 0.15s, box-shadow 0.15s",
   } as React.CSSProperties;
 
   const mseLabel = {
     display: "block",
-    fontWeight: 700,
-    fontSize: "15px",
-    color: "#4a4a4a",
-    marginBottom: "10px",
+    fontWeight: 600,
+    fontSize: "14px",
+    color: "#374151",
+    marginBottom: "8px",
+    letterSpacing: "0.01em",
   } as React.CSSProperties;
 
   const mseSelect = {
     ...mseInput,
     appearance: "none" as const,
-    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23273157' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
+    backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231d4ed8' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E")`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "right 14px center",
-    paddingRight: "36px",
+    paddingRight: "38px",
     cursor: "pointer",
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", fontFamily: "var(--font-inter), sans-serif", background: "#f8fafc" }}>
+    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh", fontFamily: "var(--font-inter), sans-serif", background: "#f0f4ff" }}>
 
-      {/* ===== HEADER (unchanged) ===== */}
-      <header style={{ background: "#1e3a8a", color: "white" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "24px 24px" }}>
+      {/* ===== HEADER ===== */}
+      <header style={{ background: "linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 60%, #2563eb 100%)", color: "white", borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+        <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "28px 24px 32px" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}>
             <div style={{ flex: 1 }}>
-              <h1 style={{ fontSize: "clamp(28px, 5vw, 36px)", fontWeight: 800, letterSpacing: "-0.04em", marginBottom: "8px", lineHeight: 1.1 }}>
+              <div style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "12px" }}>
+                <span style={{ background: "rgba(250,204,21,0.18)", border: "1px solid rgba(250,204,21,0.35)", borderRadius: "6px", padding: "3px 10px", fontSize: "12px", fontWeight: 700, color: "#fde68a", letterSpacing: "0.08em", textTransform: "uppercase" }}>UK 2025/26</span>
+              </div>
+              <h1 style={{ fontSize: "clamp(28px, 5vw, 38px)", fontWeight: 800, letterSpacing: "-0.04em", marginBottom: "10px", lineHeight: 1.1 }}>
                 <span style={{ color: "white" }}>NetPayHome </span>
                 <span style={{ color: "#facc15" }}>Calculator</span>
               </h1>
-              <p style={{ color: "#bfdbfe", fontSize: "16px", maxWidth: "520px" }}>
-                Here is our accurate UK take home pay calculator to see your actual earnings for both standard and Scottish tax bands.
+              <p style={{ color: "#bfdbfe", fontSize: "16px", maxWidth: "520px", lineHeight: 1.6 }}>
+                Accurate UK take-home pay — covering income tax, National Insurance, pensions, and more.
               </p>
             </div>
-            <span style={{ fontSize: "60px", fontWeight: 900, color: "#fde68a", opacity: 0.6, display: "none" }} className="hero-pound">£</span>
+            <span style={{ fontSize: "72px", fontWeight: 900, color: "#facc15", opacity: 0.15, display: "none", lineHeight: 1, userSelect: "none" }} className="hero-pound">£</span>
           </div>
         </div>
       </header>
 
       {/* ===== MAIN ===== */}
-      <main style={{ flex: 1, padding: "24px 0 40px" }}>
+      <main style={{ flex: 1, padding: "28px 0 48px" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "24px" }} className="calc-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "28px" }} className="calc-grid">
 
             {/* ===== LEFT: INPUT PANEL ===== */}
-            <div className="bg-white border rounded-lg p-4 sm:p-6 lg:p-8" style={{ minWidth: 0, borderColor: "#e8eaf0" }}>
+            <div className="bg-white border rounded-lg p-4 sm:p-6 lg:p-8" style={{ minWidth: 0, borderColor: "#e2e8f5", boxShadow: "0 1px 4px rgba(30,58,138,0.06)" }}>
 
               {/* Basic Details content */}
               <div style={{ marginBottom: "16px" }}>
 
 
 
-                <h3 style={{ fontSize: "18px", fontWeight: 700, color: mseBlue, marginBottom: "24px" }}>Basic details</h3>
+                <h3 style={{ fontSize: "18px", fontWeight: 700, color: mseBlue, marginBottom: "24px", letterSpacing: "-0.02em" }}>Basic details</h3>
 
                 {/* Work Status + Age */}
                 <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: "16px", marginBottom: "28px", alignItems: "flex-end" }}>
@@ -255,11 +260,11 @@ export default function Home() {
                 </div>
 
                 {/* Scotland & Wales */}
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "16px", paddingTop: "12px", borderTop: "1px solid #eef0f7", marginBottom: "28px" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", paddingTop: "16px", borderTop: "1px solid #e8eef8", marginBottom: "28px" }}>
                   {[
                     { id: "scotland", label: "Resident in Scotland?", checked: isScottish, onChange: handleScotlandChange },
                   ].map(({ id, label, checked, onChange }) => (
-                    <label key={id} htmlFor={id} style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer", fontSize: "14px", fontWeight: 500, color: "#333" }}>
+                    <label key={id} htmlFor={id} style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer", fontSize: "14px", fontWeight: 500, color: "#374151", background: checked ? "#eff6ff" : "#f8faff", border: `1px solid ${checked ? "#bfdbfe" : "#e2e8f5"}`, borderRadius: "8px", padding: "10px 14px", transition: "all 0.15s" }}>
                       <input
                         type="checkbox"
                         id={id}
@@ -274,18 +279,18 @@ export default function Home() {
               </div>
 
               {/* ===== ADVANCED OPTIONS ===== */}
-              <div style={{ overflow: "hidden" }}>
+              <div style={{ overflow: "hidden", borderTop: "1px solid #e8eef8", marginTop: "8px" }}>
                 <button
                   onClick={() => setAdvancedOpen(!advancedOpen)}
                   style={{
                     width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
-                    padding: "16px 24px", background: "white", border: "none", cursor: "pointer",
-                    fontWeight: 700, fontSize: "15px", color: "#1a1a1a",
-                    borderBottom: advancedOpen ? "1px solid #eef0f7" : "none",
+                    padding: "16px 0", background: "white", border: "none", cursor: "pointer",
+                    fontWeight: 700, fontSize: "15px", color: mseBlue,
+                    transition: "color 0.15s",
                   }}
                 >
                   <span>Advanced options</span>
-                  <span style={{ fontSize: "20px", color: "#888", lineHeight: 1 }}>{advancedOpen ? "−" : "+"}</span>
+                  <span style={{ fontSize: "22px", color: mseBlue, lineHeight: 1, fontWeight: 300 }}>{advancedOpen ? "−" : "+"}</span>
                 </button>
 
                 {advancedOpen && (
@@ -493,24 +498,26 @@ export default function Home() {
                 <button
                   onClick={() => { fireSparks(); handleCalculate(); }}
                   style={{
-                    width: "100%", height: "56px",
-                    background: "#c62035", color: "white",
-                    fontWeight: 700, fontSize: "18px",
-                    border: "none", borderRadius: "6px",
-                    cursor: "pointer", letterSpacing: "0.02em",
-                    transition: "background 0.15s",
+                    width: "100%", height: "58px",
+                    background: "linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)",
+                    color: "white",
+                    fontWeight: 700, fontSize: "17px",
+                    border: "none", borderRadius: "10px",
+                    cursor: "pointer", letterSpacing: "0.03em",
+                    transition: "all 0.2s",
                     position: "relative",
+                    boxShadow: "0 4px 14px rgba(185,28,28,0.35)",
                   }}
-                  onMouseOver={e => (e.currentTarget.style.background = "#a01829")}
-                  onMouseOut={e => (e.currentTarget.style.background = "#c62035")}
+                  onMouseOver={e => { e.currentTarget.style.background = "linear-gradient(135deg, #b91c1c 0%, #991b1b 100%)"; e.currentTarget.style.boxShadow = "0 6px 18px rgba(153,27,27,0.45)"; }}
+                  onMouseOut={e => { e.currentTarget.style.background = "linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)"; e.currentTarget.style.boxShadow = "0 4px 14px rgba(185,28,28,0.35)"; }}
                 >
-                  Calculate
+                  Calculate my take-home pay
                 </button>
               </div>
             </div>
 
             {/* ===== RIGHT: RESULTS TABLE ===== */}
-            <div className="bg-white border rounded-lg overflow-hidden h-fit" style={{ minWidth: 0, borderColor: "#e8eaf0" }}>
+            <div className="bg-white border rounded-lg overflow-hidden h-fit" style={{ minWidth: 0, borderColor: "#e2e8f5", boxShadow: "0 1px 4px rgba(30,58,138,0.06)" }}>
               {breakdown ? (
                 <div>
 
@@ -532,8 +539,8 @@ export default function Home() {
 
                   {/* Results Table Header */}
                   <div style={{ overflow: "hidden" }}>
-                    <div style={{ background: "#1e3a8a", padding: "16px 20px" }}>
-                      <h2 style={{ color: "white", fontWeight: 700, fontSize: "17px", margin: 0 }}>Your Take Home Pay Results</h2>
+                    <div style={{ background: "linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%)", padding: "18px 24px" }}>
+                      <h2 style={{ color: "white", fontWeight: 700, fontSize: "17px", margin: 0, letterSpacing: "-0.02em" }}>Your Take Home Pay Results</h2>
                       <p style={{ color: "#bfdbfe", fontSize: "13px", margin: "4px 0 0" }}>Based on tax year {taxYear}</p>
                     </div>
 
@@ -590,16 +597,16 @@ export default function Home() {
                           )}
 
                           {/* Take Home — highlighted */}
-                          <tr style={{ background: "#d3dcf7", borderTop: "2px solid #2e54bf" }}>
-                            <td style={{ padding: "14px 16px", fontWeight: 700, fontSize: "15px", color: "#1e3a8a", borderRight: "1px solid #b0bde8" }}>
-                              {taxYear.split('/')[0]} Take Home
+                          <tr style={{ background: "linear-gradient(90deg, #dbeafe 0%, #eff6ff 100%)", borderTop: "2px solid #1d4ed8" }}>
+                            <td style={{ padding: "16px 16px", fontWeight: 700, fontSize: "15px", color: "#1e3a8a", borderRight: "1px solid #bfdbfe" }}>
+                              🏠 {taxYear.split('/')[0]} Take Home
                             </td>
-                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, fontSize: "15px", color: "#1e3a8a" }}>{formatCurrency(breakdown.takeHome.yearly)}</td>
-                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.monthly)}</td>
-                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.fourWeekly)}</td>
-                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.twoWeekly)}</td>
-                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.weekly)}</td>
-                            <td style={{ padding: "14px 12px", textAlign: "right", fontWeight: 700, color: "#1e3a8a", borderLeft: "1px solid #b0bde8" }}>{formatCurrency(breakdown.takeHome.daily)}</td>
+                            <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 800, fontSize: "15px", color: "#1e3a8a" }}>{formatCurrency(breakdown.takeHome.yearly)}</td>
+                            <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.monthly)}</td>
+                            <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.fourWeekly)}</td>
+                            <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.twoWeekly)}</td>
+                            <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.weekly)}</td>
+                            <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.daily)}</td>
                           </tr>
 
                           {/* Next year estimate */}
