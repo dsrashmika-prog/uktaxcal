@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { Info } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
+
 
 import { calculateSalary, SalaryInput, SalaryBreakdown } from "@/lib/salaryLogic";
 
@@ -53,9 +53,6 @@ export default function Home() {
     const inputGross = parseFloat(grossIncome) || 0;
     const inputDiv = parseFloat(dividendIncome) || 0;
     const inputBonus = parseFloat(bonusAmount) || 0;
-
-    // If no primary income is entered, return null to display empty state
-    if (inputGross === 0 && inputDiv === 0 && inputBonus === 0) return null;
 
     const input: SalaryInput = {
       grossIncome: inputGross,
@@ -467,129 +464,113 @@ export default function Home() {
 
             {/* ===== RIGHT: RESULTS TABLE ===== */}
             <div className="results-panel" style={{ minWidth: 0, background: "#f8faff", height: "100%" }}>
-              {breakdown ? (
-                <div>
+              <div>
 
-                  {/* Tax Traps Warning */}
-                  {(breakdown.taxTraps.personalAllowanceLost > 0 || breakdown.taxTraps.hicbcChargeAmount > 0) && (
-                    <div style={{ borderLeft: "4px solid #dc2626", background: "#fef2f2", padding: "16px 20px", borderRadius: "0 4px 4px 0", margin: "16px" }}>
-                      <p style={{ fontWeight: 700, fontSize: "15px", color: "#7f1d1d", marginBottom: "8px" }}>⚠️ Tax Traps Detected</p>
-                      <ul style={{ paddingLeft: "18px", fontSize: "13px", color: "#7f1d1d", lineHeight: 1.6 }}>
-                        {breakdown.taxTraps.personalAllowanceLost > 0 && (
-                          <li><strong>60% Marginal Trap:</strong> You've lost <strong>{formatCurrency(breakdown.taxTraps.personalAllowanceLost)}</strong> of your Personal Allowance.</li>
+                {/* Tax Traps Warning */}
+                {(breakdown.taxTraps.personalAllowanceLost > 0 || breakdown.taxTraps.hicbcChargeAmount > 0) && (
+                  <div style={{ borderLeft: "4px solid #dc2626", background: "#fef2f2", padding: "16px 20px", borderRadius: "0 4px 4px 0", margin: "16px" }}>
+                    <p style={{ fontWeight: 700, fontSize: "15px", color: "#7f1d1d", marginBottom: "8px" }}>⚠️ Tax Traps Detected</p>
+                    <ul style={{ paddingLeft: "18px", fontSize: "13px", color: "#7f1d1d", lineHeight: 1.6 }}>
+                      {breakdown.taxTraps.personalAllowanceLost > 0 && (
+                        <li><strong>60% Marginal Trap:</strong> You've lost <strong>{formatCurrency(breakdown.taxTraps.personalAllowanceLost)}</strong> of your Personal Allowance.</li>
+                      )}
+                      {breakdown.taxTraps.hicbcChargeAmount > 0 && (
+                        <li><strong>Child Benefit Clawback:</strong> Charge of <strong>{formatCurrency(breakdown.taxTraps.hicbcChargeAmount)}</strong>.</li>
+                      )}
+                    </ul>
+                    <p style={{ fontSize: "12px", color: "#991b1b", marginTop: "8px" }}>💡 Allocating more into a pension can help mitigate these traps.</p>
+                  </div>
+                )}
+
+                {/* Results Table Header */}
+                <div style={{ overflow: "hidden" }}>
+                  <div style={{ background: "linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%)", padding: "18px 24px" }}>
+                    <h2 style={{ color: "white", fontWeight: 700, fontSize: "17px", margin: 0, letterSpacing: "-0.02em" }}>Your Take Home Pay Results</h2>
+                    <p style={{ color: "#bfdbfe", fontSize: "13px", margin: "4px 0 0" }}>Based on tax year {taxYear}</p>
+                  </div>
+
+                  <div style={{ overflowX: "auto", maxWidth: "100%" }}>
+                    <table style={{ width: "100%", minWidth: "750px", borderCollapse: "collapse", fontSize: "14px", whiteSpace: "nowrap" }}>
+                      <thead>
+                        <tr style={{ background: "#f5f7fe", borderBottom: "1px solid #dde3f0" }}>
+                          <th style={{ padding: "12px 16px", textAlign: "left", fontWeight: 700, color: "#273157", width: "30%" }}></th>
+                          <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157" }}>Yearly</th>
+                          <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Monthly</th>
+                          <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>4 Weekly</th>
+                          <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>2 Weekly</th>
+                          <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Weekly</th>
+                          <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Daily</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {/* Rows helper */}
+                        {[
+                          { label: "Gross Income", data: breakdown.grossIncome, bold: true, show: true },
+                          { label: "+ Overtime", data: breakdown.overtime, bold: false, show: breakdown.overtime.yearly > 0 },
+                          { label: "+ Bonus", data: breakdown.bonus, bold: false, show: breakdown.bonus.yearly > 0 },
+                          { label: "− Pension", data: breakdown.pension, bold: false, show: breakdown.pension.yearly > 0 },
+                          { label: "+ Employer Pension", data: breakdown.employerPension, bold: false, show: breakdown.employerPension.yearly > 0 },
+                          { label: "− Childcare Vouchers", data: breakdown.childcareVouchers, bold: false, show: breakdown.childcareVouchers.yearly > 0 },
+                          { label: "Taxable Income", data: breakdown.taxableIncome, bold: false, show: true },
+                          { label: "Income Tax", data: breakdown.incomeTax, bold: false, show: true },
+                          { label: "− Dividend Tax", data: breakdown.dividendTax, bold: false, show: breakdown.dividendTax.yearly > 0 },
+                          { label: "National Insurance", data: breakdown.nationalInsurance, bold: false, show: true },
+                          { label: "− Student Loan", data: breakdown.studentLoan, bold: false, show: breakdown.studentLoan.yearly > 0 },
+                        ].filter(r => r.show).map((row, i) => (
+                          <tr key={row.label} style={{ background: i % 2 === 0 ? "white" : "#ebf0fd" }}>
+                            <td style={{ padding: "11px 16px", fontWeight: row.bold ? 700 : 500, color: "#273157", borderRight: "1px solid #eef0f7" }}>{row.label}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", fontWeight: row.bold ? 700 : 400, color: "#273157" }}>{formatCurrency(row.data.yearly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.monthly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.fourWeekly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.twoWeekly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.weekly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.daily)}</td>
+                          </tr>
+                        ))}
+
+                        {/* Child Benefit Charge */}
+                        {breakdown.childBenefitCharge.yearly > 0 && (
+                          <tr style={{ background: "#fff1f2" }}>
+                            <td style={{ padding: "11px 16px", fontWeight: 500, color: "#be123c", borderRight: "1px solid #eef0f7" }}>− Child Benefit Charge</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", fontWeight: 600 }}>−{formatCurrency(breakdown.childBenefitCharge.yearly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.monthly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.fourWeekly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.twoWeekly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.weekly)}</td>
+                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.daily)}</td>
+                          </tr>
                         )}
-                        {breakdown.taxTraps.hicbcChargeAmount > 0 && (
-                          <li><strong>Child Benefit Clawback:</strong> Charge of <strong>{formatCurrency(breakdown.taxTraps.hicbcChargeAmount)}</strong>.</li>
-                        )}
-                      </ul>
-                      <p style={{ fontSize: "12px", color: "#991b1b", marginTop: "8px" }}>💡 Allocating more into a pension can help mitigate these traps.</p>
-                    </div>
-                  )}
 
-                  {/* Results Table Header */}
-                  <div style={{ overflow: "hidden" }}>
-                    <div style={{ background: "linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%)", padding: "18px 24px" }}>
-                      <h2 style={{ color: "white", fontWeight: 700, fontSize: "17px", margin: 0, letterSpacing: "-0.02em" }}>Your Take Home Pay Results</h2>
-                      <p style={{ color: "#bfdbfe", fontSize: "13px", margin: "4px 0 0" }}>Based on tax year {taxYear}</p>
-                    </div>
+                        {/* Take Home — highlighted */}
+                        <tr style={{ background: "linear-gradient(90deg, #dbeafe 0%, #eff6ff 100%)", borderTop: "2px solid #1d4ed8" }}>
+                          <td style={{ padding: "16px 16px", fontWeight: 700, fontSize: "15px", color: "#1e3a8a", borderRight: "1px solid #bfdbfe" }}>
+                            🏠 {taxYear.split('/')[0]} Take Home
+                          </td>
+                          <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 800, fontSize: "15px", color: "#1e3a8a" }}>{formatCurrency(breakdown.takeHome.yearly)}</td>
+                          <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.monthly)}</td>
+                          <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.fourWeekly)}</td>
+                          <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.twoWeekly)}</td>
+                          <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.weekly)}</td>
+                          <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.daily)}</td>
+                        </tr>
 
-                    <div style={{ overflowX: "auto", maxWidth: "100%" }}>
-                      <table style={{ width: "100%", minWidth: "750px", borderCollapse: "collapse", fontSize: "14px", whiteSpace: "nowrap" }}>
-                        <thead>
-                          <tr style={{ background: "#f5f7fe", borderBottom: "1px solid #dde3f0" }}>
-                            <th style={{ padding: "12px 16px", textAlign: "left", fontWeight: 700, color: "#273157", width: "30%" }}></th>
-                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157" }}>Yearly</th>
-                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Monthly</th>
-                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>4 Weekly</th>
-                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>2 Weekly</th>
-                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Weekly</th>
-                            <th style={{ padding: "12px 12px", textAlign: "right", fontWeight: 700, color: "#273157", borderLeft: "1px solid #eef0f7" }}>Daily</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {/* Rows helper */}
-                          {[
-                            { label: "Gross Income", data: breakdown.grossIncome, bold: true, show: true },
-                            { label: "+ Overtime", data: breakdown.overtime, bold: false, show: breakdown.overtime.yearly > 0 },
-                            { label: "+ Bonus", data: breakdown.bonus, bold: false, show: breakdown.bonus.yearly > 0 },
-                            { label: "− Pension", data: breakdown.pension, bold: false, show: breakdown.pension.yearly > 0 },
-                            { label: "+ Employer Pension", data: breakdown.employerPension, bold: false, show: breakdown.employerPension.yearly > 0 },
-                            { label: "− Childcare Vouchers", data: breakdown.childcareVouchers, bold: false, show: breakdown.childcareVouchers.yearly > 0 },
-                            { label: "Taxable Income", data: breakdown.taxableIncome, bold: false, show: true },
-                            { label: "Income Tax", data: breakdown.incomeTax, bold: false, show: true },
-                            { label: "− Dividend Tax", data: breakdown.dividendTax, bold: false, show: breakdown.dividendTax.yearly > 0 },
-                            { label: "National Insurance", data: breakdown.nationalInsurance, bold: false, show: true },
-                            { label: "− Student Loan", data: breakdown.studentLoan, bold: false, show: breakdown.studentLoan.yearly > 0 },
-                          ].filter(r => r.show).map((row, i) => (
-                            <tr key={row.label} style={{ background: i % 2 === 0 ? "white" : "#ebf0fd" }}>
-                              <td style={{ padding: "11px 16px", fontWeight: row.bold ? 700 : 500, color: "#273157", borderRight: "1px solid #eef0f7" }}>{row.label}</td>
-                              <td style={{ padding: "11px 12px", textAlign: "right", fontWeight: row.bold ? 700 : 400, color: "#273157" }}>{formatCurrency(row.data.yearly)}</td>
-                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.monthly)}</td>
-                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.fourWeekly)}</td>
-                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.twoWeekly)}</td>
-                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.weekly)}</td>
-                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#555", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(row.data.daily)}</td>
-                            </tr>
-                          ))}
-
-                          {/* Child Benefit Charge */}
-                          {breakdown.childBenefitCharge.yearly > 0 && (
-                            <tr style={{ background: "#fff1f2" }}>
-                              <td style={{ padding: "11px 16px", fontWeight: 500, color: "#be123c", borderRight: "1px solid #eef0f7" }}>− Child Benefit Charge</td>
-                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", fontWeight: 600 }}>−{formatCurrency(breakdown.childBenefitCharge.yearly)}</td>
-                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.monthly)}</td>
-                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.fourWeekly)}</td>
-                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.twoWeekly)}</td>
-                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.weekly)}</td>
-                              <td style={{ padding: "11px 12px", textAlign: "right", color: "#be123c", borderLeft: "1px solid #eef0f7" }}>−{formatCurrency(breakdown.childBenefitCharge.daily)}</td>
-                            </tr>
-                          )}
-
-                          {/* Take Home — highlighted */}
-                          <tr style={{ background: "linear-gradient(90deg, #dbeafe 0%, #eff6ff 100%)", borderTop: "2px solid #1d4ed8" }}>
-                            <td style={{ padding: "16px 16px", fontWeight: 700, fontSize: "15px", color: "#1e3a8a", borderRight: "1px solid #bfdbfe" }}>
-                              🏠 {taxYear.split('/')[0]} Take Home
-                            </td>
-                            <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 800, fontSize: "15px", color: "#1e3a8a" }}>{formatCurrency(breakdown.takeHome.yearly)}</td>
-                            <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.monthly)}</td>
-                            <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.fourWeekly)}</td>
-                            <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.twoWeekly)}</td>
-                            <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.weekly)}</td>
-                            <td style={{ padding: "16px 12px", textAlign: "right", fontWeight: 700, color: "#1d4ed8", borderLeft: "1px solid #bfdbfe" }}>{formatCurrency(breakdown.takeHome.daily)}</td>
-                          </tr>
-
-                          {/* Next year estimate */}
-                          <tr style={{ background: "#f5f7fe" }}>
-                            <td style={{ padding: "11px 16px", fontWeight: 500, color: "#888", fontSize: "13px", borderRight: "1px solid #eef0f7" }}>
-                              {parseInt(taxYear.split('/')[0]) + 1} estimate
-                            </td>
-                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px" }}>{formatCurrency(breakdown.takeHome.yearly)}</td>
-                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.monthly)}</td>
-                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.fourWeekly)}</td>
-                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.twoWeekly)}</td>
-                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.weekly)}</td>
-                            <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.daily)}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                        {/* Next year estimate */}
+                        <tr style={{ background: "#f5f7fe" }}>
+                          <td style={{ padding: "11px 16px", fontWeight: 500, color: "#888", fontSize: "13px", borderRight: "1px solid #eef0f7" }}>
+                            {parseInt(taxYear.split('/')[0]) + 1} estimate
+                          </td>
+                          <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px" }}>{formatCurrency(breakdown.takeHome.yearly)}</td>
+                          <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.monthly)}</td>
+                          <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.fourWeekly)}</td>
+                          <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.twoWeekly)}</td>
+                          <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.weekly)}</td>
+                          <td style={{ padding: "11px 12px", textAlign: "right", color: "#888", fontSize: "13px", borderLeft: "1px solid #eef0f7" }}>{formatCurrency(breakdown.takeHome.daily)}</td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
-              ) : (
-                <div style={{
-                  minHeight: "400px",
-                  display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-                  padding: "40px 24px", textAlign: "center",
-                }}>
-                  <div style={{ position: "relative", width: "200px", height: "200px", marginBottom: "24px" }}>
-                    <Image src="/empty-state.png" alt="Illustration" fill style={{ objectFit: "contain" }} priority />
-                  </div>
-                  <h3 style={{ fontSize: "20px", fontWeight: 700, color: "#1a1a1a", marginBottom: "10px" }}>Let&#39;s work out your take home pay</h3>
-                  <p style={{ color: "#666", maxWidth: "360px", fontSize: "15px", lineHeight: 1.6 }}>
-                    Pop your salary details into the form, then hit Calculate. We&#39;ll crunch the numbers and show you exactly what ends up in your pocket.
-                  </p>
-                </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
