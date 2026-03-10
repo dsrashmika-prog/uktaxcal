@@ -175,13 +175,7 @@ export default function Home() {
               {/* Basic Details content */}
               <div style={{ marginBottom: "16px" }}>
 
-                {/* Amber disclaimer */}
-                <div style={{ background: "#fffbeb", borderLeft: "4px solid #f59e0b", padding: "12px 16px", borderRadius: "0 4px 4px 0", marginBottom: "24px" }}>
-                  <p style={{ fontWeight: 700, fontSize: "14px", color: "#1a1a1a", marginBottom: "4px" }}>This is just an estimate.</p>
-                  <p style={{ fontSize: "13px", color: "#555" }}>
-                    Your results are based on the information you provide. Always check with HMRC or a qualified accountant.
-                  </p>
-                </div>
+
 
                 <h3 style={{ fontSize: "18px", fontWeight: 700, color: mseBlue, marginBottom: "24px" }}>Basic details</h3>
 
@@ -696,6 +690,14 @@ export default function Home() {
       {/* ===== FOOTER — matches the dark blue header ===== */}
       <footer style={{ background: "#1e3a8a", color: "white", marginTop: "auto" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "40px 24px 24px" }}>
+          {/* Amber disclaimer */}
+          <div style={{ background: "#fffbeb", borderLeft: "4px solid #f59e0b", padding: "12px 16px", borderRadius: "0 4px 4px 0", marginBottom: "32px", maxWidth: "800px" }}>
+            <p style={{ fontWeight: 700, fontSize: "14px", color: "#1a1a1a", marginBottom: "4px" }}>This is just an estimate.</p>
+            <p style={{ fontSize: "13px", color: "#555" }}>
+              Your results are based on the information you provide. Always check with HMRC or a qualified accountant.
+            </p>
+          </div>
+
           <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "24px", borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: "24px", marginBottom: "24px" }}>
             {/* Brand */}
             <div style={{ fontWeight: 800, fontSize: "20px", letterSpacing: "-0.02em" }}>
