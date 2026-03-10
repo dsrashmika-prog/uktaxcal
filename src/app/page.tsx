@@ -164,26 +164,8 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ===== NAV STRIP ===== */}
-      <nav style={{ background: "#162d6e", color: "white", borderBottom: "1px solid #1e3a8a", padding: "12px 0" }}>
-        <div className="scrollbar-hide" style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px", display: "flex", gap: "32px", overflowX: "auto", whiteSpace: "nowrap" }}>
-          <Link href="/" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }} onMouseOver={e => (e.currentTarget.style.color = "#facc15")} onMouseOut={e => (e.currentTarget.style.color = "white")}>
-            Tax calculator
-          </Link>
-          <Link href="/salary-guide" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }} onMouseOver={e => (e.currentTarget.style.color = "#facc15")} onMouseOut={e => (e.currentTarget.style.color = "white")}>
-            Salary Guide
-          </Link>
-          <Link href="/how-to" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }} onMouseOver={e => (e.currentTarget.style.color = "#facc15")} onMouseOut={e => (e.currentTarget.style.color = "white")}>
-            How to use
-          </Link>
-          <Link href="/sources" style={{ color: "white", textDecoration: "none", fontWeight: 600, fontSize: "14px" }} onMouseOver={e => (e.currentTarget.style.color = "#facc15")} onMouseOut={e => (e.currentTarget.style.color = "white")}>
-            Data sources
-          </Link>
-        </div>
-      </nav>
-
       {/* ===== MAIN ===== */}
-      <main style={{ flex: 1, padding: "40px 0" }}>
+      <main style={{ flex: 1, padding: "24px 0 40px" }}>
         <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 24px" }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: "24px" }} className="calc-grid">
 
