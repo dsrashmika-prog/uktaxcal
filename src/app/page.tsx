@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Info } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -48,30 +48,17 @@ export default function Home() {
   // Advanced accordion open state
   const [advancedOpen, setAdvancedOpen] = useState(false);
 
-  // Output State
-  const [breakdown, setBreakdown] = useState<SalaryBreakdown | null>(null);
+  // Output State - Real-time Calculation
+  const breakdown = useMemo(() => {
+    const inputGross = parseFloat(grossIncome) || 0;
+    const inputDiv = parseFloat(dividendIncome) || 0;
+    const inputBonus = parseFloat(bonusAmount) || 0;
 
-  // Sparks effect state
-  type Spark = { id: number; angle: number; size: number; speed: number; color: string; delay: number };
-  const [sparks, setSparks] = useState<Spark[]>([]);
+    // If no primary income is entered, return null to display empty state
+    if (inputGross === 0 && inputDiv === 0 && inputBonus === 0) return null;
 
-  const fireSparks = () => {
-    const colors = ["#facc15", "#fbbf24", "#f97316", "#ffffff", "#fde68a", "#fed7aa", "#ff6b6b"];
-    const newSparks: Spark[] = Array.from({ length: 22 }, (_, i) => ({
-      id: Date.now() + i,
-      angle: Math.random() * 360,
-      size: 4 + Math.random() * 6,
-      speed: 60 + Math.random() * 80,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      delay: Math.random() * 0.12,
-    }));
-    setSparks(newSparks);
-    setTimeout(() => setSparks([]), 700);
-  };
-
-  const handleCalculate = () => {
     const input: SalaryInput = {
-      grossIncome: parseFloat(grossIncome) || 0,
+      grossIncome: inputGross,
       payFrequency,
       taxYear,
       isScottish,
@@ -81,7 +68,7 @@ export default function Home() {
       pensionScheme,
       pensionType,
       pensionValue: parseFloat(pensionValue) || 0,
-      bonusAmount: parseFloat(bonusAmount) || 0,
+      bonusAmount: inputBonus,
       overtimeHours: parseFloat(overtimeHours) || 0,
       overtimeRate: parseFloat(overtimeRate) || 0,
       childcareVoucher: parseFloat(childcareVoucher) || 0,
@@ -95,11 +82,15 @@ export default function Home() {
       numberOfChildren: parseInt(numberOfChildren) || 0,
       persona,
       age: parseInt(age) || 30,
-      dividendIncome: parseFloat(dividendIncome) || 0,
+      dividendIncome: inputDiv,
     };
-    const result = calculateSalary(input);
-    setBreakdown(result);
-  };
+    return calculateSalary(input);
+  }, [
+    grossIncome, payFrequency, taxYear, isScottish, taxCode, studentLoanPlan, hasPostgradLoan,
+    pensionScheme, pensionType, pensionValue, bonusAmount, overtimeHours, overtimeRate, childcareVoucher,
+    excludeNI, isBlind, isMarried, giveAsYouEarn, giftAid, daysPerWeek, claimsChildBenefit, numberOfChildren,
+    persona, age, dividendIncome
+  ]);
 
   const handleScotlandChange = (checked: boolean) => {
     setIsScottish(checked);
@@ -471,49 +462,7 @@ export default function Home() {
                   </div>
                 )}
               </div>
-              {/* ===== CALCULATE BUTTON ===== */}
-              <div style={{ position: "relative", marginTop: "32px", marginBottom: "16px" }}>
-                {/* Spark particles */}
-                {sparks.map(spark => (
-                  <span
-                    key={spark.id}
-                    style={{
-                      position: "absolute",
-                      left: "50%",
-                      top: "50%",
-                      width: `${spark.size}px`,
-                      height: `${spark.size}px`,
-                      borderRadius: spark.size > 6 ? "50%" : "2px",
-                      background: spark.color,
-                      boxShadow: `0 0 4px ${spark.color}`,
-                      pointerEvents: "none",
-                      animation: `spark-fly 0.65s ease-out forwards`,
-                      animationDelay: `${spark.delay}s`,
-                      ['--spark-tx' as string]: `${Math.cos((spark.angle * Math.PI) / 180) * spark.speed}px`,
-                      ['--spark-ty' as string]: `${Math.sin((spark.angle * Math.PI) / 180) * spark.speed}px`,
-                      zIndex: 50,
-                    }}
-                  />
-                ))}
-                <button
-                  onClick={() => { fireSparks(); handleCalculate(); }}
-                  style={{
-                    width: "100%", height: "58px",
-                    background: "linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)",
-                    color: "white",
-                    fontWeight: 700, fontSize: "17px",
-                    border: "none", borderRadius: "10px",
-                    cursor: "pointer", letterSpacing: "0.03em",
-                    transition: "all 0.2s",
-                    position: "relative",
-                    boxShadow: "0 4px 14px rgba(185,28,28,0.35)",
-                  }}
-                  onMouseOver={e => { e.currentTarget.style.background = "linear-gradient(135deg, #b91c1c 0%, #991b1b 100%)"; e.currentTarget.style.boxShadow = "0 6px 18px rgba(153,27,27,0.45)"; }}
-                  onMouseOut={e => { e.currentTarget.style.background = "linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)"; e.currentTarget.style.boxShadow = "0 4px 14px rgba(185,28,28,0.35)"; }}
-                >
-                  Calculate my take-home pay
-                </button>
-              </div>
+
             </div>
 
             {/* ===== RIGHT: RESULTS TABLE ===== */}
