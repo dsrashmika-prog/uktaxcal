@@ -560,9 +560,9 @@ export default function Home() {
                             { label: "+ Employer Pension", data: breakdown.employerPension, bold: false, show: breakdown.employerPension.yearly > 0 },
                             { label: "− Childcare Vouchers", data: breakdown.childcareVouchers, bold: false, show: breakdown.childcareVouchers.yearly > 0 },
                             { label: "Taxable Income", data: breakdown.taxableIncome, bold: false, show: true },
-                            { label: "− Income Tax", data: breakdown.incomeTax, bold: false, show: true },
+                            { label: "Income Tax", data: breakdown.incomeTax, bold: false, show: true },
                             { label: "− Dividend Tax", data: breakdown.dividendTax, bold: false, show: breakdown.dividendTax.yearly > 0 },
-                            { label: "− National Insurance", data: breakdown.nationalInsurance, bold: false, show: true },
+                            { label: "National Insurance", data: breakdown.nationalInsurance, bold: false, show: true },
                             { label: "− Student Loan", data: breakdown.studentLoan, bold: false, show: breakdown.studentLoan.yearly > 0 },
                           ].filter(r => r.show).map((row, i) => (
                             <tr key={row.label} style={{ background: i % 2 === 0 ? "white" : "#ebf0fd" }}>
