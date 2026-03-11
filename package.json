@@ -1,7 +1,0 @@
-{
-    "name": "uk-tax-calculator-static",
-    "version": "1.0.0",
-    "scripts": {
-        "build": "echo 'No build step'"
-    }
-}
