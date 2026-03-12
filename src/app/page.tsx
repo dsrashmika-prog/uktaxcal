@@ -1,6 +1,7 @@
 export default function Page() {
   return (
-    <div dangerouslySetInnerHTML={{ __html: `
+    <div dangerouslySetInnerHTML={{
+      __html: `
 
 <header>
   <div class="header-inner">
@@ -352,6 +353,50 @@ export default function Page() {
     </div>
   </div>
 </div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 185 42" fill="none" style="height:34px;width:auto;">
+          <text font-family="'DM Sans',Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-0.4">
+            <tspan x="0" y="22" fill="white">Net</tspan><tspan fill="#00c4b7">Pay</tspan><tspan fill="rgba(255,255,255,0.85)">Home</tspan>
+          </text>
+          <text x="1" y="36" font-family="'DM Sans',Arial,sans-serif" font-size="8.5" font-weight="600" fill="rgba(255,255,255,0.35)" letter-spacing="2">UK TAX CALCULATOR</text>
+        </svg>
+        <p>Free, accurate UK salary and take-home pay calculator. Covers Income Tax, National Insurance, Student Loans, Pension contributions, and more — updated for 2025/26.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="/">Calculator</a></li>
+          <li><a href="/salary-guide">Salary Guide</a></li>
+          <li><a href="/how-to">How It Works</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/sources">Data Sources</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 NetPayHome. All rights reserved. For informational purposes only — not financial advice.</span>
+      <span class="footer-badge">2025 / 26 Tax Year</span>
+    </div>
+  </div>
+</footer>
 
 ` }} />
   );
