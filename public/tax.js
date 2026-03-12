@@ -144,25 +144,25 @@ function calculateTax(grossAnnual, options = {}) {
   } = options;
 
   let gross = grossAnnual + bonusAmt + (overtimeAmt * 12);
-  
+
   // Pension
   let pensionDeduction = 0;
   if (pensionPct > 0) pensionDeduction = gross * (pensionPct / 100);
   else if (pensionAmt > 0) pensionDeduction = pensionAmt * 12;
-  
+
   let grossForTax = pensionSacrifice ? gross - pensionDeduction : gross;
-  
+
   // Blind Person
   let personalAllowance = yr.personalAllowance + (blindAllowance ? 2870 : 0) + (childcareAmt * 12 / 2);
-  
+
   // Taper personal allowance above 100k
   if (grossForTax > 100000) {
     const taper = Math.floor((grossForTax - 100000) / 2);
     personalAllowance = Math.max(0, personalAllowance - taper);
   }
-  
+
   const taxableIncome = Math.max(0, grossForTax - personalAllowance);
-  
+
   // Income Tax
   let incomeTax = 0;
   if (scotland) {
@@ -170,14 +170,14 @@ function calculateTax(grossAnnual, options = {}) {
   } else {
     if (taxableIncome > 0) {
       const basic = Math.min(taxableIncome, yr.basicRateLimit - yr.personalAllowance);
-      const higher = taxableIncome > (yr.basicRateLimit - yr.personalAllowance) ? 
+      const higher = taxableIncome > (yr.basicRateLimit - yr.personalAllowance) ?
         Math.min(taxableIncome - (yr.basicRateLimit - yr.personalAllowance), yr.higherRateLimit - yr.basicRateLimit) : 0;
       const additional = taxableIncome > (yr.higherRateLimit - yr.personalAllowance) ?
         taxableIncome - (yr.higherRateLimit - yr.personalAllowance) : 0;
-      incomeTax = (Math.max(0,basic) * yr.basicRate) + (Math.max(0,higher) * yr.higherRate) + (Math.max(0,additional) * yr.additionalRate);
+      incomeTax = (Math.max(0, basic) * yr.basicRate) + (Math.max(0, higher) * yr.higherRate) + (Math.max(0, additional) * yr.additionalRate);
     }
   }
-  
+
   // National Insurance
   let ni = 0;
   if (!noNI) {
@@ -188,13 +188,13 @@ function calculateTax(grossAnnual, options = {}) {
       ni = (Math.max(0, primary) * yr.ni_basic_rate) + (Math.max(0, secondary) * yr.ni_higher_rate);
     }
   }
-  
+
   // Employer NI
   let employerNI = 0;
   if (showEmployerNI && gross > yr.ni_employer_secondary) {
     employerNI = (gross - yr.ni_employer_secondary) * yr.ni_employer_rate;
   }
-  
+
   // Student Loans
   let studentLoan = 0;
   if (plan1 && gross > yr.plan1_threshold) studentLoan += (gross - yr.plan1_threshold) * yr.plan1_rate;
@@ -202,10 +202,10 @@ function calculateTax(grossAnnual, options = {}) {
   if (plan4 && gross > yr.plan4_threshold) studentLoan += (gross - yr.plan4_threshold) * yr.plan4_rate;
   if (plan5 && gross > yr.plan5_threshold) studentLoan += (gross - yr.plan5_threshold) * yr.plan5_rate;
   if (planPG && gross > yr.pg_threshold) studentLoan += (gross - yr.pg_threshold) * yr.pg_rate;
-  
+
   const totalDeductions = incomeTax + ni + studentLoan + (!pensionSacrifice ? pensionDeduction : 0);
   const takeHome = gross - totalDeductions;
-  
+
   return {
     gross,
     grossAnnual,
@@ -268,19 +268,19 @@ function getOptions() {
 function renderResults(r) {
   document.getElementById('resultsPlaceholder').style.display = 'none';
   document.getElementById('resultsPanel').classList.add('visible');
-  
+
   // Hero
   document.getElementById('annualTakeHome').textContent = fmt(r.takeHome);
   document.getElementById('annualGross').textContent = `of ${fmt(r.gross)} gross`;
   document.getElementById('monthlyTakeHome').textContent = fmt(r.takeHome / 12);
   document.getElementById('weeklyTakeHome').textContent = fmt(r.takeHome / 52);
   document.getElementById('dailyTakeHome').textContent = fmt(r.takeHome / 260);
-  
+
   // Breakdown table
   const view = state.resultView;
   const div = { annual: 1, monthly: 12, twoweekly: 26, weekly: 52, daily: 260 }[view];
   const div2 = 12;
-  
+
   const rows = [
     { label: '💰 Gross Salary', val: r.gross, cls: 'row-highlight' },
     { label: '🧾 Personal Allowance', val: r.personalAllowance, cls: '' },
@@ -292,10 +292,10 @@ function renderResults(r) {
     r.employerNI > 0 ? { label: '🏢 Employer NI', val: r.employerNI, cls: '' } : null,
     { label: '✅ Take-Home Pay', val: r.takeHome, cls: 'row-takehome' },
   ].filter(Boolean);
-  
+
   const viewLabels = { annual: 'Annual', monthly: 'Monthly', twoweekly: '2 Weekly', weekly: 'Weekly', daily: 'Daily' };
   document.querySelector('#breakdownTable thead tr #colPeriod').textContent = viewLabels[view] || view;
-  
+
   const tbody = document.getElementById('breakdownBody');
   tbody.innerHTML = rows.map(row => `
     <tr class="${row.cls}">
@@ -304,14 +304,14 @@ function renderResults(r) {
       <td>${fmtD(Math.abs(row.val) / div2)}</td>
     </tr>
   `).join('');
-  
+
   // Donut
   const pct = r.gross > 0 ? r.takeHome / r.gross : 0;
   const taxPct = r.gross > 0 ? r.incomeTax / r.gross : 0;
   const niPct = r.gross > 0 ? r.ni / r.gross : 0;
   const otherPct = r.gross > 0 ? (r.studentLoan + r.pensionDeduction) / r.gross : 0;
   const circumference = 100;
-  
+
   let offset = 25;
   function setArc(id, pct, color) {
     const el = document.getElementById(id);
@@ -319,15 +319,15 @@ function renderResults(r) {
     el.setAttribute('stroke-dashoffset', offset);
     offset -= pct * circumference;
   }
-  
+
   setArc('donutTakeHome', pct, '#00a99d');
   offset = 25 - pct * circumference;
   setArc('donutTax', taxPct, '#e8463a');
   offset = 25 - pct * circumference - taxPct * circumference;
   setArc('donutNI', niPct, '#f5a623');
-  
+
   document.getElementById('takeHomePct').textContent = Math.round(pct * 100) + '%';
-  
+
   const legend = [
     { color: '#00a99d', label: 'Take-Home', val: fmt(r.takeHome) },
     { color: '#e8463a', label: 'Income Tax', val: fmt(r.incomeTax) },
@@ -335,7 +335,7 @@ function renderResults(r) {
     r.studentLoan > 0 ? { color: '#6366f1', label: 'Student Loan', val: fmt(r.studentLoan) } : null,
     r.pensionDeduction > 0 ? { color: '#0f1f3d', label: 'Pension', val: fmt(r.pensionDeduction) } : null,
   ].filter(Boolean);
-  
+
   document.getElementById('chartLegend').innerHTML = legend.map(l => `
     <div class="legend-item">
       <div class="legend-dot" style="background:${l.color}"></div>
@@ -343,12 +343,12 @@ function renderResults(r) {
       <span class="legend-val">${l.val}</span>
     </div>
   `).join('');
-  
+
   // Effective rate
   const effRate = r.effectiveRate.toFixed(1);
   document.getElementById('effectiveTaxRate').textContent = effRate + '%';
   document.getElementById('taxRateBar').style.width = Math.min(effRate, 60) + '%';
-  
+
   // Info box
   let info = '';
   if (r.gross > 100000 && r.gross < 125140) {
@@ -357,7 +357,7 @@ function renderResults(r) {
     info = `<div class="info-box"><span class="info-box-icon">💡</span><div class="info-box-text">You're a <strong>Higher Rate taxpayer</strong>. Pension contributions could reduce your tax bill — consider speaking with a financial adviser.</div></div>`;
   }
   document.getElementById('infoBoxWrap').innerHTML = info;
-  
+
   state.lastResults = r;
 }
 
@@ -366,16 +366,16 @@ function updateComparison() {
   const salA = parseFloat(document.getElementById('compSalaryA').value) || 0;
   const salB = parseFloat(document.getElementById('compSalaryB').value) || 0;
   const opts = getOptions();
-  
+
   function compRow(label, val) {
     return `<div class="comp-result-item"><span class="cri-label">${label}</span><span class="cri-val">${fmt(val)}</span></div>`;
   }
-  
+
   if (salA > 0) {
     const rA = calculateTax(salA, opts);
     document.getElementById('compResultsA').innerHTML =
       compRow('Take-Home/yr', rA.takeHome) +
-      compRow('Take-Home/mo', rA.takeHome/12) +
+      compRow('Take-Home/mo', rA.takeHome / 12) +
       compRow('Income Tax', rA.incomeTax) +
       compRow('NI', rA.ni);
   }
@@ -383,7 +383,7 @@ function updateComparison() {
     const rB = calculateTax(salB, opts);
     document.getElementById('compResultsB').innerHTML =
       compRow('Take-Home/yr', rB.takeHome) +
-      compRow('Take-Home/mo', rB.takeHome/12) +
+      compRow('Take-Home/mo', rB.takeHome / 12) +
       compRow('Income Tax', rB.incomeTax) +
       compRow('NI', rB.ni);
   }
@@ -420,21 +420,21 @@ function doCalculate() {
     setTimeout(() => document.getElementById('salaryInput').style.border = '', 2000);
     return;
   }
-  
+
   // Convert to annual
   const periodMultipliers = { annual: 1, monthly: 12, twoweekly: 26, weekly: 52, hourly: 2080 };
   const grossAnnual = inputVal * (periodMultipliers[state.period] || 1);
-  
+
   const opts = getOptions();
   const results = calculateTax(grossAnnual, opts);
   renderResults(results);
-  
+
   // Sync comparison A with current salary
   if (!document.getElementById('compSalaryA').value) {
     document.getElementById('compSalaryA').value = Math.round(grossAnnual);
     updateComparison();
   }
-  
+
   // Scroll to results on mobile
   if (window.innerWidth < 900) {
     document.querySelector('.results-panel').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -500,7 +500,7 @@ document.querySelectorAll('.pension-type-btn').forEach(btn => {
 });
 
 // Comparison toggle
-document.getElementById('comparisonToggle').addEventListener('change', function() {
+document.getElementById('comparisonToggle').addEventListener('change', function () {
   document.getElementById('comparisonPanel').classList.toggle('visible', this.checked);
   if (this.checked) updateComparison();
 });
@@ -512,3 +512,16 @@ document.getElementById('compSalaryB').addEventListener('input', updateCompariso
 document.getElementById('salaryInput').addEventListener('keydown', e => {
   if (e.key === 'Enter') doCalculate();
 });
+
+// ===================== FAQ ACCORDION =====================
+document.querySelectorAll('.faq-q').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    // Toggle clicked
+    if (!isOpen) item.classList.add('open');
+  });
+});
+

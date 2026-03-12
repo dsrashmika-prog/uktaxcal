@@ -1229,3 +1229,298 @@ select.form-control {
     border-bottom: 1px solid var(--border);
   }
 }
+
+/* ===================== FAQ / EXPLAINER SECTION ===================== */
+.faq-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+.faq-section-title {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.faq-section-title h2 {
+  font-size: clamp(20px, 3vw, 30px);
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.4px;
+  margin-bottom: 8px;
+}
+
+.faq-section-title p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 900px) {
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.faq-card {
+  background: var(--card);
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 16px rgba(15, 31, 61, 0.06);
+  overflow: hidden;
+}
+
+.faq-card-header {
+  background: var(--navy);
+  color: white;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.faq-card-header .fch-icon {
+  font-size: 17px;
+}
+
+.faq-card-body {
+  padding: 20px;
+}
+
+/* Tax band bar chart */
+.band-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.band-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.band-label {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--muted);
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.band-bar-track {
+  flex: 1;
+  height: 22px;
+  background: var(--light);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.band-bar-fill {
+  height: 100%;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  padding-left: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  white-space: nowrap;
+  transition: width 0.6s ease;
+}
+
+.band-rate {
+  font-size: 12px;
+  font-weight: 700;
+  width: 36px;
+  flex-shrink: 0;
+  text-align: right;
+  color: var(--text);
+}
+
+/* Info table */
+.faq-info-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.faq-info-table th {
+  background: var(--light);
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.faq-info-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+
+.faq-info-table tr:last-child td {
+  border-bottom: none;
+}
+
+.faq-info-table .td-rate {
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 12px;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* FAQ accordion */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  text-align: left;
+}
+
+.faq-q:hover {
+  color: var(--teal);
+}
+
+.faq-q-icon {
+  width: 22px;
+  height: 22px;
+  background: var(--light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.faq-item.open .faq-q-icon {
+  background: var(--teal);
+  color: white;
+  transform: rotate(45deg);
+}
+
+.faq-a {
+  display: none;
+  padding-bottom: 14px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.faq-item.open .faq-a {
+  display: block;
+}
+
+/* Salary example card */
+.example-card {
+  background: linear-gradient(135deg, var(--navy) 0%, #0a2456 100%);
+  border-radius: 10px;
+  padding: 24px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.example-card::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 160px;
+  height: 160px;
+  background: rgba(0, 169, 157, 0.15);
+  border-radius: 50%;
+}
+
+.example-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--teal-light);
+  margin-bottom: 14px;
+}
+
+.example-salary {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 18px;
+}
+
+.example-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.ex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+}
+
+.ex-row:last-child {
+  border-bottom: none;
+}
+
+.ex-label {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ex-val {
+  font-weight: 700;
+}
+
+.ex-val.deduction {
+  color: #ff8a7a;
+}
+
+.ex-val.takehome {
+  color: var(--teal-light);
+  font-size: 15px;
+}

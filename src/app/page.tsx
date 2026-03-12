@@ -354,6 +354,253 @@ export default function Page() {
   </div>
 </div>
 
+<!-- ===================== FAQ / EXPLAINER SECTION ===================== -->
+<section class="faq-section" aria-label="How UK Tax is Calculated">
+
+  <div class="faq-section-title">
+    <h2>How Is UK Tax Calculated?</h2>
+    <p>A simple, visual guide to Income Tax, National Insurance and take-home pay for 2025/26.</p>
+  </div>
+
+  <div class="faq-grid">
+
+    <!-- CARD 1: Income Tax Bands -->
+    <div class="faq-card">
+      <div class="faq-card-header">
+        <span class="fch-icon">📊</span> Income Tax Bands 2025/26
+      </div>
+      <div class="faq-card-body">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">
+          UK Income Tax is charged in <strong>progressive bands</strong> — you only pay the higher rate on earnings <em>above</em> each threshold, never on your whole income.
+        </p>
+        <div class="band-chart">
+          <div class="band-row">
+            <span class="band-label">Personal<br>Allowance</span>
+            <div class="band-bar-track">
+              <div class="band-bar-fill" style="width:100%;background:#5cb85c;">Up to £12,570</div>
+            </div>
+            <span class="band-rate" style="color:#27ae60;">0%</span>
+          </div>
+          <div class="band-row">
+            <span class="band-label">Basic<br>Rate</span>
+            <div class="band-bar-track">
+              <div class="band-bar-fill" style="width:78%;background:var(--teal);">£12,571 – £50,270</div>
+            </div>
+            <span class="band-rate" style="color:var(--teal);">20%</span>
+          </div>
+          <div class="band-row">
+            <span class="band-label">Higher<br>Rate</span>
+            <div class="band-bar-track">
+              <div class="band-bar-fill" style="width:52%;background:var(--amber);">£50,271 – £125,140</div>
+            </div>
+            <span class="band-rate" style="color:var(--amber);">40%</span>
+          </div>
+          <div class="band-row">
+            <span class="band-label">Additional<br>Rate</span>
+            <div class="band-bar-track">
+              <div class="band-bar-fill" style="width:24%;background:var(--red);">Over £125,140</div>
+            </div>
+            <span class="band-rate" style="color:var(--red);">45%</span>
+          </div>
+        </div>
+        <div style="margin-top:14px;padding:10px 12px;background:var(--light);border-radius:7px;font-size:12px;color:var(--muted);line-height:1.6;">
+          ⚠️ <strong>Tax Trap:</strong> Earning between £100,000–£125,140? Your Personal Allowance tapers at £1 per £2 earned, creating an effective <strong>60% marginal rate</strong> in this band.
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2: NI Contributions -->
+    <div class="faq-card">
+      <div class="faq-card-header">
+        <span class="fch-icon">🛡️</span> National Insurance 2025/26
+      </div>
+      <div class="faq-card-body">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">
+          National Insurance (NI) contributions fund the NHS and State Pension. In 2025/26, the employee rate was cut to <strong>8%</strong> on earnings between the Primary Threshold and Upper Earnings Limit.
+        </p>
+        <table class="faq-info-table">
+          <thead>
+            <tr><th>Earnings</th><th>Rate</th><th>What it Funds</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Up to £12,570</td>
+              <td><span class="td-rate" style="background:#e8f5e9;color:#27ae60;">0%</span></td>
+              <td>No NI due</td>
+            </tr>
+            <tr>
+              <td>£12,571 – £50,270</td>
+              <td><span class="td-rate" style="background:#e3f6f5;color:var(--teal);">8%</span></td>
+              <td>NHS, State Pension, Benefits</td>
+            </tr>
+            <tr>
+              <td>Over £50,270</td>
+              <td><span class="td-rate" style="background:#fff8e1;color:#b7850a;">2%</span></td>
+              <td>Additional rate on excess</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:var(--muted);margin-top:12px;line-height:1.6;">
+          🏢 <strong>Employer NI:</strong> Your employer also pays 15% NI on earnings above £5,000 — this is a cost to them, not deducted from your salary. Toggle it on in the calculator to see the full employment cost.
+        </p>
+      </div>
+    </div>
+
+    <!-- CARD 3: Worked Example -->
+    <div class="faq-card">
+      <div class="faq-card-header">
+        <span class="fch-icon">💡</span> Worked Example — £40,000 Salary
+      </div>
+      <div class="faq-card-body" style="padding:0;">
+        <div class="example-card" style="border-radius:0;">
+          <div class="example-title">2025/26 — Standard Tax Code 1257L</div>
+          <div class="example-salary">£40,000 / year</div>
+          <div class="example-rows">
+            <div class="ex-row"><span class="ex-label">Personal Allowance (tax-free)</span><span class="ex-val">£12,570</span></div>
+            <div class="ex-row"><span class="ex-label">Taxable Income</span><span class="ex-val">£27,430</span></div>
+            <div class="ex-row"><span class="ex-label">Income Tax @ 20%</span><span class="ex-val deduction">−£5,486</span></div>
+            <div class="ex-row"><span class="ex-label">National Insurance @ 8%</span><span class="ex-val deduction">−£2,234</span></div>
+            <div class="ex-row" style="margin-top:4px;border-top:1px solid rgba(255,255,255,0.2);padding-top:10px;">
+              <span class="ex-label" style="color:white;font-weight:600;">Annual Take-Home</span>
+              <span class="ex-val takehome">£32,280</span>
+            </div>
+            <div class="ex-row">
+              <span class="ex-label">Monthly Take-Home</span>
+              <span class="ex-val takehome">£2,690</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 4: Scottish Tax Bands-->
+    <div class="faq-card">
+      <div class="faq-card-header">
+        <span class="fch-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span> Scottish Income Tax Bands 2025/26
+      </div>
+      <div class="faq-card-body">
+        <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">
+          Scotland has its own income tax rates, with <strong>six bands</strong> compared to England's three. Scottish taxpayers pay less tax on lower incomes but slightly more at higher incomes.
+        </p>
+        <table class="faq-info-table">
+          <thead>
+            <tr><th>Band</th><th>Threshold</th><th>Rate</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Starter Rate</td><td>£12,571 – £15,397</td><td><span class="td-rate" style="background:#e3f6f5;color:var(--teal);">19%</span></td></tr>
+            <tr><td>Basic Rate</td><td>£15,397 – £27,491</td><td><span class="td-rate" style="background:#e3f6f5;color:#008a7e;">20%</span></td></tr>
+            <tr><td>Intermediate</td><td>£27,491 – £43,662</td><td><span class="td-rate" style="background:#fff8e1;color:#b7850a;">21%</span></td></tr>
+            <tr><td>Higher Rate</td><td>£43,662 – £75,000</td><td><span class="td-rate" style="background:#fff3e0;color:#e67e22;">42%</span></td></tr>
+            <tr><td>Advanced Rate</td><td>£75,000 – £125,140</td><td><span class="td-rate" style="background:#fde8e7;color:var(--red);">45%</span></td></tr>
+            <tr><td>Top Rate</td><td>Over £125,140</td><td><span class="td-rate" style="background:#f5d0d0;color:#c0392b;">48%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FAQ Accordion -->
+  <div class="faq-card" style="margin-bottom:0;">
+    <div class="faq-card-header">
+      <span class="fch-icon">❓</span> Frequently Asked Questions
+    </div>
+    <div class="faq-card-body">
+      <div class="faq-list" id="faqList">
+
+        <div class="faq-item">
+          <button class="faq-q">What is the Personal Allowance and how does it work?<span class="faq-q-icon">+</span></button>
+          <div class="faq-a">The Personal Allowance (£12,570 for 2025/26) is the amount you can earn each year completely tax-free. It applies before any Income Tax is calculated. If you earn over £100,000, your allowance is reduced by £1 for every £2 above that threshold — disappearing entirely at £125,140.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What is a tax code and why does it matter?<span class="faq-q-icon">+</span></button>
+          <div class="faq-a">Your tax code tells your employer or pension provider how much tax-free income you are entitled to. The most common code is <strong>1257L</strong>, which gives you the standard £12,570 Personal Allowance. Emergency codes or codes ending in 0T mean you get no allowance and pay tax from the first pound. You can find your tax code on a payslip or by logging into HMRC online.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">How does Salary Sacrifice affect my take-home pay?<span class="faq-q-icon">+</span></button>
+          <div class="faq-a">Salary Sacrifice lets you swap part of your salary for a non-cash benefit (usually pension contributions). Because your gross salary is reduced, you pay <strong>less Income Tax and NI</strong> — making this one of the most tax-efficient ways to save for retirement. For example, a £40,000 earner putting 5% into a salary sacrifice pension saves roughly £300/year in NI alone compared to a standard pension deduction.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">When do I need to repay a Student Loan?<span class="faq-q-icon">+</span></button>
+          <div class="faq-a">You only repay once your income exceeds your plan's threshold. For 2025/26: <strong>Plan 1</strong> — £26,065/year; <strong>Plan 2</strong> — £28,470/year; <strong>Plan 4 (Scotland)</strong> — £32,745/year; <strong>Plan 5</strong> — £25,000/year. You repay 9% of income above the threshold. Postgraduate loans have a 6% rate above £21,000.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">What is the 60% tax trap?<span class="faq-q-icon">+</span></button>
+          <div class="faq-a">If your income falls between £100,000 and £125,140, you lose £1 of Personal Allowance for every £2 earned above £100,000. Combined with the 40% Higher Rate tax, this creates an effective marginal rate of <strong>60%</strong> on earnings in this range. Common solutions include making pension contributions to bring taxable income below £100,000.</div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-q">How is the effective tax rate different from the marginal rate?<span class="faq-q-icon">+</span></button>
+          <div class="faq-a">The <strong>marginal rate</strong> is the rate applied to your last pound of earnings (e.g. 40%). The <strong>effective rate</strong> is your total tax as a percentage of your gross salary — always lower because lower bands are taxed at lower rates. A £60,000 earner might have a 40% marginal rate but only a 24% effective rate, since most of their income is taxed at 20% or 0%.</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the Personal Allowance and how does it work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Personal Allowance (£12,570 for 2025/26) is the amount you can earn each year completely tax-free. If you earn over £100,000, your allowance is reduced by £1 for every £2 above that threshold, disappearing entirely at £125,140."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a UK tax code and why does it matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your tax code tells your employer how much tax-free income you are entitled to. The most common code is 1257L, giving the standard £12,570 Personal Allowance for 2025/26."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Salary Sacrifice affect my take-home pay?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Salary Sacrifice reduces your gross salary, meaning you pay less Income Tax and National Insurance. It is one of the most tax-efficient ways to contribute to a pension."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When do I need to repay a Student Loan in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You repay 9% of income above your plan's threshold. For 2025/26: Plan 1 £26,065, Plan 2 £28,470, Plan 4 £32,745, Plan 5 £25,000. Postgraduate loans are repaid at 6% above £21,000."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the 60% tax trap in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Earners between £100,000–£125,140 face an effective 60% marginal rate because their £12,570 Personal Allowance is tapered away at £1 per £2 earned above £100,000, on top of the 40% Higher Rate income tax."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between effective and marginal tax rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The marginal rate is the rate on your last pound earned. The effective rate is total tax as a percentage of gross income — always lower because progressive bands mean lower earnings are taxed less."
+      }
+    }
+  ]
+}
+</script>
+
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-top">
