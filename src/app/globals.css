@@ -1385,72 +1385,57 @@ select.form-control {
   white-space: nowrap;
 }
 
-/* FAQ accordion */
-.faq-list {
+/* FAQ open list (always visible, no accordion) */
+.faq-open-list {
   display: flex;
   flex-direction: column;
   gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.faq-item {
+.faq-open-item {
+  padding: 20px 24px;
   border-bottom: 1px solid var(--border);
 }
 
-.faq-item:first-child {
-  border-top: 1px solid var(--border);
+.faq-open-item:last-child {
+  border-bottom: none;
 }
 
-.faq-q {
-  width: 100%;
-  background: none;
-  border: none;
-  padding: 14px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
+.faq-open-q {
+  font-size: 15px;
+  font-weight: 700;
   color: var(--navy);
-  text-align: left;
-}
-
-.faq-q:hover {
-  color: var(--teal);
-}
-
-.faq-q-icon {
-  width: 22px;
-  height: 22px;
-  background: var(--light);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  flex-shrink: 0;
-  transition: transform 0.2s, background 0.2s;
-}
-
-.faq-item.open .faq-q-icon {
-  background: var(--teal);
-  color: white;
-  transform: rotate(45deg);
-}
-
-.faq-a {
-  display: none;
-  padding-bottom: 14px;
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: var(--muted);
-}
-
-.faq-item.open .faq-a {
+  margin-bottom: 8px;
+  line-height: 1.4;
   display: block;
 }
+
+.faq-open-q::before {
+  content: 'Q  ';
+  color: var(--teal);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  margin-right: 2px;
+}
+
+.faq-open-a {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin: 0;
+  padding-left: 22px;
+  border-left: 3px solid var(--teal);
+}
+
+.faq-open-a strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
 
 /* Salary example card */
 .example-card {

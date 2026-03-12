@@ -522,45 +522,45 @@ export default function Page() {
 
   </div>
 
-  <!-- FAQ Accordion -->
+  <!-- FAQ Open Table -->
   <div class="faq-card" style="margin-bottom:0;">
     <div class="faq-card-header">
       <span class="fch-icon">❓</span> Frequently Asked Questions
     </div>
-    <div class="faq-card-body">
-      <div class="faq-list" id="faqList">
+    <div class="faq-card-body" style="padding:0;">
+      <dl class="faq-open-list">
 
-        <div class="faq-item">
-          <button class="faq-q">What is the Personal Allowance and how does it work?<span class="faq-q-icon">+</span></button>
-          <div class="faq-a">The Personal Allowance (£12,570 for 2025/26) is the amount you can earn each year completely tax-free. It applies before any Income Tax is calculated. If you earn over £100,000, your allowance is reduced by £1 for every £2 above that threshold — disappearing entirely at £125,140.</div>
+        <div class="faq-open-item">
+          <dt class="faq-open-q">What is the Personal Allowance and how does it work?</dt>
+          <dd class="faq-open-a">The Personal Allowance (£12,570 for 2025/26) is the amount you can earn each year completely tax-free. It applies before any Income Tax is calculated. If you earn over £100,000, your allowance is reduced by £1 for every £2 above that threshold — disappearing entirely at £125,140.</dd>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-q">What is a tax code and why does it matter?<span class="faq-q-icon">+</span></button>
-          <div class="faq-a">Your tax code tells your employer or pension provider how much tax-free income you are entitled to. The most common code is <strong>1257L</strong>, which gives you the standard £12,570 Personal Allowance. Emergency codes or codes ending in 0T mean you get no allowance and pay tax from the first pound. You can find your tax code on a payslip or by logging into HMRC online.</div>
+        <div class="faq-open-item">
+          <dt class="faq-open-q">What is a tax code and why does it matter?</dt>
+          <dd class="faq-open-a">Your tax code tells your employer or pension provider how much tax-free income you are entitled to. The most common code is <strong>1257L</strong>, which gives you the standard £12,570 Personal Allowance. Emergency codes or codes ending in 0T mean you get no allowance and pay tax from the first pound. You can find your tax code on a payslip or by logging into HMRC online.</dd>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-q">How does Salary Sacrifice affect my take-home pay?<span class="faq-q-icon">+</span></button>
-          <div class="faq-a">Salary Sacrifice lets you swap part of your salary for a non-cash benefit (usually pension contributions). Because your gross salary is reduced, you pay <strong>less Income Tax and NI</strong> — making this one of the most tax-efficient ways to save for retirement. For example, a £40,000 earner putting 5% into a salary sacrifice pension saves roughly £300/year in NI alone compared to a standard pension deduction.</div>
+        <div class="faq-open-item">
+          <dt class="faq-open-q">How does Salary Sacrifice affect my take-home pay?</dt>
+          <dd class="faq-open-a">Salary Sacrifice lets you swap part of your salary for a non-cash benefit (usually pension contributions). Because your gross salary is reduced, you pay <strong>less Income Tax and NI</strong> — making this one of the most tax-efficient ways to save for retirement. For example, a £40,000 earner putting 5% into a salary sacrifice pension saves roughly £300/year in NI alone compared to a standard pension deduction.</dd>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-q">When do I need to repay a Student Loan?<span class="faq-q-icon">+</span></button>
-          <div class="faq-a">You only repay once your income exceeds your plan's threshold. For 2025/26: <strong>Plan 1</strong> — £26,065/year; <strong>Plan 2</strong> — £28,470/year; <strong>Plan 4 (Scotland)</strong> — £32,745/year; <strong>Plan 5</strong> — £25,000/year. You repay 9% of income above the threshold. Postgraduate loans have a 6% rate above £21,000.</div>
+        <div class="faq-open-item">
+          <dt class="faq-open-q">When do I need to repay a Student Loan?</dt>
+          <dd class="faq-open-a">You only repay once your income exceeds your plan's threshold. For 2025/26: <strong>Plan 1</strong> — £26,065/year; <strong>Plan 2</strong> — £28,470/year; <strong>Plan 4 (Scotland)</strong> — £32,745/year; <strong>Plan 5</strong> — £25,000/year. You repay 9% of income above the threshold. Postgraduate loans have a 6% rate above £21,000.</dd>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-q">What is the 60% tax trap?<span class="faq-q-icon">+</span></button>
-          <div class="faq-a">If your income falls between £100,000 and £125,140, you lose £1 of Personal Allowance for every £2 earned above £100,000. Combined with the 40% Higher Rate tax, this creates an effective marginal rate of <strong>60%</strong> on earnings in this range. Common solutions include making pension contributions to bring taxable income below £100,000.</div>
+        <div class="faq-open-item">
+          <dt class="faq-open-q">What is the 60% tax trap?</dt>
+          <dd class="faq-open-a">If your income falls between £100,000 and £125,140, you lose £1 of Personal Allowance for every £2 earned above £100,000. Combined with the 40% Higher Rate tax, this creates an effective marginal rate of <strong>60%</strong> on earnings in this range. Common solutions include making pension contributions to bring taxable income below £100,000.</dd>
         </div>
 
-        <div class="faq-item">
-          <button class="faq-q">How is the effective tax rate different from the marginal rate?<span class="faq-q-icon">+</span></button>
-          <div class="faq-a">The <strong>marginal rate</strong> is the rate applied to your last pound of earnings (e.g. 40%). The <strong>effective rate</strong> is your total tax as a percentage of your gross salary — always lower because lower bands are taxed at lower rates. A £60,000 earner might have a 40% marginal rate but only a 24% effective rate, since most of their income is taxed at 20% or 0%.</div>
+        <div class="faq-open-item">
+          <dt class="faq-open-q">How is the effective tax rate different from the marginal rate?</dt>
+          <dd class="faq-open-a">The <strong>marginal rate</strong> is the rate applied to your last pound of earnings (e.g. 40%). The <strong>effective rate</strong> is your total tax as a percentage of your gross salary — always lower because lower bands are taxed at lower rates. A £60,000 earner might have a 40% marginal rate but only a 24% effective rate, since most of their income is taxed at 20% or 0%.</dd>
         </div>
 
-      </div>
+      </dl>
     </div>
   </div>
 
