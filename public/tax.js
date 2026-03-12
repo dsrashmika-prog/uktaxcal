@@ -520,8 +520,86 @@ document.querySelectorAll('.faq-q').forEach(btn => {
     const isOpen = item.classList.contains('open');
     // Close all
     document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    // Toggle clicked
-    if (!isOpen) item.classList.add('open');
   });
 });
 
+// ===================== INTERACTIVE WORKED EXAMPLE =====================
+function fmtEx(n) {
+  return '£' + Math.round(n).toLocaleString('en-GB');
+}
+
+function updateExample(gross) {
+  if (!gross || gross <= 0) return;
+
+  const PA = 12570;
+  const BASIC_LIMIT = 50270;
+  const HIGHER_LIMIT = 125140;
+
+  // Taper personal allowance above 100k
+  let pa = PA;
+  if (gross > 100000) {
+    pa = Math.max(0, PA - Math.floor((gross - 100000) / 2));
+  }
+
+  const taxable = Math.max(0, gross - pa);
+
+  // Income Tax
+  let tax = 0;
+  let topBand = '20%';
+  if (taxable > 0) {
+    const basic = Math.min(taxable, BASIC_LIMIT - PA);
+    tax += Math.max(0, basic) * 0.20;
+    if (taxable > (BASIC_LIMIT - PA)) {
+      const higher = Math.min(taxable - (BASIC_LIMIT - PA), HIGHER_LIMIT - BASIC_LIMIT);
+      tax += Math.max(0, higher) * 0.40;
+      topBand = '40%';
+    }
+    if (taxable > (HIGHER_LIMIT - PA)) {
+      const additional = taxable - (HIGHER_LIMIT - PA);
+      tax += Math.max(0, additional) * 0.45;
+      topBand = '45%';
+    }
+  }
+
+  // NI (2025/26 rates)
+  let ni = 0;
+  let niRate = '8%';
+  if (gross > 12570) {
+    const primary = Math.min(gross, 50270) - 12570;
+    ni += Math.max(0, primary) * 0.08;
+    if (gross > 50270) {
+      ni += (gross - 50270) * 0.02;
+      niRate = '8% / 2%';
+    }
+  }
+
+  const takeHome = gross - tax - ni;
+  const effectiveRate = ((tax + ni) / gross * 100).toFixed(1);
+
+  // Update DOM
+  document.getElementById('exSalaryDisplay').textContent = fmtEx(gross) + ' / year';
+  document.getElementById('exPersonalAllowance').textContent = fmtEx(pa);
+  document.getElementById('exTaxableIncome').textContent = fmtEx(taxable);
+  document.getElementById('exTaxRateLabel').textContent = 'Income Tax (up to ' + topBand + ')';
+  document.getElementById('exIncomeTax').textContent = '−' + fmtEx(tax);
+  document.getElementById('exNIRateLabel').textContent = 'National Insurance (' + niRate + ')';
+  document.getElementById('exNI').textContent = '−' + fmtEx(ni);
+  document.getElementById('exAnnualTakeHome').textContent = fmtEx(takeHome);
+  document.getElementById('exMonthlyTakeHome').textContent = fmtEx(takeHome / 12);
+  document.getElementById('exEffectiveRate').textContent = effectiveRate + '%';
+
+  // Tax trap warning
+  const warn = document.getElementById('exTaxTrapWarn');
+  if (warn) warn.style.display = (gross > 100000 && gross < 125140) ? 'block' : 'none';
+}
+
+// Wire up the input
+const exInput = document.getElementById('exampleSalaryInput');
+if (exInput) {
+  exInput.addEventListener('input', () => {
+    const val = parseFloat(exInput.value);
+    if (val > 0) updateExample(val);
+  });
+  // Run once on load with default
+  updateExample(40000);
+}
