@@ -3,8 +3,24 @@ import "./globals.css";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-    title: "NetPayHome – UK Tax Calculator",
-    description: "Calculate your take-home pay after income tax, national insurance, and more.",
+    title: "NetPayHome – UK Tax & Salary Calculator 2025/26",
+    description: "Free, accurate UK salary and take-home pay calculator. Covers Income Tax, National Insurance, Student Loans, Pension contributions and the 60% tax trap.",
+    keywords: ["UK tax calculator", "salary calculator UK", "take home pay", "income tax calculator", "wage calculator", "national insurance calculator", "tax trap"],
+    applicationName: "NetPayHome",
+    metadataBase: new URL('https://netpayhome.co.uk'),
+    openGraph: {
+        title: "NetPayHome – UK Tax & Salary Calculator 2025/26",
+        description: "Calculate your take-home pay after income tax, national insurance, student loans, and pensions.",
+        url: "https://netpayhome.co.uk",
+        siteName: "NetPayHome",
+        locale: "en_GB",
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "NetPayHome – UK Tax & Salary Calculator 2025/26",
+        description: "Calculate your take-home pay after tax, NI, and pension deductions.",
+    },
 };
 
 export default function RootLayout({

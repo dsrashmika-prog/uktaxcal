@@ -364,12 +364,12 @@ export default function Page() {
 
   <div class="faq-grid">
 
-    <!-- CARD 1: Income Tax Bands -->
-    <div class="faq-card">
-      <div class="faq-card-header">
+    <!-- SECTION 1: Income Tax Bands (no card) -->
+    <div class="faq-plain-section">
+      <div class="faq-plain-header">
         <span class="fch-icon">📊</span> Income Tax Bands 2025/26
       </div>
-      <div class="faq-card-body">
+      <div class="faq-plain-body">
         <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">
           UK Income Tax is charged in <strong>progressive bands</strong> — you only pay the higher rate on earnings <em>above</em> each threshold, never on your whole income.
         </p>
@@ -409,12 +409,12 @@ export default function Page() {
       </div>
     </div>
 
-    <!-- CARD 2: NI Contributions -->
-    <div class="faq-card">
-      <div class="faq-card-header">
+    <!-- SECTION 2: NI (no card) -->
+    <div class="faq-plain-section">
+      <div class="faq-plain-header">
         <span class="fch-icon">🛡️</span> National Insurance 2025/26
       </div>
-      <div class="faq-card-body">
+      <div class="faq-plain-body">
         <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">
           National Insurance (NI) contributions fund the NHS and State Pension. In 2025/26, the employee rate was cut to <strong>8%</strong> on earnings between the Primary Threshold and Upper Earnings Limit.
         </p>
@@ -495,12 +495,12 @@ export default function Page() {
       </div>
     </div>
 
-    <!-- CARD 4: Scottish Tax Bands-->
-    <div class="faq-card">
-      <div class="faq-card-header">
+    <!-- SECTION 4: Scottish Tax Bands (no card) -->
+    <div class="faq-plain-section">
+      <div class="faq-plain-header">
         <span class="fch-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span> Scottish Income Tax Bands 2025/26
       </div>
-      <div class="faq-card-body">
+      <div class="faq-plain-body">
         <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">
           Scotland has its own income tax rates, with <strong>six bands</strong> compared to England's three. Scottish taxpayers pay less tax on lower incomes but slightly more at higher incomes.
         </p>
@@ -522,12 +522,12 @@ export default function Page() {
 
   </div>
 
-  <!-- FAQ Open Table -->
-  <div class="faq-card" style="margin-bottom:0;">
-    <div class="faq-card-header">
+  <!-- FAQ Open Table (no card) -->
+  <div class="faq-plain-section" style="margin-bottom:0;">
+    <div class="faq-plain-header">
       <span class="fch-icon">❓</span> Frequently Asked Questions
     </div>
-    <div class="faq-card-body" style="padding:0;">
+    <div style="padding:0;">
       <dl class="faq-open-list">
 
         <div class="faq-open-item">
@@ -643,19 +643,12 @@ export default function Page() {
         <div class="footer-col-title">Quick Links</div>
         <ul class="footer-links">
           <li><a href="/">Calculator</a></li>
-          <li><a href="/salary-guide">Salary Guide</a></li>
-          <li><a href="/how-to">How It Works</a></li>
-          <li><a href="/about">About</a></li>
         </ul>
       </div>
 
-      <!-- Legal -->
+      <!-- Legal Placeholder -->
       <div>
-        <div class="footer-col-title">Legal</div>
-        <ul class="footer-links">
-          <li><a href="/privacy">Privacy Policy</a></li>
-          <li><a href="/sources">Data Sources</a></li>
-        </ul>
+        <!-- Removed broken Legal links -->
       </div>
 
     </div>
