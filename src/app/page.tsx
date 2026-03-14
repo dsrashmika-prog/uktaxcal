@@ -5,7 +5,7 @@ export default function Page() {
 
 <header>
   <div class="header-inner">
-    <a class="logo" href="#">
+    <a class="logo" href="/">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 185 42" fill="none" style="height:38px;width:auto;">
         <!-- Wordmark: NetPayHome -->
         <text font-family="'DM Sans',Arial,sans-serif" font-weight="800" font-size="20" letter-spacing="-0.4">
@@ -15,9 +15,21 @@ export default function Page() {
         <text x="1" y="36" font-family="'DM Sans',Arial,sans-serif" font-size="8.5" font-weight="600" fill="rgba(255,255,255,0.45)" letter-spacing="2">UK TAX CALCULATOR</text>
       </svg>
     </a>
-    <div class="tax-year-badge" id="headerYearBadge">2025 / 26</div>
+    <div class="header-right">
+      <div class="tax-year-badge" id="headerYearBadge">2025 / 26</div>
+    </div>
   </div>
 </header>
+
+<nav class="tool-nav">
+  <div class="tool-nav-inner">
+    <a class="tool-nav-link active" href="/">&#127919; Full Calculator</a>
+    <div class="tool-nav-divider"></div>
+    <a class="tool-nav-link" href="/quick-calc">&#9889; Quick Calculator</a>
+    <div class="tool-nav-divider"></div>
+    <a class="tool-nav-link" href="/tax-code">&#128221; Tax Code Checker</a>
+  </div>
+</nav>
 
 <div class="main">
   <div class="page-title">
@@ -446,54 +458,6 @@ export default function Page() {
       </div>
     </div>
 
-    <!-- CARD 3: Interactive Worked Example -->
-    <div class="faq-card">
-      <div class="faq-card-header">
-        <span class="fch-icon">💡</span> Interactive Example — Enter Any Salary
-      </div>
-      <div class="faq-card-body" style="padding:0;">
-        <!-- Salary Input Row -->
-        <div style="padding:16px 20px;background:var(--light);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
-          <span style="font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap;">Annual Salary:</span>
-          <div style="display:flex;align-items:center;background:white;border:2px solid var(--teal);border-radius:8px;flex:1;padding:0 10px;">
-            <span style="color:var(--teal);font-size:18px;font-weight:800;margin-right:4px;">£</span>
-            <input
-              type="number"
-              id="exampleSalaryInput"
-              placeholder="40000"
-              min="0"
-              max="9999999"
-              style="background:none;border:none;outline:none;width:100%;font-size:17px;font-weight:700;color:var(--navy);font-family:'DM Sans',sans-serif;padding:10px 0;"
-            >
-          </div>
-        </div>
-        <div class="example-card" style="border-radius:0;">
-          <div class="example-title">2025/26 — Standard Tax Code 1257L</div>
-          <div class="example-salary" id="exSalaryDisplay">£40,000 / year</div>
-          <div class="example-rows">
-            <div class="ex-row"><span class="ex-label">Personal Allowance (tax-free)</span><span class="ex-val" id="exPersonalAllowance">£12,570</span></div>
-            <div class="ex-row"><span class="ex-label">Taxable Income</span><span class="ex-val" id="exTaxableIncome">£27,430</span></div>
-            <div class="ex-row"><span class="ex-label" id="exTaxRateLabel">Income Tax</span><span class="ex-val deduction" id="exIncomeTax">−£5,486</span></div>
-            <div class="ex-row"><span class="ex-label" id="exNIRateLabel">National Insurance</span><span class="ex-val deduction" id="exNI">−£2,234</span></div>
-            <div class="ex-row" style="margin-top:4px;border-top:1px solid rgba(255,255,255,0.2);padding-top:10px;">
-              <span class="ex-label" style="color:white;font-weight:600;">Annual Take-Home</span>
-              <span class="ex-val takehome" id="exAnnualTakeHome">£32,280</span>
-            </div>
-            <div class="ex-row">
-              <span class="ex-label">Monthly Take-Home</span>
-              <span class="ex-val takehome" id="exMonthlyTakeHome">£2,690</span>
-            </div>
-            <div class="ex-row">
-              <span class="ex-label">Effective Tax Rate</span>
-              <span class="ex-val" id="exEffectiveRate" style="color:rgba(255,255,255,0.8);">19.3%</span>
-            </div>
-          </div>
-          <div id="exTaxTrapWarn" style="display:none;margin-top:14px;padding:10px 12px;background:rgba(245,166,35,0.15);border:1px solid rgba(245,166,35,0.4);border-radius:7px;font-size:12px;color:#f5c842;line-height:1.6;">
-            ⚠️ <strong>Tax Trap:</strong> Your salary sits in the £100k–£125,140 taper zone. You face an effective 60% marginal rate here.
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- SECTION 4: Scottish Tax Bands (no card) -->
     <div class="faq-plain-section">
@@ -640,9 +604,11 @@ export default function Page() {
 
       <!-- Quick Links -->
       <div>
-        <div class="footer-col-title">Quick Links</div>
+        <div class="footer-col-title">Tools</div>
         <ul class="footer-links">
-          <li><a href="/">Calculator</a></li>
+          <li><a href="/">Full Calculator</a></li>
+          <li><a href="/quick-calc">Quick Calculator</a></li>
+          <li><a href="/tax-code">Tax Code Checker</a></li>
         </ul>
       </div>
 

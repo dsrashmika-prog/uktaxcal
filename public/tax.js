@@ -442,76 +442,79 @@ function doCalculate() {
 }
 
 // ===================== EVENT LISTENERS =====================
-document.getElementById('calcBtn').addEventListener('click', doCalculate);
+// Only bind main-calculator events when those elements exist (not on /quick-calc)
+if (document.getElementById('calcBtn')) {
+  document.getElementById('calcBtn').addEventListener('click', doCalculate);
 
-// Period tabs
-document.querySelectorAll('.period-tab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.period-tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    state.period = btn.dataset.period;
-    const placeholders = { annual: '35,000', monthly: '2,917', twoweekly: '1,346', weekly: '673', hourly: '16.83' };
-    const labels = { annual: 'Annual Gross Salary', monthly: 'Monthly Gross Salary', twoweekly: '2-Weekly Gross Salary', weekly: 'Weekly Gross Salary', hourly: 'Hourly Rate' };
-    document.getElementById('salaryInput').placeholder = placeholders[btn.dataset.period] || '35,000';
-    document.querySelector('.salary-label').textContent = labels[btn.dataset.period] || 'Annual Gross Salary';
+  // Period tabs
+  document.querySelectorAll('.period-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.period-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.period = btn.dataset.period;
+      const placeholders = { annual: '35,000', monthly: '2,917', twoweekly: '1,346', weekly: '673', hourly: '16.83' };
+      const labels = { annual: 'Annual Gross Salary', monthly: 'Monthly Gross Salary', twoweekly: '2-Weekly Gross Salary', weekly: 'Weekly Gross Salary', hourly: 'Hourly Rate' };
+      document.getElementById('salaryInput').placeholder = placeholders[btn.dataset.period] || '35,000';
+      document.querySelector('.salary-label').textContent = labels[btn.dataset.period] || 'Annual Gross Salary';
+    });
   });
-});
 
-// Tax year buttons
-document.querySelectorAll('.year-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    state.selectedYear = parseInt(btn.dataset.year);
-    const labels = { 2023: '2023/24', 2024: '2024/25', 2025: '2025/26', 2026: '2026/27' };
-    document.getElementById('headerYearBadge').textContent = labels[state.selectedYear];
+  // Tax year buttons
+  document.querySelectorAll('.year-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.selectedYear = parseInt(btn.dataset.year);
+      const labels = { 2023: '2023/24', 2024: '2024/25', 2025: '2025/26', 2026: '2026/27' };
+      document.getElementById('headerYearBadge').textContent = labels[state.selectedYear];
+    });
   });
-});
 
-// Result view tabs
-document.querySelectorAll('.rv-tab').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.rv-tab').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    state.resultView = btn.dataset.view;
-    if (state.lastResults) renderResults(state.lastResults);
+  // Result view tabs
+  document.querySelectorAll('.rv-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.rv-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.resultView = btn.dataset.view;
+      if (state.lastResults) renderResults(state.lastResults);
+    });
   });
-});
 
-// Accordion
-document.querySelectorAll('.accordion-trigger').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const targetId = btn.dataset.target;
-    const content = document.getElementById(targetId);
-    const isOpen = content.classList.contains('open');
-    content.classList.toggle('open', !isOpen);
-    btn.classList.toggle('open', !isOpen);
+  // Accordion
+  document.querySelectorAll('.accordion-trigger').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.dataset.target;
+      const content = document.getElementById(targetId);
+      const isOpen = content.classList.contains('open');
+      content.classList.toggle('open', !isOpen);
+      btn.classList.toggle('open', !isOpen);
+    });
   });
-});
 
-// Pension type
-document.querySelectorAll('.pension-type-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.pension-type-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('pension-pct-group').style.display = btn.dataset.ptype === 'percent' ? '' : 'none';
-    document.getElementById('pension-amt-group').style.display = btn.dataset.ptype === 'amount' ? '' : 'none';
+  // Pension type
+  document.querySelectorAll('.pension-type-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.pension-type-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('pension-pct-group').style.display = btn.dataset.ptype === 'percent' ? '' : 'none';
+      document.getElementById('pension-amt-group').style.display = btn.dataset.ptype === 'amount' ? '' : 'none';
+    });
   });
-});
 
-// Comparison toggle
-document.getElementById('comparisonToggle').addEventListener('change', function () {
-  document.getElementById('comparisonPanel').classList.toggle('visible', this.checked);
-  if (this.checked) updateComparison();
-});
+  // Comparison toggle
+  document.getElementById('comparisonToggle').addEventListener('change', function () {
+    document.getElementById('comparisonPanel').classList.toggle('visible', this.checked);
+    if (this.checked) updateComparison();
+  });
 
-document.getElementById('compSalaryA').addEventListener('input', updateComparison);
-document.getElementById('compSalaryB').addEventListener('input', updateComparison);
+  document.getElementById('compSalaryA').addEventListener('input', updateComparison);
+  document.getElementById('compSalaryB').addEventListener('input', updateComparison);
 
-// Enter key
-document.getElementById('salaryInput').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doCalculate();
-});
+  // Enter key
+  document.getElementById('salaryInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doCalculate();
+  });
+}
 
 // ===================== FAQ ACCORDION =====================
 document.querySelectorAll('.faq-q').forEach(btn => {
