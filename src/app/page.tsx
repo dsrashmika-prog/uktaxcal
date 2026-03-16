@@ -28,6 +28,8 @@ export default function Page() {
     <a class="tool-nav-link" href="/quick-calc">&#9889; Quick Calculator</a>
     <div class="tool-nav-divider"></div>
     <a class="tool-nav-link" href="/tax-code">&#128221; Tax Code Checker</a>
+    <div class="tool-nav-divider"></div>
+    <a class="tool-nav-link" href="/salary-comparison">&#9878; Salary Comparison</a>
   </div>
 </nav>
 
@@ -255,33 +257,24 @@ export default function Page() {
           <!-- RESULTS -->
           <div class="results-panel" id="resultsPanel">
 
-            <!-- TAKE-HOME COMPARISON TOGGLE -->
-            <div class="comparison-toggle-bar">
+            <!-- SALARY COMPARISON LINK -->
+            <a href="/salary-comparison" class="comparison-toggle-bar" style="text-decoration:none;display:flex;cursor:pointer;">
               <div class="toggle-info">
                 <h3>Take-Home Pay Comparison</h3>
                 <p>Compare two salaries side by side</p>
               </div>
-              <label class="toggle"><input type="checkbox" id="comparisonToggle"><span class="slider"></span></label>
-            </div>
+              <span style="display:flex;align-items:center;gap:6px;color:var(--teal);font-weight:600;font-size:13px;white-space:nowrap;">Open tool →</span>
+            </a>
 
-            <!-- COMPARISON PANEL -->
-            <div class="comparison-panel" id="comparisonPanel">
-              <div class="comparison-header">⚖️ Side-by-Side Comparison</div>
-              <div class="comparison-grid">
-                <div class="comparison-col">
-                  <div class="comp-col-label">Salary A</div>
-                  <div class="comp-salary-input"><span>£</span><input type="number" id="compSalaryA" placeholder="35000"></div>
-                  <div id="compResultsA"></div>
-                </div>
-                <div class="comparison-col">
-                  <div class="comp-col-label">Salary B</div>
-                  <div class="comp-salary-input"><span>£</span><input type="number" id="compSalaryB" placeholder="45000"></div>
-                  <div id="compResultsB"></div>
-                </div>
-              </div>
-              <div class="comp-diff-bar" id="compDiff">
-                <span class="diff-placeholder">Enter both salaries to compare</span>
-              </div>
+            <!-- Hidden elements kept for JS compatibility -->
+            <div style="display:none">
+              <input type="checkbox" id="comparisonToggle">
+              <div id="comparisonPanel"></div>
+              <input type="number" id="compSalaryA">
+              <input type="number" id="compSalaryB">
+              <div id="compResultsA"></div>
+              <div id="compResultsB"></div>
+              <div id="compDiff"></div>
             </div>
 
             <!-- TAKEHOME HERO -->
@@ -609,6 +602,7 @@ export default function Page() {
           <li><a href="/">Full Calculator</a></li>
           <li><a href="/quick-calc">Quick Calculator</a></li>
           <li><a href="/tax-code">Tax Code Checker</a></li>
+          <li><a href="/salary-comparison">Salary Comparison</a></li>
         </ul>
       </div>
 

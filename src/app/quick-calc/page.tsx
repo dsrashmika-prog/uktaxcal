@@ -26,6 +26,8 @@ export default function QuickCalcPage() {
     <a class="tool-nav-link active" href="/quick-calc">&#9889; Quick Calculator</a>
     <div class="tool-nav-divider"></div>
     <a class="tool-nav-link" href="/tax-code">&#128221; Tax Code Checker</a>
+    <div class="tool-nav-divider"></div>
+    <a class="tool-nav-link" href="/salary-comparison">&#9878; Salary Comparison</a>
   </div>
 </nav>
 
@@ -115,6 +117,7 @@ export default function QuickCalcPage() {
           <li><a href="/">Full Calculator</a></li>
           <li><a href="/quick-calc">Quick Calculator</a></li>
           <li><a href="/tax-code">Tax Code Checker</a></li>
+          <li><a href="/salary-comparison">Salary Comparison</a></li>
         </ul>
       </div>
       <div></div>

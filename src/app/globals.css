@@ -1436,15 +1436,29 @@ select.form-control {
     padding: 0 14px;
   }
 
-  /* Tool nav: tighter on small screens */
+  /* Tool nav: tighter on small screens with scroll hint */
+  .tool-nav {
+    position: relative;
+  }
+  .tool-nav::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 32px;
+    background: linear-gradient(to right, rgba(10, 25, 55, 0), rgba(10, 25, 55, 0.95));
+    pointer-events: none;
+  }
+
   .tool-nav-inner {
-    padding: 0 14px;
-    gap: 2px;
+    padding: 0 14px 0 14px;
+    gap: 4px;
   }
 
   .tool-nav-link {
     font-size: 12px;
-    padding: 4px 10px;
+    padding: 6px 10px;
     gap: 5px;
   }
 

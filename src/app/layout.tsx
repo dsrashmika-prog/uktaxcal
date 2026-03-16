@@ -37,6 +37,7 @@ export default function RootLayout({
                 {children}
                 <Script src="/tax.js" strategy="lazyOnload" />
                 <Script src="/taxcode.js" strategy="lazyOnload" />
+                <Script src="/comparison.js" strategy="lazyOnload" />
             </body>
         </html>
     );
