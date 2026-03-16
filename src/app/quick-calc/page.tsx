@@ -1,3 +1,13 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Quick UK Tax Calculator 2025/26 - NetPayHome',
+  description: 'Instantly see your take-home pay, income tax, and National Insurance for the 2025/26 tax year with our quick UK tax calculator.',
+  alternates: {
+    canonical: '/quick-calc',
+  },
+};
+
 export default function QuickCalcPage() {
   return (
     <div dangerouslySetInnerHTML={{

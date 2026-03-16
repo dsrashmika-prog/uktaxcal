@@ -1,3 +1,13 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'NetPayHome – UK Tax & Salary Calculator 2025/26',
+  description: 'Calculate your take-home pay after income tax, national insurance, student loans, and pensions.',
+  alternates: {
+    canonical: '/',
+  },
+};
+
 export default function Page() {
   return (
     <div dangerouslySetInnerHTML={{

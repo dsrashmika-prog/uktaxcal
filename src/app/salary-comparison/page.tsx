@@ -1,3 +1,13 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Take-Home Pay Salary Comparison - NetPayHome',
+  description: 'Compare two UK salaries side by side to see the difference in take-home pay, income tax, and National Insurance for 2025/26.',
+  alternates: {
+    canonical: '/salary-comparison',
+  },
+};
+
 export default function SalaryComparisonPage() {
   return (
     <div dangerouslySetInnerHTML={{

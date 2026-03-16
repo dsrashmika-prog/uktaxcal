@@ -1,3 +1,13 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'UK Tax Code Checker 2025/26 - NetPayHome',
+  description: 'Decode your UK tax code instantly. Understand your personal allowance, what your tax code means, and how to fix it if it is wrong.',
+  alternates: {
+    canonical: '/tax-code',
+  },
+};
+
 export default function TaxCodePage() {
   return (
     <div dangerouslySetInnerHTML={{
