@@ -109,6 +109,22 @@ export default function QuickCalcPage() {
 
 </div><!-- end quick-calc-page -->
 
+<!-- SEO Content Section to help the page rank -->
+<div style="max-width: 720px; margin: 0 auto; padding: 20px 24px 60px;">
+  <h2 style="font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">How to use the Quick UK Tax Calculator</h2>
+  <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
+    Our <strong>Quick UK Tax Calculator</strong> is designed to give you an instant estimate of your take-home pay for the 2025/26 tax year. Simply enter your annual salary, and the tool will instantly calculate your Income Tax and National Insurance deductions, providing you with your net pay per year and per month. This is perfect for a fast check when considering a new job offer or salary increase.
+  </p>
+  
+  <h2 style="font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">What are the 2025/26 Tax Rates?</h2>
+  <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px;">
+    For the 2025/26 tax year in the UK (excluding Scotland), the standard Personal Allowance is £12,570. This means you do not pay income tax on the first £12,570 you earn. Above this threshold, the basic rate of tax is 20%, the higher rate is 40% (starting at £50,271), and the additional rate is 45% (starting at £125,140).
+  </p>
+  <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
+    If you need a more detailed breakdown that includes Scottish tax rates, student loan repayments, pension contributions, or the 60% tax trap, please use our <a href="/" style="color: var(--teal); font-weight: 600; text-decoration: none;">Full UK Tax Calculator</a>.
+  </p>
+</div>
+
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-top">

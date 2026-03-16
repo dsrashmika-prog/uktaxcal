@@ -249,6 +249,25 @@ export default function TaxCodePage() {
 
 </div>
 
+<!-- SEO Content Section to help the page rank -->
+<div style="max-width: 900px; margin: 0 auto; padding: 20px 24px 60px;">
+  <h2 style="font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">Understanding Your UK Tax Code</h2>
+  <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px;">
+    Your tax code is used by your employer or pension provider to work out how much Income Tax to take from your pay or pension. HM Revenue and Customs (HMRC) tells them which code to use. The <strong>UK Tax Code Checker</strong> tool helps you decode your tax code instantly so you know exactly what your Personal Allowance is and if you are on an emergency tax code.
+  </p>
+  <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
+    The most common tax code for the 2025/26 tax year is <strong>1257L</strong>. This means you have the standard tax-free Personal Allowance of £12,570.
+  </p>
+  
+  <h2 style="font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">What if my tax code is wrong?</h2>
+  <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px;">
+    If you think your tax code is wrong (for example, you are lacking a tax-free allowance or are on a W1/M1 emergency code unexpectedly), you could be paying too much or too little tax. You should contact HMRC directly or use your personal tax account online to update your employment details.
+  </p>
+  <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
+    To see how your tax code affects your monthly pay packet, enter your salary and tax code into our <a href="/" style="color: var(--teal); font-weight: 600; text-decoration: none;">Full UK Tax Calculator</a>.
+  </p>
+</div>
+
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-top">

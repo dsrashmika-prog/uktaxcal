@@ -411,6 +411,25 @@ export default function SalaryComparisonPage() {
 }
 </style>
 
+<!-- SEO Content Section to help the page rank -->
+<div style="max-width: 900px; margin: 0 auto; padding: 20px 24px 60px;">
+  <h2 style="font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">How to use the Salary Comparison Calculator</h2>
+  <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px;">
+    Our <strong>Take-Home Pay Comparison Calculator</strong> lets you compare two UK salaries side by side. Whether you are considering a job offer, negotiating a pay rise, or just want to see how much extra money you would actually take home after tax, this tool provides an instant visual breakdown.
+  </p>
+  <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
+    Simply enter the two gross annual salaries you want to compare into the <strong>Salary A</strong> and <strong>Salary B</strong> fields. The calculator will instantly show the difference in your net pay, Income Tax, and National Insurance contributions for the 2025/26 tax year.
+  </p>
+  
+  <h2 style="font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">Why compare take-home pay instead of gross salary?</h2>
+  <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px;">
+    A £10,000 pay rise does not mean you get £10,000 more in your bank account. Because of the UK's progressive tax system, higher salaries are taxed at higher marginal rates (e.g., the 40% Higher Rate or the 45% Additional Rate). Furthermore, if your salary goes above £100,000, you begin to lose your Personal Allowance, creating the notorious 60% "tax trap".
+  </p>
+  <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
+    By comparing the <em>take-home</em> pay side by side, you can see exactly how much extra cash you will get per month. For a deeper analysis including pension deductions and student loans, use our <a href="/" style="color: var(--teal); font-weight: 600; text-decoration: none;">Full UK Tax Calculator</a>.
+  </p>
+</div>
+
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-top">
