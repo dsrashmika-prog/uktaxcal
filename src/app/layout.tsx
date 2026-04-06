@@ -3,13 +3,13 @@ import "./globals.css";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-    title: "UK Tax Code Checker 2025/26: Calculate Your Take-Home Pay Instantly.",
+    title: "UK Tax Code Checker 2025/26: Calculate Your Take-Home Pay Instantly",
     description: "Free, accurate UK salary and take-home pay calculator. Covers Income Tax, National Insurance, Student Loans, Pension contributions and the 60% tax trap.",
     keywords: ["UK tax calculator", "salary calculator UK", "take home pay", "income tax calculator", "wage calculator", "national insurance calculator", "tax trap"],
     applicationName: "NetPayHome",
     metadataBase: new URL('https://netpayhome.co.uk'),
     openGraph: {
-        title: "UK Tax Code Checker 2025/26: Calculate Your Take-Home Pay Instantly.",
+        title: "UK Tax Code Checker 2025/26: Calculate Your Take-Home Pay Instantly",
         description: "Calculate your take-home pay after income tax, national insurance, student loans, and pensions.",
         url: "https://netpayhome.co.uk",
         siteName: "NetPayHome",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "UK Tax Code Checker 2025/26: Calculate Your Take-Home Pay Instantly.",
+        title: "UK Tax Code Checker 2025/26: Calculate Your Take-Home Pay Instantly",
         description: "Calculate your take-home pay after tax, NI, and pension deductions.",
     },
 };
