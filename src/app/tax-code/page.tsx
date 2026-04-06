@@ -298,6 +298,71 @@ export default function TaxCodePage() {
   </div>
 </footer>
 
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does my UK tax code mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your UK tax code tells your employer how much Income Tax to deduct from your pay. The numbers indicate your tax-free Personal Allowance (e.g. 1257 means £12,570 per year) and the letter tells HMRC how that allowance should be applied. For example, L means the standard allowance, BR means all income is taxed at 20% Basic Rate, and K means you have a negative allowance due to unpaid tax or taxable benefits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the most common UK tax code for 2025/26?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most common tax code for the 2025/26 tax year is 1257L. This means you have the standard tax-free Personal Allowance of £12,570 per year, and you are taxed at the standard UK Income Tax rates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the BR tax code mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The BR tax code means all of your income from that job or pension is taxed at the Basic Rate of 20%. You receive no Personal Allowance on that income source. BR is commonly used for second jobs or additional pension income."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a K tax code mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A K tax code means you have a negative Personal Allowance. This happens when you have untaxed income — such as a company car benefit — added to your taxable income. The K prefix means more tax is deducted from your pay than would otherwise apply."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does an emergency tax code W1 or M1 mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An emergency tax code such as W1 (week 1) or M1 (month 1) means your tax is calculated on each pay period in isolation, not cumulatively across the year. This often happens when starting a new job without a P45. It can cause overpayment of tax and should be corrected through your Personal Tax Account on GOV.UK."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I fix a wrong tax code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The fastest way to fix a wrong tax code is to sign in to your Personal Tax Account on GOV.UK and update your employment details. HMRC will issue a corrected code to you and your employer within 15 working days. You can also call the HMRC Income Tax helpline on 0300 200 3300 (Mon–Fri 8am–6pm)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the S prefix on a tax code mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The S prefix (e.g. S1257L) means you are a Scottish taxpayer and Scottish Income Tax rates apply to your non-savings, non-dividend income. These rates are set by the Scottish Parliament and differ from the rest of the UK."
+      }
+    }
+  ]
+}
+</script>
+
 `}} />
   );
 }
