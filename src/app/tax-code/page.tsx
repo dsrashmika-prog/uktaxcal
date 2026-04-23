@@ -71,36 +71,36 @@ export default function TaxCodePage() {
     </div>
   </div>
 
-  <div class="tc-faq-section" style="max-width: 900px; margin: 40px auto 20px;">
-    <h2 style="font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 24px;">Frequently Asked Questions: UK Tax Codes 2026/27</h2>
+  <div class="tc-faq-section">
+    <h2>Frequently Asked Questions: UK Tax Codes 2026/27</h2>
     
-    <div class="tc-faq-item" style="margin-bottom: 24px;">
-      <h3 style="font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px;">1. What does the 1257L tax code mean for 2026?</h3>
-      <p style="font-size: 15px; color: var(--muted); line-height: 1.6;">The 1257L tax code is the most common code for the 2026/27 tax year. It signifies that you are entitled to the standard Personal Allowance of £12,570, which is the amount of income you can earn tax-free. If you see this code, it usually means you have one job and no taxable employer benefits.</p>
+    <div class="tc-faq-item">
+      <h3>1. What does the 1257L tax code mean for 2026?</h3>
+      <p>The 1257L tax code is the most common code for the 2026/27 tax year. It signifies that you are entitled to the standard Personal Allowance of £12,570, which is the amount of income you can earn tax-free. If you see this code, it usually means you have one job and no taxable employer benefits.</p>
     </div>
 
-    <div class="tc-faq-item" style="margin-bottom: 24px;">
-      <h3 style="font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px;">2. How do I know if my tax code is wrong?</h3>
-      <p style="font-size: 15px; color: var(--muted); line-height: 1.6;">Your tax code might be wrong if you’ve recently changed jobs, started receiving a company car, or have multiple sources of income. Common signs of an incorrect code include a sudden drop in take-home pay or being placed on an emergency tax code (like 1257L W1, M1, or X). Use our <a href="#tcInputField" style="color: var(--teal); font-weight: 600; text-decoration: none;">tax code calculator</a> above to verify your details.</p>
+    <div class="tc-faq-item">
+      <h3>2. How do I know if my tax code is wrong?</h3>
+      <p>Your tax code might be wrong if you’ve recently changed jobs, started receiving a company car, or have multiple sources of income. Common signs of an incorrect code include a sudden drop in take-home pay or being placed on an emergency tax code (like 1257L W1, M1, or X). Use our <a href="#tcInputField">tax code calculator</a> above to verify your details.</p>
     </div>
 
-    <div class="tc-faq-item" style="margin-bottom: 24px;">
-      <h3 style="font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px;">3. What should I do if I am overpaying tax?</h3>
-      <p style="font-size: 15px; color: var(--muted); line-height: 1.6;">If our checker suggests you are overpaying, you must contact HMRC to update your records. You can do this through your Personal Tax Account online or by calling the HMRC helpline. Once updated, HMRC will issue a new tax code to your employer, and any overpaid tax is usually refunded through your next payslip.</p>
+    <div class="tc-faq-item">
+      <h3>3. What should I do if I am overpaying tax?</h3>
+      <p>If our checker suggests you are overpaying, you must contact HMRC to update your records. You can do this through your Personal Tax Account online or by calling the HMRC helpline. Once updated, HMRC will issue a new tax code to your employer, and any overpaid tax is usually refunded through your next payslip.</p>
     </div>
 
-    <div class="tc-faq-item" style="margin-bottom: 24px;">
-      <h3 style="font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px;">4. Why do I have a 'BR' or 'K' tax code?</h3>
-      <p style="font-size: 15px; color: var(--muted); line-height: 1.6;"><strong>BR (Basic Rate):</strong> This usually happens if you have a second job or pension and your entire Personal Allowance is already used up by your main income.<br><br><strong>K Code:</strong> This means your untaxed income (like company benefits or state pension) is higher than your Personal Allowance. Effectively, you are being taxed on more than your total salary.</p>
+    <div class="tc-faq-item">
+      <h3>4. Why do I have a &apos;BR&apos; or &apos;K&apos; tax code?</h3>
+      <p><strong>BR (Basic Rate):</strong> This usually happens if you have a second job or pension and your entire Personal Allowance is already used up by your main income.<br/><br/><strong>K Code:</strong> This means your untaxed income (like company benefits or state pension) is higher than your Personal Allowance. Effectively, you are being taxed on more than your total salary.</p>
     </div>
 
-    <div class="tc-faq-item" style="margin-bottom: 24px;">
-      <h3 style="font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px;">5. How long does it take HMRC to change a tax code?</h3>
-      <p style="font-size: 15px; color: var(--muted); line-height: 1.6;">Once HMRC is notified of a change, it typically takes 5 to 10 working days for them to process the update and send a "P6" or "P9" notice to your employer. Your employer will then apply the new code in the next available payroll cycle.</p>
+    <div class="tc-faq-item">
+      <h3>5. How long does it take HMRC to change a tax code?</h3>
+      <p>Once HMRC is notified of a change, it typically takes 5 to 10 working days for them to process the update and send a &quot;P6&quot; or &quot;P9&quot; notice to your employer. Your employer will then apply the new code in the next available payroll cycle.</p>
     </div>
   </div>
 
-  <div class="tc-guide-section" style="margin-top: 0; margin-bottom: 40px;">
+  <div class="tc-guide-section">
     <div class="tc-guide-header" style="margin-bottom:20px;">
       <div class="tc-guide-icon">&#128203;</div>
       <div>
@@ -114,7 +114,7 @@ export default function TaxCodePage() {
       </thead>
       <tbody>
         <tr><td><span class="tc-code-pill">L</span></td><td>Standard Personal Allowance (most common code)</td><td class="tc-yes">Yes &#8212; standard</td></tr>
-        <tr><td><span class="tc-code-pill">M</span></td><td>Received 10% of partner's allowance via Marriage Allowance</td><td class="tc-yes">Yes &#8212; increased</td></tr>
+        <tr><td><span class="tc-code-pill">M</span></td><td>Received 10% of partner&apos;s allowance via Marriage Allowance</td><td class="tc-yes">Yes &#8212; increased</td></tr>
         <tr><td><span class="tc-code-pill">N</span></td><td>Transferred 10% of your allowance to your partner</td><td class="tc-yes">Yes &#8212; reduced</td></tr>
         <tr><td><span class="tc-code-pill">T</span></td><td>Other calculations apply; HMRC reviewing your affairs</td><td class="tc-yes">Depends</td></tr>
         <tr><td><span class="tc-code-pill">0T</span></td><td>No Personal Allowance &#8212; emergency code, new job without P45</td><td class="tc-no">No</td></tr>
