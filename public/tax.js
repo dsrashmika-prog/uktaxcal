@@ -564,7 +564,7 @@ function updateExample(gross) {
     }
   }
 
-  // NI (2025/26 rates)
+  // NI (2026/27 rates)
   let ni = 0;
   let niRate = '8%';
   if (gross > 12570) {
