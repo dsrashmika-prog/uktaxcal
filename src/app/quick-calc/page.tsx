@@ -31,11 +31,11 @@ export default function QuickCalcPage() {
 
 <nav class="tool-nav">
   <div class="tool-nav-inner">
-    <a class="tool-nav-link" href="/">&#127919; Full Calculator</a>
+    <a class="tool-nav-link" href="/full-calc">&#127919; Full Calculator</a>
     <div class="tool-nav-divider"></div>
     <a class="tool-nav-link active" href="/quick-calc">&#9889; Quick Calculator</a>
     <div class="tool-nav-divider"></div>
-    <a class="tool-nav-link" href="/tax-code">&#128221; Tax Code Checker</a>
+    <a class="tool-nav-link" href="/">&#128221; Tax Code Checker</a>
     <div class="tool-nav-divider"></div>
     <a class="tool-nav-link" href="/salary-comparison">&#9878; Salary Comparison</a>
   </div>
@@ -101,7 +101,7 @@ export default function QuickCalcPage() {
       <span style="font-size:18px;">🧮</span>
       <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0;">
         Want a more detailed breakdown with pension, student loans and more?
-        <a href="/" style="color:var(--teal);font-weight:600;text-decoration:none;">Use the full calculator →</a>
+        <a href="/full-calc" style="color:var(--teal);font-weight:600;text-decoration:none;">Use the full calculator →</a>
       </p>
     </div>
 
@@ -121,7 +121,7 @@ export default function QuickCalcPage() {
     For the 2026/27 tax year in the UK (excluding Scotland), the standard Personal Allowance is £12,570. This means you do not pay income tax on the first £12,570 you earn. Above this threshold, the basic rate of tax is 20%, the higher rate is 40% (starting at £50,271), and the additional rate is 45% (starting at £125,140).
   </p>
   <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
-    If you need a more detailed breakdown that includes Scottish tax rates, student loan repayments, pension contributions, or the 60% tax trap, please use our <a href="/" style="color: var(--teal); font-weight: 600; text-decoration: none;">Full UK Tax Calculator</a>.
+    If you need a more detailed breakdown that includes Scottish tax rates, student loan repayments, pension contributions, or the 60% tax trap, please use our <a href="/full-calc" style="color: var(--teal); font-weight: 600; text-decoration: none;">Full UK Tax Calculator</a>.
   </p>
 </div>
 
@@ -140,9 +140,9 @@ export default function QuickCalcPage() {
       <div>
         <div class="footer-col-title">Tools</div>
         <ul class="footer-links">
-          <li><a href="/">Full Calculator</a></li>
+          <li><a href="/full-calc">Full Calculator</a></li>
           <li><a href="/quick-calc">Quick Calculator</a></li>
-          <li><a href="/tax-code">Tax Code Checker</a></li>
+          <li><a href="/">Tax Code Checker</a></li>
           <li><a href="/salary-comparison">Salary Comparison</a></li>
         </ul>
       </div>

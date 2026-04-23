@@ -31,11 +31,11 @@ export default function SalaryComparisonPage() {
 
 <nav class="tool-nav">
   <div class="tool-nav-inner">
-    <a class="tool-nav-link" href="/">&#127919; Full Calculator</a>
+    <a class="tool-nav-link" href="/full-calc">&#127919; Full Calculator</a>
     <div class="tool-nav-divider"></div>
     <a class="tool-nav-link" href="/quick-calc">&#9889; Quick Calculator</a>
     <div class="tool-nav-divider"></div>
-    <a class="tool-nav-link" href="/tax-code">&#128221; Tax Code Checker</a>
+    <a class="tool-nav-link" href="/">&#128221; Tax Code Checker</a>
     <div class="tool-nav-divider"></div>
     <a class="tool-nav-link active" href="/salary-comparison">&#9878; Salary Comparison</a>
   </div>
@@ -146,7 +146,7 @@ export default function SalaryComparisonPage() {
     <span style="font-size:22px;">🧮</span>
     <p style="font-size:13px;color:var(--muted);line-height:1.6;margin:0;">
       Want a full breakdown with pension, student loans and more?
-      <a href="/" style="color:var(--teal);font-weight:600;text-decoration:none;">Use the full calculator →</a>
+      <a href="/full-calc" style="color:var(--teal);font-weight:600;text-decoration:none;">Use the full calculator →</a>
     </p>
   </div>
 
@@ -426,7 +426,7 @@ export default function SalaryComparisonPage() {
     A £10,000 pay rise does not mean you get £10,000 more in your bank account. Because of the UK's progressive tax system, higher salaries are taxed at higher marginal rates (e.g., the 40% Higher Rate or the 45% Additional Rate). Furthermore, if your salary goes above £100,000, you begin to lose your Personal Allowance, creating the notorious 60% "tax trap".
   </p>
   <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
-    By comparing the <em>take-home</em> pay side by side, you can see exactly how much extra cash you will get per month. For a deeper analysis including pension deductions and student loans, use our <a href="/" style="color: var(--teal); font-weight: 600; text-decoration: none;">Full UK Tax Calculator</a>.
+    By comparing the <em>take-home</em> pay side by side, you can see exactly how much extra cash you will get per month. For a deeper analysis including pension deductions and student loans, use our <a href="/full-calc" style="color: var(--teal); font-weight: 600; text-decoration: none;">Full UK Tax Calculator</a>.
   </p>
 </div>
 
@@ -445,9 +445,9 @@ export default function SalaryComparisonPage() {
       <div>
         <div class="footer-col-title">Tools</div>
         <ul class="footer-links">
-          <li><a href="/">Full Calculator</a></li>
+          <li><a href="/full-calc">Full Calculator</a></li>
           <li><a href="/quick-calc">Quick Calculator</a></li>
-          <li><a href="/tax-code">Tax Code Checker</a></li>
+          <li><a href="/">Tax Code Checker</a></li>
           <li><a href="/salary-comparison">Salary Comparison</a></li>
         </ul>
       </div>
