@@ -71,6 +71,62 @@ export default function TaxCodePage() {
     </div>
   </div>
 
+  <div class="tc-result-panel" id="tcResultPanel">
+    <div class="tc-allowance-hero">
+      <div class="tc-ah-left">
+        <div class="tc-ah-label">Tax Code</div>
+        <div class="tc-ah-code" id="tcDisplayCode">1257L</div>
+      </div>
+      <div class="tc-ah-divider"></div>
+      <div class="tc-ah-right">
+        <div class="tc-ah-label">Personal Allowance</div>
+        <div class="tc-ah-amount" id="tcAllowanceAmt">&#163;12,570</div>
+        <div class="tc-ah-sublabel" id="tcAllowanceSub">per year, tax-free</div>
+      </div>
+    </div>
+
+    <div class="tc-breakdown-card">
+      <div class="tc-breakdown-header"><span>&#128161;</span> What This Code Means</div>
+      <div class="tc-breakdown-body">
+        <div id="tcNumberMeaning" class="tc-meaning-row" style="display:none;">
+          <div class="tcm-icon">&#128290;</div>
+          <div>
+            <div class="tcm-title" id="tcNumberTitle">Numbers</div>
+            <div class="tcm-desc" id="tcNumberDesc"></div>
+          </div>
+        </div>
+        <div id="tcLetterMeaning" class="tc-meaning-row">
+          <div class="tcm-icon">&#128290;</div>
+          <div>
+            <div class="tcm-title" id="tcLetterTitle">Letter</div>
+            <div class="tcm-desc" id="tcLetterDesc"></div>
+          </div>
+        </div>
+        <div id="tcPrefixMeaning" class="tc-meaning-row" style="display:none;">
+          <div class="tcm-icon">&#128205;</div>
+          <div>
+            <div class="tcm-title">Location Prefix</div>
+            <div class="tcm-desc" id="tcPrefixDesc"></div>
+          </div>
+        </div>
+        <div id="tcEmergencyNote" class="tc-warning-row" style="display:none;">
+          <div class="tcm-icon">&#9888;&#65039;</div>
+          <div>
+            <div class="tcm-title" style="color:#b7850a;">Emergency / Temporary Code</div>
+            <div class="tcm-desc" id="tcEmergencyDesc"></div>
+          </div>
+        </div>
+        <div class="tc-meaning-row" style="border-top:1px solid var(--border);padding-top:14px;">
+          <div class="tcm-icon">&#128176;</div>
+          <div>
+            <div class="tcm-title">Tax You&apos;ll Pay</div>
+            <div class="tcm-desc" id="tcTaxNoteText"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="tc-faq-section">
     <h2>Frequently Asked Questions: UK Tax Codes 2026/27</h2>
     
@@ -130,61 +186,7 @@ export default function TaxCodePage() {
     </table>
   </div>
 
-  <div class="tc-result-panel" id="tcResultPanel">
-    <div class="tc-allowance-hero">
-      <div class="tc-ah-left">
-        <div class="tc-ah-label">Tax Code</div>
-        <div class="tc-ah-code" id="tcDisplayCode">1257L</div>
-      </div>
-      <div class="tc-ah-divider"></div>
-      <div class="tc-ah-right">
-        <div class="tc-ah-label">Personal Allowance</div>
-        <div class="tc-ah-amount" id="tcAllowanceAmt">&#163;12,570</div>
-        <div class="tc-ah-sublabel" id="tcAllowanceSub">per year, tax-free</div>
-      </div>
-    </div>
 
-    <div class="tc-breakdown-card">
-      <div class="tc-breakdown-header"><span>&#128161;</span> What This Code Means</div>
-      <div class="tc-breakdown-body">
-        <div id="tcNumberMeaning" class="tc-meaning-row" style="display:none;">
-          <div class="tcm-icon">&#128290;</div>
-          <div>
-            <div class="tcm-title" id="tcNumberTitle">Numbers</div>
-            <div class="tcm-desc" id="tcNumberDesc"></div>
-          </div>
-        </div>
-        <div id="tcLetterMeaning" class="tc-meaning-row">
-          <div class="tcm-icon">&#128290;</div>
-          <div>
-            <div class="tcm-title" id="tcLetterTitle">Letter</div>
-            <div class="tcm-desc" id="tcLetterDesc"></div>
-          </div>
-        </div>
-        <div id="tcPrefixMeaning" class="tc-meaning-row" style="display:none;">
-          <div class="tcm-icon">&#128205;</div>
-          <div>
-            <div class="tcm-title">Location Prefix</div>
-            <div class="tcm-desc" id="tcPrefixDesc"></div>
-          </div>
-        </div>
-        <div id="tcEmergencyNote" class="tc-warning-row" style="display:none;">
-          <div class="tcm-icon">&#9888;&#65039;</div>
-          <div>
-            <div class="tcm-title" style="color:#b7850a;">Emergency / Temporary Code</div>
-            <div class="tcm-desc" id="tcEmergencyDesc"></div>
-          </div>
-        </div>
-        <div class="tc-meaning-row" style="border-top:1px solid var(--border);padding-top:14px;">
-          <div class="tcm-icon">&#128176;</div>
-          <div>
-            <div class="tcm-title">Tax You'll Pay</div>
-            <div class="tcm-desc" id="tcTaxNoteText"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="tc-section-divider"></div>
 
