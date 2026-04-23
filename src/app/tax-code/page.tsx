@@ -131,7 +131,7 @@ export default function TaxCodePage() {
 
   <div class="tc-guide-section">
     <div class="tc-guide-header">
-      <div class="tc-guide-icon">&#10060;</div>
+
       <div>
         <h2>What To Do If Your Tax Code Is Wrong</h2>
         <p>Source: <a href="https://www.gov.uk/tax-codes/how-to-update-your-tax-code" target="_blank" rel="noopener">gov.uk/tax-codes</a></p>
