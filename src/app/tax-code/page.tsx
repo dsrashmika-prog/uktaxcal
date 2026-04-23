@@ -157,8 +157,7 @@ export default function TaxCodePage() {
   </div>
 
   <div class="tc-guide-section">
-    <div class="tc-guide-header" style="margin-bottom:20px;">
-      <div class="tc-guide-icon">&#128203;</div>
+    <div class="tc-guide-header">
       <div>
         <h2>Common UK Tax Code Letters &#8212; Reference</h2>
         <p>Source: <a href="https://www.gov.uk/tax-codes/what-your-tax-code-means" target="_blank" rel="noopener">gov.uk &#8212; What your tax code means</a></p>
