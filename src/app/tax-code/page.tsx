@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'UK Tax Code Checker 2025/26: Calculate Your Take-Home Pay Instantly',
-  description: 'Decode your UK tax code instantly. Understand your personal allowance, what your tax code means, and how to fix it if it is wrong.',
+  title: 'UK Tax Code Checker 2026/27: Calculate Your Take-Home Pay Instantly',
+  description: 'Check if your 2026/27 tax code is correct with our instant calculator. If your code is wrong, follow our simple steps to claim overpaid tax or resolve underpayments with HMRC today.',
   alternates: {
     canonical: '/tax-code',
   },
@@ -24,7 +24,7 @@ export default function TaxCodePage() {
       </svg>
     </a>
     <div class="header-right">
-      <div class="tax-year-badge">2025 / 26</div>
+      <div class="tax-year-badge">2026 / 27</div>
     </div>
   </div>
 </header>
@@ -44,7 +44,7 @@ export default function TaxCodePage() {
 <div class="tc-page">
 
   <div class="page-title" style="margin-bottom:36px;">
-    <h1>UK Tax Code Checker</h1>
+    <h1>Free UK Tax Code Calculator & Guide (Updated for 2026/27)</h1>
     <p>Enter your tax code to instantly understand what it means, your personal allowance, and what to do if it&apos;s wrong.</p>
   </div>
 
@@ -256,7 +256,7 @@ export default function TaxCodePage() {
     Your tax code is used by your employer or pension provider to work out how much Income Tax to take from your pay or pension. HM Revenue and Customs (HMRC) tells them which code to use. The <strong>UK Tax Code Checker</strong> tool helps you decode your tax code instantly so you know exactly what your Personal Allowance is and if you are on an emergency tax code.
   </p>
   <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
-    The most common tax code for the 2025/26 tax year is <strong>1257L</strong>. This means you have the standard tax-free Personal Allowance of £12,570.
+    The most common tax code for the 2026/27 tax year is <strong>1257L</strong>. This means you have the standard tax-free Personal Allowance of £12,570.
   </p>
   
   <h2 style="font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">What if my tax code is wrong?</h2>
@@ -278,7 +278,7 @@ export default function TaxCodePage() {
           </text>
           <text x="1" y="36" font-family="'DM Sans',Arial,sans-serif" font-size="8.5" font-weight="600" fill="rgba(255,255,255,0.35)" letter-spacing="2">UK TAX CALCULATOR</text>
         </svg>
-        <p>Free, accurate UK salary and take-home pay calculator. Updated for 2025/26.</p>
+        <p>Free, accurate UK salary and take-home pay calculator. Updated for 2026/27.</p>
       </div>
       <div>
         <div class="footer-col-title">Tools</div>
@@ -292,8 +292,8 @@ export default function TaxCodePage() {
       <div></div>
     </div>
     <div class="footer-bottom">
-      <span>&#169; 2025 NetPayHome. For informational purposes only &#8212; not financial advice. Data sourced from <a href="https://www.gov.uk/tax-codes" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.4);text-decoration:none;">GOV.UK</a>.</span>
-      <span class="footer-badge">2025 / 26 Tax Year</span>
+      <span>&#169; 2026 NetPayHome. For informational purposes only &#8212; not financial advice. Data sourced from <a href="https://www.gov.uk/tax-codes" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.4);text-decoration:none;">GOV.UK</a>.</span>
+      <span class="footer-badge">2026 / 27 Tax Year</span>
     </div>
   </div>
 </footer>
@@ -313,10 +313,10 @@ export default function TaxCodePage() {
     },
     {
       "@type": "Question",
-      "name": "What is the most common UK tax code for 2025/26?",
+      "name": "What is the most common UK tax code for 2026/27?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The most common tax code for the 2025/26 tax year is 1257L. This means you have the standard tax-free Personal Allowance of £12,570 per year, and you are taxed at the standard UK Income Tax rates."
+        "text": "The most common tax code for the 2026/27 tax year is 1257L. This means you have the standard tax-free Personal Allowance of £12,570 per year, and you are taxed at the standard UK Income Tax rates."
       }
     },
     {

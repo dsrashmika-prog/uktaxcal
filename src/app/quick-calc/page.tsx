@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Quick UK Tax Calculator 2025/26 - NetPayHome',
-  description: 'Instantly see your take-home pay, income tax, and National Insurance for the 2025/26 tax year with our quick UK tax calculator.',
+  title: 'Quick UK Tax Calculator 2026/27 - NetPayHome',
+  description: 'Instantly see your take-home pay, income tax, and National Insurance for the 2026/27 tax year with our quick UK tax calculator.',
   alternates: {
     canonical: '/quick-calc',
   },
@@ -24,7 +24,7 @@ export default function QuickCalcPage() {
       </svg>
     </a>
     <div class="header-right">
-      <div class="tax-year-badge">2025 / 26</div>
+      <div class="tax-year-badge">2026 / 27</div>
     </div>
   </div>
 </header>
@@ -43,7 +43,7 @@ export default function QuickCalcPage() {
 
   <div class="page-title">
     <h1>Quick Tax Calculator</h1>
-    <p>Enter any salary to instantly see your take-home pay, tax and National Insurance — 2025/26 rates.</p>
+    <p>Enter any salary to instantly see your take-home pay, tax and National Insurance — 2026/27 rates.</p>
   </div>
 
   <div class="quick-calc-card">
@@ -71,7 +71,7 @@ export default function QuickCalcPage() {
 
     <!-- Result Card -->
     <div class="example-card" style="border-radius:0;margin:0;">
-      <div class="example-title">2025/26 — Standard Tax Code 1257L</div>
+      <div class="example-title">2026/27 — Standard Tax Code 1257L</div>
       <div class="example-salary" id="exSalaryDisplay">£40,000 / year</div>
       <div class="example-rows">
         <div class="ex-row"><span class="ex-label">Personal Allowance (tax-free)</span><span class="ex-val" id="exPersonalAllowance">£12,570</span></div>
@@ -113,12 +113,12 @@ export default function QuickCalcPage() {
 <div style="max-width: 720px; margin: 0 auto; padding: 20px 24px 60px;">
   <h2 style="font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">How to use the Quick UK Tax Calculator</h2>
   <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
-    Our <strong>Quick UK Tax Calculator</strong> is designed to give you an instant estimate of your take-home pay for the 2025/26 tax year. Simply enter your annual salary, and the tool will instantly calculate your Income Tax and National Insurance deductions, providing you with your net pay per year and per month. This is perfect for a fast check when considering a new job offer or salary increase.
+    Our <strong>Quick UK Tax Calculator</strong> is designed to give you an instant estimate of your take-home pay for the 2026/27 tax year. Simply enter your annual salary, and the tool will instantly calculate your Income Tax and National Insurance deductions, providing you with your net pay per year and per month. This is perfect for a fast check when considering a new job offer or salary increase.
   </p>
   
-  <h2 style="font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">What are the 2025/26 Tax Rates?</h2>
+  <h2 style="font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">What are the 2026/27 Tax Rates?</h2>
   <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px;">
-    For the 2025/26 tax year in the UK (excluding Scotland), the standard Personal Allowance is £12,570. This means you do not pay income tax on the first £12,570 you earn. Above this threshold, the basic rate of tax is 20%, the higher rate is 40% (starting at £50,271), and the additional rate is 45% (starting at £125,140).
+    For the 2026/27 tax year in the UK (excluding Scotland), the standard Personal Allowance is £12,570. This means you do not pay income tax on the first £12,570 you earn. Above this threshold, the basic rate of tax is 20%, the higher rate is 40% (starting at £50,271), and the additional rate is 45% (starting at £125,140).
   </p>
   <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
     If you need a more detailed breakdown that includes Scottish tax rates, student loan repayments, pension contributions, or the 60% tax trap, please use our <a href="/" style="color: var(--teal); font-weight: 600; text-decoration: none;">Full UK Tax Calculator</a>.
@@ -135,7 +135,7 @@ export default function QuickCalcPage() {
           </text>
           <text x="1" y="36" font-family="'DM Sans',Arial,sans-serif" font-size="8.5" font-weight="600" fill="rgba(255,255,255,0.35)" letter-spacing="2">UK TAX CALCULATOR</text>
         </svg>
-        <p>Free, accurate UK salary and take-home pay calculator. Covers Income Tax, National Insurance, Student Loans, Pension contributions, and more — updated for 2025/26.</p>
+        <p>Free, accurate UK salary and take-home pay calculator. Covers Income Tax, National Insurance, Student Loans, Pension contributions, and more — updated for 2026/27.</p>
       </div>
       <div>
         <div class="footer-col-title">Tools</div>
@@ -149,8 +149,8 @@ export default function QuickCalcPage() {
       <div></div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 NetPayHome. All rights reserved. For informational purposes only — not financial advice.</span>
-      <span class="footer-badge">2025 / 26 Tax Year</span>
+      <span>© 2026 NetPayHome. All rights reserved. For informational purposes only — not financial advice.</span>
+      <span class="footer-badge">2026 / 27 Tax Year</span>
     </div>
   </div>
 </footer>

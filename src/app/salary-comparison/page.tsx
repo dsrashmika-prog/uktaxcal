@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Take-Home Pay Salary Comparison - NetPayHome',
-  description: 'Compare two UK salaries side by side to see the difference in take-home pay, income tax, and National Insurance for 2025/26.',
+  description: 'Compare two UK salaries side by side to see the difference in take-home pay, income tax, and National Insurance for 2026/27.',
   alternates: {
     canonical: '/salary-comparison',
   },
@@ -24,7 +24,7 @@ export default function SalaryComparisonPage() {
       </svg>
     </a>
     <div class="header-right">
-      <div class="tax-year-badge">2025 / 26</div>
+      <div class="tax-year-badge">2026 / 27</div>
     </div>
   </div>
 </header>
@@ -43,7 +43,7 @@ export default function SalaryComparisonPage() {
 
 <div class="page-title">
   <h1>Take-Home Pay Comparison</h1>
-  <p>Compare two salaries side by side to see the difference in take-home pay, income tax, and National Insurance — 2025/26 rates.</p>
+  <p>Compare two salaries side by side to see the difference in take-home pay, income tax, and National Insurance — 2026/27 rates.</p>
 </div>
 
 <div class="salary-comp-page">
@@ -55,7 +55,7 @@ export default function SalaryComparisonPage() {
       <div class="tax-year-row">
         <button class="year-btn" data-year="2023">2023/24</button>
         <button class="year-btn" data-year="2024">2024/25</button>
-        <button class="year-btn active" data-year="2025">2025/26</button>
+        <button class="year-btn active" data-year="2026">2026/27</button>
         <button class="year-btn" data-year="2026">2026/27</button>
       </div>
     </div>
@@ -418,7 +418,7 @@ export default function SalaryComparisonPage() {
     Our <strong>Take-Home Pay Comparison Calculator</strong> lets you compare two UK salaries side by side. Whether you are considering a job offer, negotiating a pay rise, or just want to see how much extra money you would actually take home after tax, this tool provides an instant visual breakdown.
   </p>
   <p style="font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 24px;">
-    Simply enter the two gross annual salaries you want to compare into the <strong>Salary A</strong> and <strong>Salary B</strong> fields. The calculator will instantly show the difference in your net pay, Income Tax, and National Insurance contributions for the 2025/26 tax year.
+    Simply enter the two gross annual salaries you want to compare into the <strong>Salary A</strong> and <strong>Salary B</strong> fields. The calculator will instantly show the difference in your net pay, Income Tax, and National Insurance contributions for the 2026/27 tax year.
   </p>
   
   <h2 style="font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">Why compare take-home pay instead of gross salary?</h2>
@@ -440,7 +440,7 @@ export default function SalaryComparisonPage() {
           </text>
           <text x="1" y="36" font-family="'DM Sans',Arial,sans-serif" font-size="8.5" font-weight="600" fill="rgba(255,255,255,0.35)" letter-spacing="2">UK TAX CALCULATOR</text>
         </svg>
-        <p>Free, accurate UK salary and take-home pay calculator. Covers Income Tax, National Insurance, Student Loans, Pension contributions, and more — updated for 2025/26.</p>
+        <p>Free, accurate UK salary and take-home pay calculator. Covers Income Tax, National Insurance, Student Loans, Pension contributions, and more — updated for 2026/27.</p>
       </div>
       <div>
         <div class="footer-col-title">Tools</div>
@@ -454,8 +454,8 @@ export default function SalaryComparisonPage() {
       <div></div>
     </div>
     <div class="footer-bottom">
-      <span>© 2025 NetPayHome. All rights reserved. For informational purposes only — not financial advice.</span>
-      <span class="footer-badge">2025 / 26 Tax Year</span>
+      <span>© 2026 NetPayHome. All rights reserved. For informational purposes only — not financial advice.</span>
+      <span class="footer-badge">2026 / 27 Tax Year</span>
     </div>
   </div>
 </footer>

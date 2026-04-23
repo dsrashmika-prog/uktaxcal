@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'NetPayHome – UK Tax & Salary Calculator 2025/26',
+  title: 'NetPayHome – UK Tax & Salary Calculator 2026/27',
   description: 'Calculate your take-home pay after income tax, national insurance, student loans, and pensions.',
   alternates: {
     canonical: '/',
@@ -26,7 +26,7 @@ export default function Page() {
       </svg>
     </a>
     <div class="header-right">
-      <div class="tax-year-badge" id="headerYearBadge">2025 / 26</div>
+      <div class="tax-year-badge" id="headerYearBadge">2026 / 27</div>
     </div>
   </div>
 </header>
@@ -46,7 +46,7 @@ export default function Page() {
 <div class="main">
   <div class="page-title">
     <h1>UK Tax Calculator</h1>
-    <p>Calculate your take-home pay after income tax, national insurance, and more. Updated for 2025/2026 UK.</p>
+    <p>Calculate your take-home pay after income tax, national insurance, and more. Updated for 2026/2027 UK.</p>
   </div>
 
   <div class="layout">
@@ -81,7 +81,7 @@ export default function Page() {
             <div class="tax-year-row">
               <button class="year-btn" data-year="2023">2023/24</button>
               <button class="year-btn" data-year="2024">2024/25</button>
-              <button class="year-btn active" data-year="2025">2025/26</button>
+              <button class="year-btn active" data-year="2026">2026/27</button>
             </div>
           </div>
 
@@ -374,7 +374,7 @@ export default function Page() {
 
   <div class="faq-section-title">
     <h2>How Is UK Tax Calculated?</h2>
-    <p>A simple, visual guide to Income Tax, National Insurance and take-home pay for 2025/26.</p>
+    <p>A simple, visual guide to Income Tax, National Insurance and take-home pay for 2026/27.</p>
   </div>
 
   <div class="faq-grid">
@@ -382,7 +382,7 @@ export default function Page() {
     <!-- SECTION 1: Income Tax Bands (no card) -->
     <div class="faq-plain-section">
       <div class="faq-plain-header">
-        <span class="fch-icon">📊</span> Income Tax Bands 2025/26
+        <span class="fch-icon">📊</span> Income Tax Bands 2026/27
       </div>
       <div class="faq-plain-body">
         <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">
@@ -427,11 +427,11 @@ export default function Page() {
     <!-- SECTION 2: NI (no card) -->
     <div class="faq-plain-section">
       <div class="faq-plain-header">
-        <span class="fch-icon">🛡️</span> National Insurance 2025/26
+        <span class="fch-icon">🛡️</span> National Insurance 2026/27
       </div>
       <div class="faq-plain-body">
         <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">
-          National Insurance (NI) contributions fund the NHS and State Pension. In 2025/26, the employee rate was cut to <strong>8%</strong> on earnings between the Primary Threshold and Upper Earnings Limit.
+          National Insurance (NI) contributions fund the NHS and State Pension. In 2026/27, the employee rate was cut to <strong>8%</strong> on earnings between the Primary Threshold and Upper Earnings Limit.
         </p>
         <table class="faq-info-table">
           <thead>
@@ -465,7 +465,7 @@ export default function Page() {
     <!-- SECTION 4: Scottish Tax Bands (no card) -->
     <div class="faq-plain-section">
       <div class="faq-plain-header">
-        <span class="fch-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span> Scottish Income Tax Bands 2025/26
+        <span class="fch-icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span> Scottish Income Tax Bands 2026/27
       </div>
       <div class="faq-plain-body">
         <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6;">
@@ -499,7 +499,7 @@ export default function Page() {
 
         <div class="faq-open-item">
           <dt class="faq-open-q">What is the Personal Allowance and how does it work?</dt>
-          <dd class="faq-open-a">The Personal Allowance (£12,570 for 2025/26) is the amount you can earn each year completely tax-free. It applies before any Income Tax is calculated. If you earn over £100,000, your allowance is reduced by £1 for every £2 above that threshold — disappearing entirely at £125,140.</dd>
+          <dd class="faq-open-a">The Personal Allowance (£12,570 for 2026/27) is the amount you can earn each year completely tax-free. It applies before any Income Tax is calculated. If you earn over £100,000, your allowance is reduced by £1 for every £2 above that threshold — disappearing entirely at £125,140.</dd>
         </div>
 
         <div class="faq-open-item">
@@ -514,7 +514,7 @@ export default function Page() {
 
         <div class="faq-open-item">
           <dt class="faq-open-q">When do I need to repay a Student Loan?</dt>
-          <dd class="faq-open-a">You only repay once your income exceeds your plan's threshold. For 2025/26: <strong>Plan 1</strong> — £26,065/year; <strong>Plan 2</strong> — £28,470/year; <strong>Plan 4 (Scotland)</strong> — £32,745/year; <strong>Plan 5</strong> — £25,000/year. You repay 9% of income above the threshold. Postgraduate loans have a 6% rate above £21,000.</dd>
+          <dd class="faq-open-a">You only repay once your income exceeds your plan's threshold. For 2026/27: <strong>Plan 1</strong> — £26,065/year; <strong>Plan 2</strong> — £28,470/year; <strong>Plan 4 (Scotland)</strong> — £32,745/year; <strong>Plan 5</strong> — £25,000/year. You repay 9% of income above the threshold. Postgraduate loans have a 6% rate above £21,000.</dd>
         </div>
 
         <div class="faq-open-item">
@@ -543,7 +543,7 @@ export default function Page() {
       "name": "What is the Personal Allowance and how does it work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Personal Allowance (£12,570 for 2025/26) is the amount you can earn each year completely tax-free. If you earn over £100,000, your allowance is reduced by £1 for every £2 above that threshold, disappearing entirely at £125,140."
+        "text": "The Personal Allowance (£12,570 for 2026/27) is the amount you can earn each year completely tax-free. If you earn over £100,000, your allowance is reduced by £1 for every £2 above that threshold, disappearing entirely at £125,140."
       }
     },
     {
@@ -551,7 +551,7 @@ export default function Page() {
       "name": "What is a UK tax code and why does it matter?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Your tax code tells your employer how much tax-free income you are entitled to. The most common code is 1257L, giving the standard £12,570 Personal Allowance for 2025/26."
+        "text": "Your tax code tells your employer how much tax-free income you are entitled to. The most common code is 1257L, giving the standard £12,570 Personal Allowance for 2026/27."
       }
     },
     {
@@ -567,7 +567,7 @@ export default function Page() {
       "name": "When do I need to repay a Student Loan in the UK?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You repay 9% of income above your plan's threshold. For 2025/26: Plan 1 £26,065, Plan 2 £28,470, Plan 4 £32,745, Plan 5 £25,000. Postgraduate loans are repaid at 6% above £21,000."
+        "text": "You repay 9% of income above your plan's threshold. For 2026/27: Plan 1 £26,065, Plan 2 £28,470, Plan 4 £32,745, Plan 5 £25,000. Postgraduate loans are repaid at 6% above £21,000."
       }
     },
     {
@@ -602,7 +602,7 @@ export default function Page() {
           </text>
           <text x="1" y="36" font-family="'DM Sans',Arial,sans-serif" font-size="8.5" font-weight="600" fill="rgba(255,255,255,0.35)" letter-spacing="2">UK TAX CALCULATOR</text>
         </svg>
-        <p>Free, accurate UK salary and take-home pay calculator. Covers Income Tax, National Insurance, Student Loans, Pension contributions, and more — updated for 2025/26.</p>
+        <p>Free, accurate UK salary and take-home pay calculator. Covers Income Tax, National Insurance, Student Loans, Pension contributions, and more — updated for 2026/27.</p>
       </div>
 
       <!-- Quick Links -->
@@ -624,8 +624,8 @@ export default function Page() {
     </div>
 
     <div class="footer-bottom">
-      <span>© 2025 NetPayHome. All rights reserved. For informational purposes only — not financial advice.</span>
-      <span class="footer-badge">2025 / 26 Tax Year</span>
+      <span>© 2026 NetPayHome. All rights reserved. For informational purposes only — not financial advice.</span>
+      <span class="footer-badge">2026 / 27 Tax Year</span>
     </div>
   </div>
 </footer>

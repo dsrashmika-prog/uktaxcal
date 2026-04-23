@@ -112,7 +112,7 @@ const TAX_YEARS = {
 
 // ===================== STATE =====================
 let state = {
-  selectedYear: 2025,
+  selectedYear: 2026,
   period: 'annual',
   resultView: 'annual',
   lastResults: null

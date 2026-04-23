@@ -51,7 +51,7 @@ const COMP_TAX_YEARS = {
   },
 };
 
-let compState = { selectedYear: 2025 };
+let compState = { selectedYear: 2026 };
 
 function compFmt(n) {
   return '£' + Math.round(Math.abs(n)).toLocaleString('en-GB');
