@@ -71,6 +71,65 @@ export default function TaxCodePage() {
     </div>
   </div>
 
+  <div class="tc-faq-section" style="max-width: 900px; margin: 40px auto 20px;">
+    <h2 style="font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 24px;">Frequently Asked Questions: UK Tax Codes 2026/27</h2>
+    
+    <div class="tc-faq-item" style="margin-bottom: 24px;">
+      <h3 style="font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px;">1. What does the 1257L tax code mean for 2026?</h3>
+      <p style="font-size: 15px; color: var(--muted); line-height: 1.6;">The 1257L tax code is the most common code for the 2026/27 tax year. It signifies that you are entitled to the standard Personal Allowance of £12,570, which is the amount of income you can earn tax-free. If you see this code, it usually means you have one job and no taxable employer benefits.</p>
+    </div>
+
+    <div class="tc-faq-item" style="margin-bottom: 24px;">
+      <h3 style="font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px;">2. How do I know if my tax code is wrong?</h3>
+      <p style="font-size: 15px; color: var(--muted); line-height: 1.6;">Your tax code might be wrong if you’ve recently changed jobs, started receiving a company car, or have multiple sources of income. Common signs of an incorrect code include a sudden drop in take-home pay or being placed on an emergency tax code (like 1257L W1, M1, or X). Use our <a href="#tcInputField" style="color: var(--teal); font-weight: 600; text-decoration: none;">tax code calculator</a> above to verify your details.</p>
+    </div>
+
+    <div class="tc-faq-item" style="margin-bottom: 24px;">
+      <h3 style="font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px;">3. What should I do if I am overpaying tax?</h3>
+      <p style="font-size: 15px; color: var(--muted); line-height: 1.6;">If our checker suggests you are overpaying, you must contact HMRC to update your records. You can do this through your Personal Tax Account online or by calling the HMRC helpline. Once updated, HMRC will issue a new tax code to your employer, and any overpaid tax is usually refunded through your next payslip.</p>
+    </div>
+
+    <div class="tc-faq-item" style="margin-bottom: 24px;">
+      <h3 style="font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px;">4. Why do I have a 'BR' or 'K' tax code?</h3>
+      <p style="font-size: 15px; color: var(--muted); line-height: 1.6;"><strong>BR (Basic Rate):</strong> This usually happens if you have a second job or pension and your entire Personal Allowance is already used up by your main income.<br><br><strong>K Code:</strong> This means your untaxed income (like company benefits or state pension) is higher than your Personal Allowance. Effectively, you are being taxed on more than your total salary.</p>
+    </div>
+
+    <div class="tc-faq-item" style="margin-bottom: 24px;">
+      <h3 style="font-size: 18px; font-weight: 600; color: var(--navy); margin-bottom: 8px;">5. How long does it take HMRC to change a tax code?</h3>
+      <p style="font-size: 15px; color: var(--muted); line-height: 1.6;">Once HMRC is notified of a change, it typically takes 5 to 10 working days for them to process the update and send a "P6" or "P9" notice to your employer. Your employer will then apply the new code in the next available payroll cycle.</p>
+    </div>
+  </div>
+
+  <div class="tc-guide-section" style="margin-top: 0; margin-bottom: 40px;">
+    <div class="tc-guide-header" style="margin-bottom:20px;">
+      <div class="tc-guide-icon">&#128203;</div>
+      <div>
+        <h2>Common UK Tax Code Letters &#8212; Reference</h2>
+        <p>Source: <a href="https://www.gov.uk/tax-codes/what-your-tax-code-means" target="_blank" rel="noopener">gov.uk &#8212; What your tax code means</a></p>
+      </div>
+    </div>
+    <table class="tc-ref-table">
+      <thead>
+        <tr><th>Letter(s)</th><th>Meaning</th><th>Personal Allowance?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="tc-code-pill">L</span></td><td>Standard Personal Allowance (most common code)</td><td class="tc-yes">Yes &#8212; standard</td></tr>
+        <tr><td><span class="tc-code-pill">M</span></td><td>Received 10% of partner's allowance via Marriage Allowance</td><td class="tc-yes">Yes &#8212; increased</td></tr>
+        <tr><td><span class="tc-code-pill">N</span></td><td>Transferred 10% of your allowance to your partner</td><td class="tc-yes">Yes &#8212; reduced</td></tr>
+        <tr><td><span class="tc-code-pill">T</span></td><td>Other calculations apply; HMRC reviewing your affairs</td><td class="tc-yes">Depends</td></tr>
+        <tr><td><span class="tc-code-pill">0T</span></td><td>No Personal Allowance &#8212; emergency code, new job without P45</td><td class="tc-no">No</td></tr>
+        <tr><td><span class="tc-code-pill">BR</span></td><td>All income taxed at 20% Basic Rate &#8212; common for second jobs</td><td class="tc-no">No</td></tr>
+        <tr><td><span class="tc-code-pill">D0</span></td><td>All income taxed at 40% Higher Rate &#8212; additional jobs/pensions</td><td class="tc-no">No</td></tr>
+        <tr><td><span class="tc-code-pill">D1</span></td><td>All income taxed at 45% Additional Rate</td><td class="tc-no">No</td></tr>
+        <tr><td><span class="tc-code-pill">NT</span></td><td>No tax to pay on this income</td><td class="tc-no">N/A</td></tr>
+        <tr><td><span class="tc-code-pill">K</span></td><td>Negative allowance &#8212; unpaid tax, taxable benefits (e.g. company car) added to your taxable income</td><td class="tc-no">Negative</td></tr>
+        <tr><td><span class="tc-code-pill">S prefix</span></td><td>Scottish taxpayer &#8212; Scottish Income Tax rates apply</td><td class="tc-yes">Yes (Scottish)</td></tr>
+        <tr><td><span class="tc-code-pill">C prefix</span></td><td>Welsh taxpayer &#8212; Welsh rates of Income Tax apply</td><td class="tc-yes">Yes (Welsh)</td></tr>
+        <tr><td><span class="tc-code-pill">W1 / M1</span></td><td>Emergency code &#8212; tax calculated per pay period, not cumulatively</td><td class="tc-warn">Temporary</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <div class="tc-result-panel" id="tcResultPanel">
     <div class="tc-allowance-hero">
       <div class="tc-ah-left">
@@ -217,35 +276,7 @@ export default function TaxCodePage() {
     </div>
   </div>
 
-  <div class="tc-guide-section">
-    <div class="tc-guide-header" style="margin-bottom:20px;">
-      <div class="tc-guide-icon">&#128203;</div>
-      <div>
-        <h2>Common UK Tax Code Letters &#8212; Reference</h2>
-        <p>Source: <a href="https://www.gov.uk/tax-codes/what-your-tax-code-means" target="_blank" rel="noopener">gov.uk &#8212; What your tax code means</a></p>
-      </div>
-    </div>
-    <table class="tc-ref-table">
-      <thead>
-        <tr><th>Letter(s)</th><th>Meaning</th><th>Personal Allowance?</th></tr>
-      </thead>
-      <tbody>
-        <tr><td><span class="tc-code-pill">L</span></td><td>Standard Personal Allowance (most common code)</td><td class="tc-yes">Yes &#8212; standard</td></tr>
-        <tr><td><span class="tc-code-pill">M</span></td><td>Received 10% of partner's allowance via Marriage Allowance</td><td class="tc-yes">Yes &#8212; increased</td></tr>
-        <tr><td><span class="tc-code-pill">N</span></td><td>Transferred 10% of your allowance to your partner</td><td class="tc-yes">Yes &#8212; reduced</td></tr>
-        <tr><td><span class="tc-code-pill">T</span></td><td>Other calculations apply; HMRC reviewing your affairs</td><td class="tc-yes">Depends</td></tr>
-        <tr><td><span class="tc-code-pill">0T</span></td><td>No Personal Allowance &#8212; emergency code, new job without P45</td><td class="tc-no">No</td></tr>
-        <tr><td><span class="tc-code-pill">BR</span></td><td>All income taxed at 20% Basic Rate &#8212; common for second jobs</td><td class="tc-no">No</td></tr>
-        <tr><td><span class="tc-code-pill">D0</span></td><td>All income taxed at 40% Higher Rate &#8212; additional jobs/pensions</td><td class="tc-no">No</td></tr>
-        <tr><td><span class="tc-code-pill">D1</span></td><td>All income taxed at 45% Additional Rate</td><td class="tc-no">No</td></tr>
-        <tr><td><span class="tc-code-pill">NT</span></td><td>No tax to pay on this income</td><td class="tc-no">N/A</td></tr>
-        <tr><td><span class="tc-code-pill">K</span></td><td>Negative allowance &#8212; unpaid tax, taxable benefits (e.g. company car) added to your taxable income</td><td class="tc-no">Negative</td></tr>
-        <tr><td><span class="tc-code-pill">S prefix</span></td><td>Scottish taxpayer &#8212; Scottish Income Tax rates apply</td><td class="tc-yes">Yes (Scottish)</td></tr>
-        <tr><td><span class="tc-code-pill">C prefix</span></td><td>Welsh taxpayer &#8212; Welsh rates of Income Tax apply</td><td class="tc-yes">Yes (Welsh)</td></tr>
-        <tr><td><span class="tc-code-pill">W1 / M1</span></td><td>Emergency code &#8212; tax calculated per pay period, not cumulatively</td><td class="tc-warn">Temporary</td></tr>
-      </tbody>
-    </table>
-  </div>
+
 
 </div>
 
@@ -305,58 +336,42 @@ export default function TaxCodePage() {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What does my UK tax code mean?",
+      "name": "What does the 1257L tax code mean for 2026?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Your UK tax code tells your employer how much Income Tax to deduct from your pay. The numbers indicate your tax-free Personal Allowance (e.g. 1257 means £12,570 per year) and the letter tells HMRC how that allowance should be applied. For example, L means the standard allowance, BR means all income is taxed at 20% Basic Rate, and K means you have a negative allowance due to unpaid tax or taxable benefits."
+        "text": "The 1257L tax code is the most common code for the 2026/27 tax year. It signifies that you are entitled to the standard Personal Allowance of £12,570, which is the amount of income you can earn tax-free. If you see this code, it usually means you have one job and no taxable employer benefits."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the most common UK tax code for 2026/27?",
+      "name": "How do I know if my tax code is wrong?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The most common tax code for the 2026/27 tax year is 1257L. This means you have the standard tax-free Personal Allowance of £12,570 per year, and you are taxed at the standard UK Income Tax rates."
+        "text": "Your tax code might be wrong if you’ve recently changed jobs, started receiving a company car, or have multiple sources of income. Common signs of an incorrect code include a sudden drop in take-home pay or being placed on an emergency tax code (like 1257L W1, M1, or X). Use our tax code calculator above to verify your details."
       }
     },
     {
       "@type": "Question",
-      "name": "What does the BR tax code mean?",
+      "name": "What should I do if I am overpaying tax?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The BR tax code means all of your income from that job or pension is taxed at the Basic Rate of 20%. You receive no Personal Allowance on that income source. BR is commonly used for second jobs or additional pension income."
+        "text": "If our checker suggests you are overpaying, you must contact HMRC to update your records. You can do this through your Personal Tax Account online or by calling the HMRC helpline. Once updated, HMRC will issue a new tax code to your employer, and any overpaid tax is usually refunded through your next payslip."
       }
     },
     {
       "@type": "Question",
-      "name": "What does a K tax code mean?",
+      "name": "Why do I have a 'BR' or 'K' tax code?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A K tax code means you have a negative Personal Allowance. This happens when you have untaxed income — such as a company car benefit — added to your taxable income. The K prefix means more tax is deducted from your pay than would otherwise apply."
+        "text": "BR (Basic Rate): This usually happens if you have a second job or pension and your entire Personal Allowance is already used up by your main income. K Code: This means your untaxed income (like company benefits or state pension) is higher than your Personal Allowance. Effectively, you are being taxed on more than your total salary."
       }
     },
     {
       "@type": "Question",
-      "name": "What does an emergency tax code W1 or M1 mean?",
+      "name": "How long does it take HMRC to change a tax code?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "An emergency tax code such as W1 (week 1) or M1 (month 1) means your tax is calculated on each pay period in isolation, not cumulatively across the year. This often happens when starting a new job without a P45. It can cause overpayment of tax and should be corrected through your Personal Tax Account on GOV.UK."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I fix a wrong tax code?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The fastest way to fix a wrong tax code is to sign in to your Personal Tax Account on GOV.UK and update your employment details. HMRC will issue a corrected code to you and your employer within 15 working days. You can also call the HMRC Income Tax helpline on 0300 200 3300 (Mon–Fri 8am–6pm)."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What does the S prefix on a tax code mean?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The S prefix (e.g. S1257L) means you are a Scottish taxpayer and Scottish Income Tax rates apply to your non-savings, non-dividend income. These rates are set by the Scottish Parliament and differ from the rest of the UK."
+        "text": "Once HMRC is notified of a change, it typically takes 5 to 10 working days for them to process the update and send a \"P6\" or \"P9\" notice to your employer. Your employer will then apply the new code in the next available payroll cycle."
       }
     }
   ]
