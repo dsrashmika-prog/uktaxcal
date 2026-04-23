@@ -57,7 +57,7 @@ export default function TaxCodePage() {
         <div class="tc-input-field" id="tcInputField">
           <input type="text" id="tcInput" placeholder="e.g. 1257L, BR, D0, K500..." maxlength="10" autocomplete="off" spellcheck="false">
         </div>
-        <button class="tc-decode-btn" id="tcDecodeBtn">Decode &#8594;</button>
+        <button class="tc-decode-btn" id="tcDecodeBtn">Calculate &#8594;</button>
       </div>
       <div class="tc-input-hint">Common codes:
         <span class="tc-hint-pill" data-code="1257L">1257L</span>
