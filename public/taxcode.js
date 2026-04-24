@@ -209,7 +209,9 @@ if (document.getElementById('tcDecodeBtn')) {
 
     document.getElementById('tcTaxNoteText').textContent = taxNote;
 
-    // Show panel with animation
+    // Show panel with animation, hide placeholder
+    var placeholder = document.getElementById('wfResultPlaceholder');
+    if (placeholder) placeholder.style.display = 'none';
     panel.classList.add('visible');
     setTimeout(function() {
       panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
