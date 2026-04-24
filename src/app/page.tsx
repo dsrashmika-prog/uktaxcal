@@ -45,7 +45,7 @@ export default function TaxCodePage() {
 <div class="wf-hero">
   <div class="wf-hero-inner">
     <div class="wf-hero-badge">&#128269; Free Instant Checker &mdash; 2026/27 Tax Year</div>
-    <h1>Do You Know What Your Tax Code Means?</h1>
+    <h1>Free UK Tax Code Calculator &amp; Guide (Updated for 2026/27)</h1>
     <p>Most people never check. An incorrect tax code could be costing you hundreds of pounds a year. Follow the 3 steps below to find out &mdash; it takes 30 seconds.</p>
     <div class="wf-hero-steps-row">
       <div class="wf-hero-step"><span class="wf-hs-num" style="background:#00a99d;">1</span><span>Enter your code</span></div>
