@@ -2886,3 +2886,219 @@ select.form-control {
   text-decoration: none;
   font-weight: 600;
 }
+
+/* ===================== MOBILE FIXES ===================== */
+
+@media (max-width: 480px) {
+
+  /* Hero */
+  .wf-hero {
+    padding: 36px 18px 36px;
+  }
+  .wf-hero h1 {
+    font-size: 24px;
+    letter-spacing: -0.4px;
+  }
+  .wf-hero p {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .wf-hero-badge {
+    font-size: 11px;
+    padding: 5px 14px;
+  }
+  .wf-hero-step {
+    font-size: 13px;
+    padding: 8px 14px 8px 8px;
+    gap: 8px;
+  }
+  .wf-hs-num {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  /* Page wrapper */
+  .wf-page {
+    padding: 28px 16px 60px;
+  }
+
+  /* Step label */
+  .wf-step-label-title {
+    font-size: 18px;
+  }
+  .wf-step-num-big {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  /* Step card */
+  .wf-step-card {
+    padding: 18px 16px;
+    border-radius: 12px;
+  }
+
+  /* Where-to-find row: side-by-side on small mobile */
+  .wf-where-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .wf-where-item {
+    padding: 12px;
+  }
+  .wf-where-icon {
+    font-size: 20px;
+  }
+
+  /* Input + button: stack vertically */
+  .wf-input-area {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .tc-input-field {
+    width: 100%;
+    padding: 0 14px;
+  }
+  .tc-input-field input {
+    font-size: 20px;
+    padding: 12px 0;
+  }
+  .tc-decode-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+
+  /* Pills: wrap nicely, don't overflow */
+  .wf-pills-row {
+    gap: 6px;
+  }
+  .wf-pills-label {
+    width: 100%;
+    margin-bottom: 2px;
+  }
+  .tc-hint-pill {
+    font-size: 11px;
+    padding: 4px 10px;
+  }
+  .wf-pill-tag {
+    display: none; /* hide "Most common" tag on tiny screens */
+  }
+
+  /* Allowance hero inside result panel */
+  .tc-allowance-hero {
+    padding: 20px 18px;
+    gap: 16px;
+  }
+  .tc-ah-code { font-size: 28px; }
+  .tc-ah-amount { font-size: 24px; }
+
+  /* Action steps */
+  .tc-step-num {
+    width: 44px;
+    font-size: 16px;
+  }
+  .tc-step-body {
+    padding: 16px 14px;
+  }
+  .tc-step-title {
+    font-size: 14px;
+  }
+
+  /* GOV.UK action links — full width on mobile */
+  .tc-gov-link {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    padding: 10px 14px;
+    font-size: 13px;
+    text-align: center;
+  }
+
+  /* Contact grid already 1-col, just tighten */
+  .tc-contact-grid {
+    gap: 12px;
+  }
+  .tc-contact-card {
+    padding: 18px;
+  }
+  .tc-phone-num {
+    font-size: 20px;
+  }
+
+  /* Contact header source on new line */
+  .wf-contact-header {
+    font-size: 15px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  .wf-contact-source {
+    margin-left: 0;
+  }
+
+  /* Action banner */
+  .wf-action-banner {
+    padding: 14px 14px;
+    gap: 10px;
+  }
+  .wf-action-banner-icon {
+    font-size: 22px;
+  }
+  .wf-action-banner-title {
+    font-size: 14px;
+  }
+
+  /* Tip box */
+  .tc-tip-box {
+    padding: 12px 14px;
+    font-size: 12px;
+  }
+
+  /* Info chip */
+  .tc-info-chip {
+    font-size: 11px;
+    padding: 6px 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Reference table */
+  .wf-ref-title {
+    font-size: 17px;
+  }
+  .wf-ref-header {
+    gap: 10px;
+    font-size: 20px;
+  }
+
+  /* Step block spacing */
+  .wf-step-block {
+    margin-bottom: 32px;
+  }
+
+  /* Breakdown card */
+  .tc-breakdown-header {
+    font-size: 12px;
+    padding: 12px 16px;
+  }
+  .tc-meaning-row,
+  .tc-warning-row {
+    padding: 14px 14px;
+    gap: 10px;
+  }
+  .tcm-icon {
+    font-size: 18px;
+  }
+  .tcm-title {
+    font-size: 12px;
+  }
+  .tcm-desc {
+    font-size: 12px;
+  }
+}
