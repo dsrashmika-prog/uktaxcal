@@ -205,63 +205,127 @@ header {
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* TOOL NAV BAR */
-.tool-nav {
-  background: rgba(10, 25, 55, 0.92);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(4px);
+/* HAMBURGER BUTTON */
+.ham-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0 9px;
+  transition: background 0.2s;
+  flex-shrink: 0;
 }
 
-.tool-nav-inner {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 24px;
+.ham-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.ham-btn span {
+  display: block;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 2px;
+  transition: all 0.25s ease;
+  transform-origin: center;
+}
+
+/* Animate to X when open */
+.ham-btn.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.ham-btn.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.ham-btn.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* OVERLAY */
+.ham-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 199;
+  backdrop-filter: blur(2px);
+}
+.ham-overlay.open {
+  display: block;
+  animation: fadeInOverlay 0.2s ease;
+}
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* DROPDOWN MENU */
+.ham-menu {
+  display: none;
+  position: fixed;
+  top: 60px;
+  right: 0;
+  width: 260px;
+  background: var(--navy);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom-left-radius: 16px;
+  z-index: 200;
+  padding: 12px 0;
+  box-shadow: -4px 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.ham-menu.open {
+  display: block;
+  animation: slideInMenu 0.22s ease;
+}
+
+@keyframes slideInMenu {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ham-menu-link {
   display: flex;
   align-items: center;
-  gap: 4px;
-  height: 42px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.tool-nav-inner::-webkit-scrollbar {
-  display: none;
-}
-
-.tool-nav-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: rgba(255, 255, 255, 0.55);
+  gap: 12px;
+  padding: 13px 22px;
+  color: rgba(255, 255, 255, 0.65);
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   font-family: 'DM Sans', sans-serif;
-  padding: 5px 13px;
-  border-radius: 8px;
   transition: all 0.15s;
-  white-space: nowrap;
-  flex-shrink: 0;
+  border-left: 3px solid transparent;
 }
 
-.tool-nav-link:hover {
+.ham-menu-link:hover {
   color: white;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.06);
+  border-left-color: rgba(0, 196, 183, 0.5);
 }
 
-.tool-nav-link.active {
+.ham-menu-link.active {
   color: var(--teal-light);
-  background: rgba(0, 169, 157, 0.12);
-  border: 1px solid rgba(0, 169, 157, 0.2);
+  background: rgba(0, 169, 157, 0.1);
+  border-left-color: var(--teal-light);
 }
 
-.tool-nav-divider {
-  width: 1px;
-  height: 18px;
-  background: rgba(255, 255, 255, 0.1);
-  margin: 0 4px;
-  flex-shrink: 0;
+.ham-menu-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  margin: 6px 0;
 }
+
+/* Keep old tool-nav classes so existing pages don't break visually */
+.tool-nav { display: none; }
+.tool-nav-inner, .tool-nav-link, .tool-nav-divider { display: none; }
 
 .quick-calc-page {
   max-width: 720px;

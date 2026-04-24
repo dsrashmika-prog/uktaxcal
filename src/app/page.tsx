@@ -25,21 +25,21 @@ export default function TaxCodePage() {
     </a>
     <div class="header-right">
       <div class="tax-year-badge">2026 / 27</div>
+      <button class="ham-btn" id="hamBtn" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </header>
 
-<nav class="tool-nav">
-  <div class="tool-nav-inner">
-    <a class="tool-nav-link active" href="/">&#128221; Tax Code Checker</a>
-    <div class="tool-nav-divider"></div>
-    <a class="tool-nav-link" href="/full-calc">&#127919; Full Calculator</a>
-    <div class="tool-nav-divider"></div>
-    <a class="tool-nav-link" href="/quick-calc">&#9889; Quick Calculator</a>
-    <div class="tool-nav-divider"></div>
-    <a class="tool-nav-link" href="/salary-comparison">&#9878; Salary Comparison</a>
-  </div>
-</nav>
+<div class="ham-overlay" id="hamOverlay"></div>
+<div class="ham-menu" id="hamMenu">
+  <a class="ham-menu-link active" href="/">&#128221; Tax Code Checker</a>
+  <div class="ham-menu-divider"></div>
+  <a class="ham-menu-link" href="/full-calc">&#127919; Full Calculator</a>
+  <a class="ham-menu-link" href="/quick-calc">&#9889; Quick Calculator</a>
+  <a class="ham-menu-link" href="/salary-comparison">&#9878; Salary Comparison</a>
+</div>
 
 <!-- HERO BANNER -->
 <div class="wf-hero">
