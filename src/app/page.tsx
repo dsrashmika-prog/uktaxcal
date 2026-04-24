@@ -70,6 +70,25 @@ export default function TaxCodePage() {
     </div>
 
     <div class="wf-step-card" style="border-top:4px solid #00a99d;">
+      <div class="wf-input-area">
+        <div class="tc-input-field" id="tcInputField" style="flex:1;">
+          <input type="text" id="tcInput" placeholder="e.g. 1257L, BR, D0, K500..." maxlength="10" autocomplete="off" spellcheck="false">
+        </div>
+        <button class="tc-decode-btn" id="tcDecodeBtn">Decode My Code &#8594;</button>
+      </div>
+
+      <div class="wf-pills-row" style="margin-bottom:20px;">
+        <span class="wf-pills-label">Try an example:</span>
+        <span class="tc-hint-pill wf-pill-teal" data-code="1257L">1257L <span class="wf-pill-tag">Most common</span></span>
+        <span class="tc-hint-pill" data-code="BR">BR</span>
+        <span class="tc-hint-pill" data-code="D0">D0</span>
+        <span class="tc-hint-pill" data-code="S1257L">S1257L</span>
+        <span class="tc-hint-pill" data-code="K500">K500</span>
+        <span class="tc-hint-pill" data-code="NT">NT</span>
+        <span class="tc-hint-pill" data-code="1257L W1">1257L W1</span>
+      </div>
+
+      <div class="wf-where-label">&#128269; Where to find your tax code:</div>
       <div class="wf-where-row">
         <div class="wf-where-item">
           <div class="wf-where-icon">&#128196;</div>
@@ -83,24 +102,6 @@ export default function TaxCodePage() {
           <div class="wf-where-icon">&#128187;</div>
           <div><div class="wf-where-title">HMRC Online</div><div class="wf-where-desc">gov.uk/personal-tax-account</div></div>
         </div>
-      </div>
-
-      <div class="wf-input-area">
-        <div class="tc-input-field" id="tcInputField" style="flex:1;">
-          <input type="text" id="tcInput" placeholder="e.g. 1257L, BR, D0, K500..." maxlength="10" autocomplete="off" spellcheck="false">
-        </div>
-        <button class="tc-decode-btn" id="tcDecodeBtn">Decode My Code &#8594;</button>
-      </div>
-
-      <div class="wf-pills-row">
-        <span class="wf-pills-label">Try an example:</span>
-        <span class="tc-hint-pill wf-pill-teal" data-code="1257L">1257L <span class="wf-pill-tag">Most common</span></span>
-        <span class="tc-hint-pill" data-code="BR">BR</span>
-        <span class="tc-hint-pill" data-code="D0">D0</span>
-        <span class="tc-hint-pill" data-code="S1257L">S1257L</span>
-        <span class="tc-hint-pill" data-code="K500">K500</span>
-        <span class="tc-hint-pill" data-code="NT">NT</span>
-        <span class="tc-hint-pill" data-code="1257L W1">1257L W1</span>
       </div>
     </div>
   </div>

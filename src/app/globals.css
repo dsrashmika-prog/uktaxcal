@@ -2677,6 +2677,15 @@ select.form-control {
 }
 
 /* WHERE TO FIND YOUR CODE */
+.wf-where-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 10px;
+}
+
 .wf-where-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
