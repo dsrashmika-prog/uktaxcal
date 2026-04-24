@@ -2734,8 +2734,13 @@ select.form-control {
 .wf-input-area {
   display: flex;
   gap: 12px;
-  align-items: stretch;
+  align-items: center;
   margin-bottom: 16px;
+}
+
+.wf-input-area .tc-input-field {
+  height: 58px;
+  padding: 0 18px;
 }
 
 @media (max-width: 540px) {
@@ -2969,9 +2974,10 @@ select.form-control {
   /* Input stays row — Go button is a circle */
   .wf-input-area {
     flex-direction: row;
+    align-items: center;
   }
-  .tc-input-field {
-    width: 100%;
+  .wf-input-area .tc-input-field {
+    height: 52px;
     padding: 0 14px;
   }
   .tc-input-field input {

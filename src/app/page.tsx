@@ -74,7 +74,7 @@ export default function TaxCodePage() {
         <div class="tc-input-field" id="tcInputField" style="flex:1;">
           <input type="text" id="tcInput" placeholder="e.g. 1257L, BR, D0, K500..." maxlength="10" autocomplete="off" spellcheck="false">
         </div>
-        <button class="tc-decode-btn" id="tcDecodeBtn">Go</button>
+        <button class="tc-decode-btn" id="tcDecodeBtn">GO</button>
       </div>
 
       <div class="wf-pills-row" style="margin-bottom:20px;">
