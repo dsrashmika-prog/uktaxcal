@@ -1883,23 +1883,28 @@ select.form-control {
 }
 
 .tc-decode-btn {
-  padding: 0 28px;
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
   background: linear-gradient(135deg, var(--teal) 0%, #008a80 100%);
   color: white;
   border: none;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 700;
+  border-radius: 50%;
+  font-size: 16px;
+  font-weight: 800;
   font-family: 'DM Sans', sans-serif;
   cursor: pointer;
   transition: all 0.2s;
   box-shadow: 0 4px 14px rgba(0, 169, 157, 0.35);
-  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.3px;
 }
 
 .tc-decode-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 169, 157, 0.45);
+  transform: scale(1.08);
+  box-shadow: 0 6px 22px rgba(0, 169, 157, 0.5);
 }
 
 .tc-input-hint {
@@ -2961,10 +2966,9 @@ select.form-control {
     font-size: 20px;
   }
 
-  /* Input + button: stack vertically */
+  /* Input stays row — Go button is a circle */
   .wf-input-area {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
   }
   .tc-input-field {
     width: 100%;
@@ -2975,10 +2979,12 @@ select.form-control {
     padding: 12px 0;
   }
   .tc-decode-btn {
-    width: 100%;
-    padding: 14px;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
     font-size: 15px;
-    border-radius: 10px;
+    padding: 0;
+    align-self: center;
   }
 
   /* Pills: wrap nicely, don't overflow */
