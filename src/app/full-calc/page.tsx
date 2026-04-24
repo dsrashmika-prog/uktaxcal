@@ -33,11 +33,11 @@ export default function Page() {
 
 <nav class="tool-nav">
   <div class="tool-nav-inner">
+    <a class="tool-nav-link" href="/">&#128221; Tax Code Checker</a>
+    <div class="tool-nav-divider"></div>
     <a class="tool-nav-link active" href="/full-calc">&#127919; Full Calculator</a>
     <div class="tool-nav-divider"></div>
     <a class="tool-nav-link" href="/quick-calc">&#9889; Quick Calculator</a>
-    <div class="tool-nav-divider"></div>
-    <a class="tool-nav-link" href="/">&#128221; Tax Code Checker</a>
     <div class="tool-nav-divider"></div>
     <a class="tool-nav-link" href="/salary-comparison">&#9878; Salary Comparison</a>
   </div>
