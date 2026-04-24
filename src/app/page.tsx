@@ -48,11 +48,9 @@ export default function TaxCodePage() {
     <h1>Free UK Tax Code Calculator &amp; Guide (Updated for 2026/27)</h1>
     <p>Most people never check. An incorrect tax code could be costing you hundreds of pounds a year. Follow the 3 steps below to find out &mdash; it takes 30 seconds.</p>
     <div class="wf-hero-steps-row">
-      <div class="wf-hero-step"><span class="wf-hs-num" style="background:#00a99d;">1</span><span>Enter your code</span></div>
-      <div class="wf-hero-arrow">&#8594;</div>
-      <div class="wf-hero-step"><span class="wf-hs-num" style="background:#6366f1;">2</span><span>Read your result</span></div>
-      <div class="wf-hero-arrow">&#8594;</div>
-      <div class="wf-hero-step"><span class="wf-hs-num" style="background:#f5a623;">3</span><span>Take action if needed</span></div>
+      <div class="wf-hero-step"><span class="wf-hs-num" style="background:#00a99d;">1</span><span>Enter code</span></div>
+      <div class="wf-hero-step"><span class="wf-hs-num" style="background:#6366f1;">2</span><span>See result</span></div>
+      <div class="wf-hero-step"><span class="wf-hs-num" style="background:#f5a623;">3</span><span>Take action</span></div>
     </div>
   </div>
 </div>
