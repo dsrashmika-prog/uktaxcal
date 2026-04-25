@@ -96,7 +96,7 @@ export default function Page() {
 <div class="tc-page">
   <div class="tc-hero">
     <div class="badge">&#128270; 2026/27 Tax Reality Check</div>
-    <h1>Is Your Tax Code Costing You Money?</h1>
+    <h1>Free UK Tax Code Checker &amp; Guide (Updated for 2026/27)</h1>
     <p>Answer 3 quick questions. We'll run your code through our logic engine and tell you exactly where you stand — Green, Amber or Red.</p>
   </div>
 
