@@ -170,6 +170,34 @@ export default function Page() {
       </div>
     </div>
   </div>
+  
+  <div class="tc-faq" style="margin-top:60px;">
+    <h2 style="font-size:24px;font-weight:800;color:var(--navy);margin-bottom:24px;text-align:center;">Frequently Asked Questions</h2>
+    <div class="tc-card" style="margin-bottom:16px;">
+      <div class="tc-card-body" style="padding:20px;">
+        <h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;">What does the 'L' mean in my tax code?</h3>
+        <p style="font-size:14px;color:var(--muted);line-height:1.6;margin:0;">The 'L' is the most common suffix and means you are entitled to the standard tax-free Personal Allowance. For 2026/27, the standard code is 1257L, giving you £12,570 tax-free.</p>
+      </div>
+    </div>
+    <div class="tc-card" style="margin-bottom:16px;">
+      <div class="tc-card-body" style="padding:20px;">
+        <h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;">Why is my code 'BR', 'D0' or '0T'?</h3>
+        <p style="font-size:14px;color:var(--muted);line-height:1.6;margin:0;">These are typically used for a second job or pension. 'BR' taxes all income at the basic rate (20%), 'D0' at the higher rate (40%). '0T' means you have no Personal Allowance, possibly because your employer doesn't have the necessary details to give you a tax code.</p>
+      </div>
+    </div>
+    <div class="tc-card" style="margin-bottom:16px;">
+      <div class="tc-card-body" style="padding:20px;">
+        <h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;">What does 'W1' or 'M1' at the end of my code mean?</h3>
+        <p style="font-size:14px;color:var(--muted);line-height:1.6;margin:0;">These are "emergency tax codes" (e.g., 1257L W1). They calculate tax only on what you earn in the current pay period, ignoring previous pay and tax. It often happens when you start a new job. Your employer should automatically fix this once they receive your P45 or HMRC details.</p>
+      </div>
+    </div>
+    <div class="tc-card" style="margin-bottom:16px;">
+      <div class="tc-card-body" style="padding:20px;">
+        <h3 style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px;">How do I update my tax code?</h3>
+        <p style="font-size:14px;color:var(--muted);line-height:1.6;margin:0;">The easiest way is to use your personal tax account online or the HMRC app. Alternatively, use our generated script above and call HMRC directly on 0300 200 3300.</p>
+      </div>
+    </div>
+  </div>
 </div>
 
 <footer class="site-footer">
