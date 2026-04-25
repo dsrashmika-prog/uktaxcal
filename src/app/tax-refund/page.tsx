@@ -36,6 +36,7 @@ export default function Page() {
   <a class="ham-menu-link" href="/full-calc">&#127919; Full Calculator</a>
   <a class="ham-menu-link" href="/quick-calc">&#9889; Quick Calculator</a>
   <a class="ham-menu-link" href="/salary-comparison">&#9878; Salary Comparison</a>
+  <a class="ham-menu-link" href="/tax-check">&#128270; Reality Check</a>
   <a class="ham-menu-link active" href="/tax-refund">&#128176; Refund Calculator</a>
 </div>
 
