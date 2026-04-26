@@ -40,7 +40,7 @@ export default function Page() {
 </div>
 
 <style>
-header .header-inner, .site-footer .footer-inner { max-width: 860px !important; }
+header .header-inner, .site-footer .footer-inner { max-width: 820px !important; }
 .tc-page{max-width:860px;margin:0 auto;padding:40px 20px 80px;}
 .tc-hero{text-align:center;margin-bottom:36px;}
 .tc-hero .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,169,157,0.1);border:1px solid rgba(0,169,157,0.25);color:var(--teal);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700;letter-spacing:0.5px;margin-bottom:14px;text-transform:uppercase;}

@@ -33,7 +33,7 @@ export default function TaxCodePage() {
 </header>
 
 <style>
-header .header-inner, .site-footer .footer-inner { max-width: 860px !important; }
+header .header-inner, .site-footer .footer-inner { max-width: 812px !important; }
 </style>
 
 <div class="ham-overlay" id="hamOverlay"></div>
