@@ -32,6 +32,10 @@ export default function TaxCodePage() {
   </div>
 </header>
 
+<style>
+header .header-inner, .site-footer .footer-inner { max-width: 860px !important; }
+</style>
+
 <div class="ham-overlay" id="hamOverlay"></div>
 <div class="ham-menu" id="hamMenu">
   <a class="ham-menu-link active" href="/">&#128221; Tax Code Checker</a>
