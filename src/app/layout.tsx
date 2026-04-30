@@ -3,13 +3,13 @@ import "./globals.css";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-    title: "UK Tax Code Checker 2026/27: Calculate Your Take-Home Pay Instantly",
+    title: "Free UK Tax Code Checker & Guide (Update For 2026/27)",
     description: "Check if your 2026/27 tax code is correct with our instant calculator. If your code is wrong, follow our simple steps to claim overpaid tax or resolve underpayments with HMRC today.",
     keywords: ["UK tax calculator", "salary calculator UK", "take home pay", "income tax calculator", "wage calculator", "national insurance calculator", "tax trap"],
     applicationName: "NetPayHome",
     metadataBase: new URL('https://netpayhome.co.uk'),
     openGraph: {
-        title: "UK Tax Code Checker 2026/27: Calculate Your Take-Home Pay Instantly",
+        title: "Free UK Tax Code Checker & Guide (Update For 2026/27)",
         description: "Check if your 2026/27 tax code is correct with our instant calculator. If your code is wrong, follow our simple steps to claim overpaid tax or resolve underpayments with HMRC today.",
         url: "https://netpayhome.co.uk",
         siteName: "NetPayHome",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "UK Tax Code Checker 2026/27: Calculate Your Take-Home Pay Instantly",
+        title: "Free UK Tax Code Checker & Guide (Update For 2026/27)",
         description: "Check if your 2026/27 tax code is correct with our instant calculator. If your code is wrong, follow our simple steps to claim overpaid tax or resolve underpayments with HMRC today.",
     },
 };

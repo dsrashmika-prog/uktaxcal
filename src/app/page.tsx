@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'UK Tax Code Checker 2026/27: Calculate Your Take-Home Pay Instantly',
+  title: 'Free UK Tax Code Checker & Guide (Update For 2026/27)',
   description: 'Check if your 2026/27 tax code is correct with our instant calculator. If your code is wrong, follow our simple steps to claim overpaid tax or resolve underpayments with HMRC today.',
   alternates: {
-    canonical: '/tax-code',
+    canonical: '/',
   },
 };
 
