@@ -33,9 +33,6 @@ export default function Page() {
 <div class="ham-menu" id="hamMenu">
   <a class="ham-menu-link" href="/">&#128221; Tax Code Checker</a>
   <div class="ham-menu-divider"></div>
-  <a class="ham-menu-link" href="/full-calc">&#127919; Full Calculator</a>
-  <a class="ham-menu-link" href="/quick-calc">&#9889; Quick Calculator</a>
-  <a class="ham-menu-link" href="/salary-comparison">&#9878; Salary Comparison</a>
   <a class="ham-menu-link active" href="/tax-check">&#128270; Reality Check</a>
 </div>
 
@@ -216,10 +213,7 @@ header .header-inner, .site-footer .footer-inner { max-width: 820px !important; 
       <div>
         <div class="footer-col-title">Tools</div>
         <ul class="footer-links">
-          <li><a href="/full-calc">Full Calculator</a></li>
-          <li><a href="/quick-calc">Quick Calculator</a></li>
           <li><a href="/">Tax Code Checker</a></li>
-          <li><a href="/salary-comparison">Salary Comparison</a></li>
           <li><a href="/tax-check">Reality Check</a></li>
         </ul>
       </div>

@@ -9,7 +9,55 @@ export const metadata: Metadata = {
 };
 
 export default function TaxCodePage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does the 1257L tax code mean for 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The 1257L tax code is the most common code for the 2026/27 tax year. It signifies that you are entitled to the standard Personal Allowance of £12,570, which is the amount of income you can earn tax-free. If you see this code, it usually means you have one job and no taxable employer benefits."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I know if my tax code is wrong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your tax code might be wrong if you've recently changed jobs, started receiving a company car, or have multiple sources of income. Common signs of an incorrect code include a sudden drop in take-home pay or being placed on an emergency tax code (like 1257L W1, M1, or X). Use our tax code calculator above to verify your details."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should I do if I am overpaying tax?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If our checker suggests you are overpaying, you must contact HMRC to update your records. You can do this through your Personal Tax Account online or by calling the HMRC helpline. Once updated, HMRC will issue a new tax code to your employer, and any overpaid tax is usually refunded through your next payslip."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do I have a 'BR' or 'K' tax code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "BR (Basic Rate): This usually happens if you have a second job or pension and your entire Personal Allowance is already used up by your main income. K Code: This means your untaxed income (like company benefits or state pension) is higher than your Personal Allowance. Effectively, you are being taxed on more than your total salary."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does it take HMRC to change a tax code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Once HMRC is notified of a change, it typically takes 5 to 10 working days for them to process the update and send a 'P6' or 'P9' notice to your employer. Your employer will then apply the new code in the next available payroll cycle."
+        }
+      }
+    ]
+  };
+
   return (
+    <>
     <div dangerouslySetInnerHTML={{
       __html: `
 
@@ -40,9 +88,6 @@ header .header-inner, .site-footer .footer-inner { max-width: 812px !important; 
 <div class="ham-menu" id="hamMenu">
   <a class="ham-menu-link active" href="/">&#128221; Tax Code Checker</a>
   <div class="ham-menu-divider"></div>
-  <a class="ham-menu-link" href="/full-calc">&#127919; Full Calculator</a>
-  <a class="ham-menu-link" href="/quick-calc">&#9889; Quick Calculator</a>
-  <a class="ham-menu-link" href="/salary-comparison">&#9878; Salary Comparison</a>
   <a class="ham-menu-link" href="/tax-check">&#128270; Reality Check</a>
 </div>
 
@@ -356,10 +401,8 @@ header .header-inner, .site-footer .footer-inner { max-width: 812px !important; 
       <div>
         <div class="footer-col-title">Tools</div>
         <ul class="footer-links">
-          <li><a href="/full-calc">Full Calculator</a></li>
-          <li><a href="/quick-calc">Quick Calculator</a></li>
           <li><a href="/">Tax Code Checker</a></li>
-          <li><a href="/salary-comparison">Salary Comparison</a></li>
+          <li><a href="/tax-check">Reality Check</a></li>
         </ul>
       </div>
       <div></div>
@@ -369,57 +412,8 @@ header .header-inner, .site-footer .footer-inner { max-width: 812px !important; 
       <span class="footer-badge">2026 / 27 Tax Year</span>
     </div>
   </div>
-</footer>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "What does the 1257L tax code mean for 2026?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The 1257L tax code is the most common code for the 2026/27 tax year. It signifies that you are entitled to the standard Personal Allowance of £12,570, which is the amount of income you can earn tax-free. If you see this code, it usually means you have one job and no taxable employer benefits."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I know if my tax code is wrong?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Your tax code might be wrong if you've recently changed jobs, started receiving a company car, or have multiple sources of income. Common signs of an incorrect code include a sudden drop in take-home pay or being placed on an emergency tax code (like 1257L W1, M1, or X). Use our tax code calculator above to verify your details."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What should I do if I am overpaying tax?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "If our checker suggests you are overpaying, you must contact HMRC to update your records. You can do this through your Personal Tax Account online or by calling the HMRC helpline. Once updated, HMRC will issue a new tax code to your employer, and any overpaid tax is usually refunded through your next payslip."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why do I have a 'BR' or 'K' tax code?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "BR (Basic Rate): This usually happens if you have a second job or pension and your entire Personal Allowance is already used up by your main income. K Code: This means your untaxed income (like company benefits or state pension) is higher than your Personal Allowance. Effectively, you are being taxed on more than your total salary."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How long does it take HMRC to change a tax code?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Once HMRC is notified of a change, it typically takes 5 to 10 working days for them to process the update and send a 'P6' or 'P9' notice to your employer. Your employer will then apply the new code in the next available payroll cycle."
-      }
-    }
-  ]
-}
-</script>
-
 `}} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+    </>
   );
 }

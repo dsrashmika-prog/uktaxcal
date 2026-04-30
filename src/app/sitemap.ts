@@ -7,31 +7,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: baseUrl,
             lastModified: new Date(),
             changeFrequency: 'weekly',
-            priority: 1,
+            priority: 1.0,
         },
         {
-            url: `${baseUrl}/quick-calc`,
+            url: `${baseUrl}/tax-check`,
             lastModified: new Date(),
             changeFrequency: 'weekly',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/full-calc`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/salary-comparison`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.8,
-        },
-        {
-            url: `${baseUrl}/tax-refund`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
             priority: 0.9,
-        },
+        }
     ]
 }
